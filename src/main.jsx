@@ -2,16 +2,16 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import ErrorBoundary from './components/ErrorBoundary';
 
-// Global styles (optional if you add later)
+// Global styles
 import './styles/index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <BrowserRouter>
+        <ErrorBoundary>
             <App />
-        </BrowserRouter>
+        </ErrorBoundary>
     </React.StrictMode>
 );

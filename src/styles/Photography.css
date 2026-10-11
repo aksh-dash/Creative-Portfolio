@@ -171,8 +171,61 @@
     color: var(--black);
 }
 
+.lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(18, 18, 18, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    z-index: 10;
+    user-select: none;
+}
+
+.lightbox-prev-btn {
+    left: -60px;
+}
+
+.lightbox-next-btn {
+    right: -60px;
+}
+
+.lightbox-nav-btn:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-50%) scale(1.08);
+}
+
+/* Skeleton Loading State for Image Cards */
+.photo-card {
+    background: #141414;
+    background: linear-gradient(110deg, #111111 8%, #1c1c1c 18%, #111111 33%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.8s infinite ease-in-out;
+}
+
+@keyframes skeletonShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
 @media (max-width: 768px) {
     .photo-masonry-grid {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+    .lightbox-prev-btn {
+        left: 8px;
+    }
+    .lightbox-next-btn {
+        right: 8px;
     }
 }

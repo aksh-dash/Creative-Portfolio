@@ -69,16 +69,30 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
             });
         }
 
-        setTimeout(() => {
+        // 1. Post to secure Vercel Serverless Function API
+        fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: form.name,
+                email: form.email,
+                message: form.message,
+                website_trap: form.website_trap || ''
+            })
+        })
+        .catch(() => {
+            // Silently fall back to WhatsApp if serverless API is offline
+        })
+        .finally(() => {
             setIsSubmitting(false);
             setShowThankYou(true);
 
-            // Open WhatsApp direct link in background
+            // 2. Open WhatsApp direct communication channel
             const text = encodeURIComponent(
                 `*New Portfolio Inquiry*\n*Name:* ${form.name}\n*Email:* ${form.email}\n\n*Message:*\n${form.message}`
             );
             window.open(`https://wa.me/918482872105?text=${text}`, '_blank');
-        }, 800);
+        });
     };
 
     return (
@@ -181,6 +195,14 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
                                     >
                                         @carclubofsambhajinagar ↗
                                     </a>
+                                    <a
+                                        href={personalInfo.linkedin}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="social-pill"
+                                    >
+                                        LinkedIn ↗
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -190,6 +212,18 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
                 {/* Form Column with Validation & Loading State */}
                 <div className="contact-form-wrap">
                     <form onSubmit={handleSubmit} className="contact-form" noValidate>
+                        {/* Hidden Honeypot Field for Spam Bot Filtering */}
+                        <div style={{ display: 'none', visibility: 'hidden' }} aria-hidden="true">
+                            <input
+                                type="text"
+                                name="website_trap"
+                                tabIndex={-1}
+                                autoComplete="off"
+                                value={form.website_trap || ''}
+                                onChange={handleChange}
+                            />
+                        </div>
+
                         <div className="form-field">
                             <label htmlFor="contact-name">Your Name / Brand *</label>
                             <input

@@ -19,7 +19,14 @@ const About = () => {
             <div className="about-inner">
                 <div ref={photoRef} className="about-photo-col">
                     <div className="about-photo-wrap">
-                        <img src="/assets/me.png" alt="Akshat Dange Content Creation" className="about-photo-img" />
+                        <img
+                            src="/assets/me.png"
+                            alt="Akshat Dange Content Creation and Commercial Photography"
+                            width="400"
+                            height="420"
+                            loading="lazy"
+                            className="about-photo-img"
+                        />
                     </div>
                 </div>
 

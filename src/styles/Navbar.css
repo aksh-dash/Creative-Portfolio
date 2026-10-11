@@ -130,6 +130,7 @@
         right: 0;
         bottom: 0;
         height: 100vh;
+        height: 100dvh;
         background: rgba(8, 8, 8, 0.98);
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);

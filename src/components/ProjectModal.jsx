@@ -147,7 +147,7 @@ const ProjectModal = ({ project, onClose }) => {
             {activeLightBox && (
                 <div className="lightbox-backdrop" onClick={() => setActiveLightBox(null)}>
                     <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-                        <button className="lightbox-close" onClick={() => setActiveLightBox(null)}>✕</button>
+                        <button className="lightbox-close" onClick={() => setActiveLightBox(null)} aria-label="Close high-res photo lightbox">✕</button>
                         <img src={activeLightBox.src} alt={activeLightBox.title} className="lightbox-img" />
                         <div className="lightbox-title">{activeLightBox.title}</div>
                     </div>

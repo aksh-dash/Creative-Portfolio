@@ -160,6 +160,25 @@ const Services = () => {
                     </button>
                 </div>
             </div>
+
+            {/* Transparent Pricing & Retainer Structure Note */}
+            <div style={{
+                textAlign: 'center',
+                marginTop: '2.5rem',
+                padding: '1.25rem 2rem',
+                background: 'rgba(255, 255, 255, 0.02)',
+                border: '1px solid rgba(255, 255, 255, 0.06)',
+                borderRadius: '16px',
+                maxWidth: '800px',
+                margin: '2.5rem auto 0 auto'
+            }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#a0a0a0', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                    TRANSPARENT QUOTES &amp; FLEXIBLE ENGAGEMENT
+                </span>
+                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.95rem', color: '#e0e0e0', lineHeight: 1.6 }}>
+                    Every brand and project is unique. We offer <strong>bespoke per-project pricing</strong> (commercial films, photoshoots) as well as <strong>monthly retainer agreements</strong> (continuous reel production &amp; social management) with clear deliverables, zero hidden fees, and defined timelines.
+                </p>
+            </div>
         </section>
     );
 };

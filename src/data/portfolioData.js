@@ -13,6 +13,7 @@ export const personalInfo = {
     whatsappLink: "https://wa.me/918482872105",
     mapsUrl: "https://maps.google.com/?q=Pune,+Maharashtra,+India",
     instagram: "https://instagram.com/dangeakshat?exln=MnFvMTduYms0M3lj",
+    linkedin: "https://www.linkedin.com/in/akshat-dange/",
     instagramHandles: [
         { name: "@dangeakshat", url: "https://instagram.com/dangeakshat?exln=MnFvMTduYms0M3lj" },
         { name: "@creativelylensed", url: "https://instagram.com/creativelylensed?obrf=MWVub3V0bm92aWZxbg%3D%3D" },

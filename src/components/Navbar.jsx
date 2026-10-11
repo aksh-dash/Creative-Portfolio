@@ -44,7 +44,14 @@ const Navbar = () => {
             <div
                 className={`nav-hamburger ${menuOpen ? 'active' : ''}`}
                 onClick={() => setMenuOpen(!menuOpen)}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setMenuOpen(!menuOpen);
+                    }
+                }}
                 aria-label="Toggle navigation menu"
+                aria-expanded={menuOpen}
                 role="button"
                 tabIndex={0}
             >

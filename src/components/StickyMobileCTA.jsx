@@ -33,7 +33,7 @@ const StickyMobileCTA = () => {
 
                 <div className="sm-actions">
                     <a
-                        href="https://wa.me/918482872105"
+                        href="https://wa.me/918482872105?text=Hi%20Akshat%2C%20I%20would%20like%20to%20discuss%20a%20video%2Fphotography%20project!"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="sm-whatsapp-btn"

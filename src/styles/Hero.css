@@ -4,6 +4,7 @@
     position: relative;
     background: #080808;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -14,6 +15,7 @@
     position: relative;
     flex: 1;
     min-height: calc(100vh - 5.5rem);
+    min-height: calc(100dvh - 5.5rem);
     border-radius: 28px;
     overflow: hidden;
     background: #0d0d0d;
