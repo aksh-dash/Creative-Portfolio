@@ -1,0 +1,105 @@
+.sticky-mobile-cta {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sticky-mobile-cta {
+        display: block;
+        position: fixed;
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+        z-index: 9999;
+        background: rgba(14, 14, 14, 0.94);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 100px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 8px 14px 8px 18px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.05);
+        animation: stickySlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sm-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .sm-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .sm-pulse-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #10b981;
+        box-shadow: 0 0 8px #10b981;
+        animation: smDotPulse 2s infinite ease-in-out;
+        flex-shrink: 0;
+    }
+
+    @keyframes smDotPulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .sm-text-wrap {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+    }
+
+    .sm-title {
+        font-family: var(--font-display);
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #ffffff;
+    }
+
+    .sm-subtitle {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .sm-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .sm-whatsapp-btn {
+        background: rgba(37, 211, 102, 0.15);
+        border: 1px solid rgba(37, 211, 102, 0.4);
+        color: #25d366;
+        padding: 6px 12px;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .sm-book-btn {
+        background: #ffffff;
+        color: #080808;
+        padding: 7px 14px;
+        border-radius: 100px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+@keyframes stickySlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,49 @@
+portfolio/
+│
+├── public/
+│   ├── videos/
+│   │   └── showreel.mp4
+│   └── images/
+│       └── (your images here)
+│
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── Hero.jsx
+│   │   ├── Showreel.jsx
+│   │   ├── Services.jsx
+│   │   ├── Projects.jsx
+│   │   ├── Skills.jsx
+│   │   ├── BeforeAfter.jsx
+│   │   ├── Timeline.jsx
+│   │   ├── About.jsx
+│   │   ├── SocialProof.jsx
+│   │   ├── Contact.jsx
+│   │   └── CustomCursor.jsx
+│   │
+│   ├── styles/
+│   │   ├── Navbar.css
+│   │   ├── Hero.css
+│   │   ├── Showreel.css
+│   │   ├── Services.css
+│   │   ├── Projects.css
+│   │   ├── Skills.css
+│   │   ├── BeforeAfter.css
+│   │   ├── Timeline.css
+│   │   ├── About.css
+│   │   ├── SocialProof.css
+│   │   ├── Contact.css
+│   │   └── CustomCursor.css
+│   │
+│   ├── hooks/
+│   │   └── useReveal.js
+│   │
+│   ├── data/
+│   │   └── portfolioData.js
+│   │
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── package.json
+├── index.html
+└── vite.config.js

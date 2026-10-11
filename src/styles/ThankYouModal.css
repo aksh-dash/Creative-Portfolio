@@ -1,0 +1,110 @@
+.ty-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.ty-modal {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(16, 185, 129, 0.2);
+    position: relative;
+    animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ty-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(16, 185, 129, 0.15);
+    border: 2px solid #10b981;
+    color: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0 auto 1.5rem auto;
+}
+
+.ty-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: #10b981;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.ty-title {
+    font-family: var(--font-display);
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+}
+
+.ty-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 1.75rem 0;
+}
+
+.ty-contact-highlight {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 2rem;
+}
+
+.ty-contact-highlight a {
+    color: #25d366;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.ty-close-btn {
+    padding: 0.85rem 2.25rem;
+    background: #ffffff;
+    color: #080808;
+    border: none;
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.ty-close-btn:hover {
+    background: #e5e5e5;
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}

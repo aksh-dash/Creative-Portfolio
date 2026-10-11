@@ -1,0 +1,232 @@
+/* Hero Section */
+.hero-section {
+    padding: 0.75rem 1rem 0 1rem;
+    position: relative;
+    background: #080808;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.hero-card {
+    position: relative;
+    flex: 1;
+    min-height: calc(100vh - 5.5rem);
+    border-radius: 28px;
+    overflow: hidden;
+    background: #0d0d0d;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4.25rem 4rem 2.25rem 4rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: url('/assets/Stylized%20Crimson%20Portrait%20of%20a%20Smiling%20Man.png') center 65%/cover no-repeat;
+    transition: transform 0.25s ease-out;
+    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.85));
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: 
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,0.02) 0%, rgba(8,8,8,0.2) 60%, rgba(8,8,8,0.85) 100%),
+        linear-gradient(to top, #0d0d0d 0%, rgba(13,13,13,0.3) 30%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Main Split Layout: Left vs Right */
+.hero-main-layout {
+    z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* Left Column: Greeting & Main Title */
+.hero-left-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.hero-greeting {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.hero-main-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 4.8vw, 5.25rem);
+    font-weight: 800;
+    line-height: 0.95;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    margin: 0;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+/* Right Column: Side Title & Subtext */
+.hero-right-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 380px;
+    margin-top: 0.5rem;
+}
+
+.hero-side-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #ffffff;
+    margin: 0 0 0.85rem 0;
+    letter-spacing: -0.02em;
+    text-shadow: 0 5px 20px rgba(0,0,0,0.7);
+}
+
+.hero-side-sub {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* Bottom Feature Strip inside Hero Card */
+.hero-features-grid {
+    z-index: 2;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    text-align: left;
+}
+
+.feature-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.feature-label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Bottom Brand Logo Strip Below Hero Card */
+.hero-brands-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3.5rem;
+    background: #080808;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.brands-title {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 500;
+}
+
+.brands-logos {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.brand-logo-item {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: -0.01em;
+}
+
+.brand-dot {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 0.75rem;
+}
+
+/* Responsive Rules */
+@media (max-width: 1024px) {
+    .hero-card {
+        padding: 3rem 2.5rem 2.5rem 2.5rem;
+        min-height: auto;
+    }
+
+    .hero-main-layout {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3rem;
+    }
+
+    .hero-right-col {
+        max-width: 100%;
+    }
+
+    .hero-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 3rem;
+    }
+
+    .hero-brands-strip {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+        padding: 2rem 2.5rem;
+    }
+
+    .brands-logos {
+        flex-wrap: wrap;
+        gap: 1.5rem 2.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .hero-features-grid {
+        grid-template-columns: 1fr;
+    }
+}

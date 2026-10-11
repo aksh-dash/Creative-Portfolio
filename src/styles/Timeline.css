@@ -1,0 +1,53 @@
+.timeline {
+    padding: 5rem 2rem;
+}
+
+.timeline-track {
+    border-left: 1px solid var(--border);
+    padding-left: 2rem;
+    margin-left: 1rem;
+    position: relative;
+    max-width: 700px;
+}
+
+.tl-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+}
+
+.tl-item:last-child {
+    padding-bottom: 0;
+}
+
+.tl-dot {
+    position: absolute;
+    left: -2.35rem;
+    top: 0.25rem;
+    width: 10px;
+    height: 10px;
+    background: var(--white);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.tl-year {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+}
+
+.tl-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.tl-desc {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.6;
+}

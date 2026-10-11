@@ -1,0 +1,63 @@
+.social-proof {
+    padding: 5rem 2rem;
+}
+
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.proof-card {
+    padding: 2.5rem 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    text-align: center;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.proof-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.proof-num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+}
+
+.proof-label {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.proof-desc {
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .proof-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .proof-grid {
+        grid-template-columns: 1fr;
+    }
+}

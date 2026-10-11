@@ -1,0 +1,147 @@
+/* Graphics Showcase Section */
+
+.graphics {
+    padding: 5rem 2rem;
+    position: relative;
+    background: #0a0a0a;
+}
+
+.graphics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.graphic-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.graphic-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+.graphic-img-wrap {
+    height: 340px;
+    position: relative;
+    overflow: hidden;
+}
+
+.graphic-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.graphic-card:hover .graphic-img {
+    transform: scale(1.05);
+}
+
+.graphic-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(8, 8, 8, 0.95) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.graphic-cat {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--silver);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.25rem;
+}
+
+.graphic-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 0;
+}
+
+/* Lightbox Modal */
+.graphic-lightbox-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 2500;
+    background: rgba(0, 0, 0, 0.94);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.graphic-lightbox-modal {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.graphic-full-img {
+    max-width: 100%;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
+}
+
+.graphic-lightbox-info {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.graphic-lightbox-cat {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.graphic-lightbox-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--white);
+    margin: 0.25rem 0 0 0;
+}
+
+.graphic-close-btn {
+    position: absolute;
+    top: -45px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.graphic-close-btn:hover {
+    background: var(--white);
+    color: var(--black);
+}

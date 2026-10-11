@@ -1,0 +1,105 @@
+.notfound-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #080808;
+    color: #ffffff;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.notfound-container::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(240, 20, 50, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+.notfound-content {
+    max-width: 540px;
+    position: relative;
+    z-index: 1;
+}
+
+.notfound-tag {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    color: rgba(201, 168, 76, 0.8);
+    margin-bottom: 1.5rem;
+}
+
+.notfound-code {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 12vw, 9rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+}
+
+.notfound-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin: 1.5rem 0 1rem 0;
+    color: #ffffff;
+}
+
+.notfound-desc {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.notfound-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.notfound-btn {
+    padding: 0.85rem 1.85rem;
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.notfound-btn.primary {
+    background: #ffffff;
+    color: #080808;
+}
+
+.notfound-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25);
+}
+
+.notfound-btn.secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.notfound-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-2px);
+}

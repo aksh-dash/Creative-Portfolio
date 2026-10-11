@@ -1,0 +1,104 @@
+.legal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.legal-modal {
+    background: #0f0f0f;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 680px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95);
+    animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+.legal-header {
+    padding: 1.75rem 2rem 1.25rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+}
+
+.legal-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: rgba(201, 168, 76, 0.8);
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.legal-title {
+    font-family: var(--font-display);
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.legal-close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.legal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.legal-body {
+    padding: 1.5rem 2rem 2rem 2rem;
+    overflow-y: auto;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.legal-updated {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 1.5rem;
+}
+
+.legal-body h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+.legal-body p {
+    margin: 0 0 1rem 0;
+}
+
+.legal-body strong {
+    color: #ffffff;
+}

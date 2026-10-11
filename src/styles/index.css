@@ -1,0 +1,99 @@
+:root {
+    --accent: #ffffff;
+    --black: #080808;
+    --white: #f5f5f5;
+    --gray: #9a9a9a;
+    --dark-gray: #1a1a1a;
+    --surface: #141414;
+    --surface-light: #1a1a1a;
+    --muted: #5c5c5c;
+    --silver: #e8e8e8;
+    --border: rgba(255,255,255,0.08);
+
+    /* keep --green as alias so any lingering refs don't break */
+    --green: #ffffff;
+
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+}
+
+body {
+    margin: 0;
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ── Shared section styles ── */
+
+.section-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 3rem;
+}
+
+.section-title .accent {
+    color: var(--silver);
+    opacity: 0.6;
+}
+
+/* ── Reveal animation ── */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
