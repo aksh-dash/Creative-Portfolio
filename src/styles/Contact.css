@@ -307,11 +307,53 @@
 
 @media (max-width: 600px) {
     .contact {
-        padding: 4rem 1.25rem 3rem 1.25rem;
+        padding: 3.5rem 1rem 6.5rem 1rem;
+    }
+
+    .contact-container {
+        margin-bottom: 3.5rem;
+    }
+
+    .contact-details-box,
+    .contact-form-wrap {
+        padding: 1.5rem 1.15rem;
+        border-radius: 18px;
+    }
+
+    .details-title {
+        font-size: 1.4rem;
+    }
+
+    .social-pill {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .contact-submit-btn {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+        align-self: stretch;
     }
 
     .footer-content {
         flex-direction: column;
         align-items: flex-start;
+        gap: 1.25rem;
     }
-}
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 0.5rem 0.75rem;
+    }
+
+    .footer-link-btn {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+    }
+}

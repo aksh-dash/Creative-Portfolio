@@ -153,6 +153,21 @@
 
     .nav-hamburger {
         display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 44px;
+        height: 44px;
+        padding: 8px;
         z-index: 101;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 1rem 4%;
+    }
+
+    .nav-logo {
+        font-size: 1.1rem;
     }
 }

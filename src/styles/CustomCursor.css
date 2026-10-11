@@ -21,3 +21,11 @@
     transform: translate(-50%, -50%);
     transition: width 0.3s, height 0.3s, border-color 0.3s;
 }
+
+/* Hide custom cursor on mobile touch screens */
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    .cursor,
+    .cursor-ring {
+        display: none !important;
+    }
+}

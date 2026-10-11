@@ -84,6 +84,8 @@
         text-decoration: none;
         display: inline-flex;
         align-items: center;
+        min-height: 40px;
+        white-space: nowrap;
     }
 
     .sm-book-btn {
@@ -96,8 +98,38 @@
         text-decoration: none;
         display: inline-flex;
         align-items: center;
+        min-height: 40px;
+        white-space: nowrap;
     }
 }
+
+@media (max-width: 380px) {
+    .sticky-mobile-cta {
+        padding: 6px 10px 6px 14px;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+    }
+
+    .sm-subtitle {
+        display: none;
+    }
+
+    .sm-title {
+        font-size: 0.76rem;
+    }
+
+    .sm-actions {
+        gap: 6px;
+    }
+
+    .sm-whatsapp-btn,
+    .sm-book-btn {
+        padding: 6px 9px;
+        font-size: 0.72rem;
+    }
+}
+
 
 @keyframes stickySlideUp {
     from { opacity: 0; transform: translateY(30px); }

@@ -102,3 +102,13 @@ html {
         transition-duration: 0.01ms !important;
     }
 }
+
+@media (max-width: 640px) {
+    .section-title {
+        font-size: clamp(1.85rem, 7vw, 2.35rem);
+        margin-bottom: 2rem;
+    }
+    .section-label {
+        margin-bottom: 0.65rem;
+    }
+}

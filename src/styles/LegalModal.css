@@ -102,3 +102,31 @@
 .legal-body strong {
     color: #ffffff;
 }
+
+@media (max-width: 600px) {
+    .legal-backdrop {
+        padding: 0.75rem 0.5rem;
+    }
+    .legal-modal {
+        border-radius: 20px;
+        max-height: 92vh;
+    }
+    .legal-header {
+        padding: 1.25rem 1.25rem 1rem 1.25rem;
+    }
+    .legal-title {
+        font-size: 1.35rem;
+    }
+    .legal-close-btn {
+        width: 44px;
+        height: 44px;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.1rem;
+    }
+    .legal-body {
+        padding: 1.25rem;
+        font-size: 0.88rem;
+    }
+}
+

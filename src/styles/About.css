@@ -119,3 +119,44 @@
         height: 360px;
     }
 }
+
+@media (max-width: 640px) {
+    .about {
+        padding: 3.5rem 1rem;
+    }
+    .about-photo-wrap {
+        height: 320px;
+        border-radius: 20px;
+    }
+    .about-bio {
+        font-size: 1.02rem;
+    }
+    .about-secondary-line {
+        font-size: 1.2rem;
+    }
+    .about-cta-btn {
+        width: 100%;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .about-stats {
+        gap: 0.75rem;
+    }
+    .about-stats > div > div:first-child {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .about-photo-wrap {
+        height: 280px;
+    }
+    .about-stats > div > div:first-child {
+        font-size: 1.5rem;
+    }
+    .about-stats > div > div:last-child {
+        font-size: 0.68rem;
+    }
+}

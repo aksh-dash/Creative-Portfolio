@@ -51,3 +51,19 @@
     color: var(--gray);
     line-height: 1.6;
 }
+
+@media (max-width: 640px) {
+    .timeline {
+        padding: 3.5rem 1rem;
+    }
+    .timeline-track {
+        padding-left: 1.5rem;
+        margin-left: 0.5rem;
+    }
+    .tl-dot {
+        left: calc(-1.5rem - 5px);
+    }
+    .tl-title {
+        font-size: 1.15rem;
+    }
+}

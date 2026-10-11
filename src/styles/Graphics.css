@@ -145,3 +145,35 @@
     background: var(--white);
     color: var(--black);
 }
+
+@media (max-width: 640px) {
+    .graphics {
+        padding: 3.5rem 1rem;
+    }
+    .graphic-img-wrap {
+        height: 270px;
+    }
+    .graphic-overlay {
+        padding: 1.15rem;
+    }
+    .graphic-lightbox-backdrop {
+        padding: 1rem 0.5rem;
+    }
+    .graphic-close-btn {
+        top: 10px;
+        right: 10px;
+        width: 44px;
+        height: 44px;
+        background: rgba(0, 0, 0, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        z-index: 20;
+    }
+}
+
+@media (max-width: 480px) {
+    .graphics-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
