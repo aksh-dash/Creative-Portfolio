@@ -1,0 +1,151 @@
+.legal-page h1 {
+  margin-top: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+.legal-content {
+  max-width: 720px;
+}
+
+.legal-content h2 {
+  font-size: 1.25rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.legal-content h3 {
+  font-size: 1.05rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal-content p {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.legal-content ul, .legal-content ol {
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.legal-content li {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 0.35rem;
+}
+
+.legal-content a {
+  color: var(--crimson-hover);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-content a:hover {
+  color: var(--white);
+}
+
+.legal-content strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* FAQ specific */
+.faq-item {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid var(--surface-border);
+}
+
+.faq-question {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0;
+  min-height: 44px;
+}
+
+.faq-question:hover {
+  color: var(--crimson-hover);
+}
+
+.faq-answer {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+
+.faq-answer.open {
+  max-height: 500px;
+}
+
+.faq-answer p {
+  padding-top: 0.25rem;
+}
+
+/* Contact form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 520px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 10px;
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  min-height: 44px;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--crimson);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--muted);
+}

@@ -1,0 +1,251 @@
+/* ====== Home Hero ====== */
+.home-hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 70dvh;
+}
+
+.home-hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.home-hero__title {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.home-hero__title-accent {
+  background: linear-gradient(135deg, var(--crimson), var(--crimson-hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.home-hero__subtitle {
+  font-size: 1.05rem;
+  color: var(--gray);
+  max-width: 440px;
+  line-height: 1.65;
+}
+
+.home-hero__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.home-hero__formats {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.home-hero__format {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Hero visual grid */
+.home-hero__visual {
+  position: relative;
+}
+
+.home-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.75rem;
+  max-height: 500px;
+}
+
+.home-hero__card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--surface-border);
+  transition: all 0.35s ease;
+}
+
+.home-hero__card:hover {
+  border-color: var(--surface-border-hover);
+  transform: scale(1.02);
+}
+
+.home-hero__card--1 {
+  grid-row: 1 / 3;
+}
+
+.home-hero__card--2,
+.home-hero__card--3 {
+  aspect-ratio: 1;
+}
+
+/* ====== Shared Section Header ====== */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-header h2 {
+  margin-top: 0.25rem;
+}
+
+.section-header-link {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.25rem;
+}
+
+/* ====== Featured Grid ====== */
+.home-featured {
+  background: var(--surface-base);
+}
+
+.home-featured__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.home-featured__grid .product-card:first-child {
+  grid-column: 1 / 3;
+}
+
+/* ====== New Arrivals ====== */
+.home-new__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ====== Value Props ====== */
+.home-value__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.home-value__card {
+  padding: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.home-value__card:hover {
+  border-color: var(--surface-border-hover);
+  transform: translateY(-4px);
+}
+
+.home-value__icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.home-value__card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.home-value__card p {
+  font-size: 0.88rem;
+  color: var(--gray);
+}
+
+/* ====== CTA ====== */
+.home-cta__inner {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.home-cta__inner p {
+  font-size: 1.05rem;
+  color: var(--gray);
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 1023px) {
+  .home-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    min-height: auto;
+  }
+
+  .home-featured__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-featured__grid .product-card:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .home-value__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-hero__grid {
+    max-height: 320px;
+  }
+
+  .home-hero__title {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+
+  .home-hero__subtitle {
+    font-size: 0.95rem;
+  }
+
+  .home-featured__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-featured__grid .product-card:first-child {
+    grid-column: auto;
+  }
+
+  .home-new__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .home-hero__actions {
+    flex-direction: column;
+  }
+
+  .home-hero__actions .btn-primary,
+  .home-hero__actions .btn-secondary {
+    width: 100%;
+  }
+
+  .home-value__card {
+    padding: 1.5rem;
+  }
+}

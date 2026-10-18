@@ -1,0 +1,142 @@
+[
+  {
+    "id": "gt3-crimson-brush-1",
+    "slug": "gt3-crimson-brush-i",
+    "name": "GT3 Crimson Brush I",
+    "collection": "Crimson Velocity",
+    "category": "automotive",
+    "description": "Porsche 911 GT3 bathed in crimson light — a dramatic brush-stroke rendition that fuses raw horsepower with fine-art texture. Every paint swirl follows the car's aero lines.",
+    "shortDescription": "Crimson brush-stroke Porsche GT3 artwork.",
+    "preview": "/previews/gt3-crimson-brush-1.png",
+    "formats": [
+      { "label": "5K Desktop", "resolution": "5120 × 2880", "fileType": "PNG", "sizeMB": 18.2 },
+      { "label": "4K Phone", "resolution": "2160 × 3840", "fileType": "PNG", "sizeMB": 12.4 }
+    ],
+    "price": 299,
+    "currency": "INR",
+    "tags": ["automotive", "porsche", "brush-stroke", "crimson"],
+    "featured": true,
+    "new": true,
+    "createdAt": "2024-10-01"
+  },
+  {
+    "id": "gt3-crimson-brush-2",
+    "slug": "gt3-crimson-brush-ii",
+    "name": "GT3 Crimson Brush II",
+    "collection": "Crimson Velocity",
+    "category": "automotive",
+    "description": "A close-up perspective of the GT3's rear quarter — brush strokes exploding outward from the exhaust ports. The crimson palette deepens into maroon shadows.",
+    "shortDescription": "GT3 rear-quarter brush-stroke artwork.",
+    "preview": "/previews/gt3-crimson-brush-2.jpg",
+    "formats": [
+      { "label": "5K Desktop", "resolution": "5120 × 2880", "fileType": "PNG", "sizeMB": 16.8 },
+      { "label": "4K Phone", "resolution": "2160 × 3840", "fileType": "PNG", "sizeMB": 11.6 }
+    ],
+    "price": 299,
+    "currency": "INR",
+    "tags": ["automotive", "porsche", "brush-stroke", "detail"],
+    "featured": false,
+    "new": true,
+    "createdAt": "2024-10-01"
+  },
+  {
+    "id": "gt3-crimson-brush-3",
+    "slug": "gt3-crimson-brush-iii",
+    "name": "GT3 Crimson Brush III",
+    "collection": "Crimson Velocity",
+    "category": "automotive",
+    "description": "Full-profile GT3 in motion — the longest canvas of the Crimson Velocity series. Wind-driven brush strokes create a sense of raw speed frozen in paint.",
+    "shortDescription": "Full-profile GT3 motion brush art.",
+    "preview": "/previews/gt3-crimson-brush-3.jpg",
+    "formats": [
+      { "label": "5K Desktop", "resolution": "5120 × 2880", "fileType": "PNG", "sizeMB": 19.5 },
+      { "label": "4K Phone", "resolution": "2160 × 3840", "fileType": "PNG", "sizeMB": 13.1 }
+    ],
+    "price": 349,
+    "currency": "INR",
+    "tags": ["automotive", "porsche", "brush-stroke", "motion"],
+    "featured": true,
+    "new": false,
+    "createdAt": "2024-09-15"
+  },
+  {
+    "id": "midnight-motion-1",
+    "slug": "midnight-motion",
+    "name": "Midnight Motion",
+    "collection": "After Dark",
+    "category": "automotive",
+    "description": "Neon city lights streak across a rain-slicked street as a silhouette tears through the frame. Long exposure meets painted texture in this nocturnal piece.",
+    "shortDescription": "Neon-lit nocturnal motion artwork.",
+    "preview": "/previews/midnight-motion-1.jpg",
+    "formats": [
+      { "label": "5K Desktop", "resolution": "5120 × 2880", "fileType": "PNG", "sizeMB": 14.7 },
+      { "label": "4K Phone", "resolution": "2160 × 3840", "fileType": "PNG", "sizeMB": 10.2 }
+    ],
+    "price": 249,
+    "currency": "INR",
+    "tags": ["automotive", "night", "long-exposure", "urban"],
+    "featured": false,
+    "new": false,
+    "createdAt": "2024-08-20"
+  },
+  {
+    "id": "lunar-minimal-1",
+    "slug": "lunar-minimal",
+    "name": "Lunar Minimal",
+    "collection": "Celestial",
+    "category": "astro",
+    "description": "The moon captured through a telephoto lens, then re-imagined with delicate monochrome brush strokes. Crater details rendered as textured impasto dabs on a deep-black canvas.",
+    "shortDescription": "Minimalist moon brush-stroke artwork.",
+    "preview": "/previews/lunar-minimal-1.jpg",
+    "formats": [
+      { "label": "5K Desktop", "resolution": "5120 × 2880", "fileType": "PNG", "sizeMB": 8.3 },
+      { "label": "4K Phone", "resolution": "2160 × 3840", "fileType": "PNG", "sizeMB": 5.9 }
+    ],
+    "price": 199,
+    "currency": "INR",
+    "tags": ["moon", "minimal", "monochrome", "astro"],
+    "featured": true,
+    "new": false,
+    "createdAt": "2024-07-10"
+  },
+  {
+    "id": "monochrome-arch-1",
+    "slug": "monochrome-architecture",
+    "name": "Monochrome Architecture",
+    "collection": "Urban Form",
+    "category": "architecture",
+    "description": "Geometric building facades dissolve into abstract brush-stroke patterns. A study in light, shadow and structural rhythm rendered in pure black and white.",
+    "shortDescription": "Geometric architecture in monochrome brush art.",
+    "preview": "/previews/monochrome-arch-1.jpg",
+    "formats": [
+      { "label": "5K Desktop", "resolution": "5120 × 2880", "fileType": "PNG", "sizeMB": 12.1 },
+      { "label": "4K Phone", "resolution": "2160 × 3840", "fileType": "PNG", "sizeMB": 8.7 }
+    ],
+    "price": 249,
+    "currency": "INR",
+    "tags": ["architecture", "monochrome", "minimal", "urban"],
+    "featured": false,
+    "new": false,
+    "createdAt": "2024-06-05"
+  },
+  {
+    "id": "nature-noir-1",
+    "slug": "nature-noir",
+    "name": "Nature Noir",
+    "collection": "Wild Palette",
+    "category": "nature",
+    "description": "Dense foliage captured in dramatic low-key lighting — each leaf outlined in brush strokes that shift from emerald to pure black. Nature photography reimagined as fine-art oil.",
+    "shortDescription": "Dark botanical brush-stroke artwork.",
+    "preview": "/previews/nature-noir-1.jpg",
+    "formats": [
+      { "label": "5K Desktop", "resolution": "5120 × 2880", "fileType": "PNG", "sizeMB": 15.4 },
+      { "label": "4K Phone", "resolution": "2160 × 3840", "fileType": "PNG", "sizeMB": 10.8 }
+    ],
+    "price": 249,
+    "currency": "INR",
+    "tags": ["nature", "dark", "botanical", "texture"],
+    "featured": false,
+    "new": true,
+    "createdAt": "2024-10-05"
+  }
+]

@@ -1,0 +1,259 @@
+/* ====== Breadcrumb ====== */
+.pdp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pdp-breadcrumb__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--gray);
+  font-size: 0.85rem;
+  transition: color 0.2s;
+  min-height: 44px;
+}
+
+.pdp-breadcrumb__back:hover {
+  color: var(--white);
+}
+
+.pdp-breadcrumb__sep {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.pdp-breadcrumb__current {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+/* ====== Layout ====== */
+.pdp-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3.5rem;
+  align-items: flex-start;
+}
+
+/* Image */
+.pdp-image__wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--surface-border);
+  aspect-ratio: 4 / 3;
+}
+
+/* Details */
+.pdp-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 96px;
+}
+
+.pdp-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+.pdp-description {
+  font-size: 1rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+/* Formats */
+.pdp-formats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pdp-formats__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pdp-format-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 56px;
+  text-align: left;
+}
+
+.pdp-format-btn:hover {
+  border-color: var(--surface-border-hover);
+}
+
+.pdp-format-btn.active {
+  border-color: var(--crimson-border);
+  background: var(--crimson-subtle);
+}
+
+.pdp-format-btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+  color: var(--gray);
+}
+
+.pdp-format-btn.active .pdp-format-btn__icon {
+  color: var(--crimson-hover);
+  background: rgba(225, 29, 72, 0.15);
+}
+
+.pdp-format-btn__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.pdp-format-btn__label {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.pdp-format-btn__res {
+  font-size: 0.68rem;
+}
+
+.pdp-format-btn__check {
+  color: var(--crimson-hover);
+  flex-shrink: 0;
+}
+
+/* Buy section */
+.pdp-buy-section {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--surface-border);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.pdp-price {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.pdp-price__amount {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+.pdp-price__note {
+  font-size: 0.68rem;
+}
+
+.pdp-buy-btn {
+  flex: 1;
+  max-width: 240px;
+}
+
+.pdp-buy-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Trust */
+.pdp-trust {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.pdp-trust__item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* Tags */
+.pdp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pdp-tag {
+  padding: 0.25rem 0.6rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--surface-border);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+/* Related */
+.pdp-related h2 {
+  margin-bottom: 1.5rem;
+}
+
+.pdp-related__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 1023px) {
+  .pdp-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .pdp-details {
+    position: static;
+  }
+
+  .pdp-related__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .pdp-buy-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .pdp-buy-btn {
+    max-width: 100%;
+  }
+
+  .pdp-related__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pdp-trust {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

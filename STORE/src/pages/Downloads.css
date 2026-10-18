@@ -1,0 +1,33 @@
+.downloads-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 480px;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.downloads-empty__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.downloads-empty h2 {
+  font-size: 1.4rem;
+}
+
+.downloads-empty p {
+  font-size: 0.95rem;
+  color: var(--gray);
+  max-width: 360px;
+}
