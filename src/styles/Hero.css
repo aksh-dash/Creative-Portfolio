@@ -225,61 +225,67 @@
 
 @media (max-width: 768px) {
     .hero-section {
-        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-        min-height: 100dvh;
+        padding: 0.5rem 0.5rem 0 0.5rem;
+        min-height: auto;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
     }
 
     .hero-card {
-        padding: 1.75rem 1.25rem 1.25rem 1.25rem;
-        border-radius: 22px;
-        min-height: 0;
-        flex: 1;
+        padding: 0;
+        border-radius: 24px;
+        min-height: auto;
+        flex: none;
         background: #0d0d0d;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         position: relative;
+        overflow: hidden;
     }
 
-    /* Akshat placed cleanly on the RIGHT side of the card */
+    /* Centered portrait on top — face fully visible with natural headroom */
     .hero-bg {
-        inset: 0;
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: 380px;
         background-size: cover;
-        background-position: 18% 28%;
-        filter: drop-shadow(0 10px 25px rgba(0,0,0,0.4));
+        background-position: center 15%;
+        filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
         -webkit-mask-image: none;
         mask-image: none;
+        transform: none !important;
     }
 
-    /* Protective gradient: dark on the LEFT for text, clear on the RIGHT for Akshat's face */
+    /* Seamless gradient: dark fade at the bottom of the photo into card content */
     .hero-overlay {
-        background: 
-            linear-gradient(
-                to right,
-                rgba(8, 8, 8, 0.98) 0%,
-                rgba(8, 8, 8, 0.92) 42%,
-                rgba(8, 8, 8, 0.2) 65%,
-                transparent 100%
-            ),
-            linear-gradient(
-                to top,
-                rgba(8, 8, 8, 0.98) 0%,
-                rgba(8, 8, 8, 0.7) 18%,
-                transparent 35%
-            );
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 380px;
+        background: linear-gradient(
+            to bottom,
+            rgba(8, 8, 8, 0.4) 0%,
+            transparent 25%,
+            transparent 60%,
+            rgba(13, 13, 13, 0.8) 82%,
+            #0d0d0d 100%
+        );
+        pointer-events: none;
+        z-index: 1;
     }
 
-    /* Text strictly on the LEFT half so it never overlaps Akshat on the right */
+    /* Text block below portrait — full breathing room, elegant and centered/left-aligned */
     .hero-main-layout {
+        position: relative;
+        z-index: 2;
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.65rem;
-        margin-top: 0;
-        max-width: 52%;
-        z-index: 2;
+        gap: 1.25rem;
+        padding: 1.5rem 1.5rem 0 1.5rem;
+        max-width: 100%;
+        margin-top: -30px; /* soft overlap with the dark fade */
     }
 
     .hero-left-col {
@@ -288,56 +294,68 @@
     }
 
     .hero-greeting {
-        font-size: 0.82rem;
-        margin-bottom: 0.2rem;
+        font-size: 0.92rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 0.35rem;
+        display: block;
     }
 
     .hero-main-title {
-        font-size: clamp(1.8rem, 6.5vw, 2.25rem);
-        line-height: 1.0;
-        letter-spacing: -0.02em;
+        font-size: clamp(2.2rem, 8vw, 2.75rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        color: #ffffff;
     }
 
     .hero-right-col {
         width: 100%;
         max-width: 100%;
-        margin-top: 0.35rem;
+        margin-top: 0;
         text-align: left;
     }
 
     .hero-side-title {
-        font-size: clamp(1rem, 3.8vw, 1.2rem);
-        line-height: 1.2;
-        margin-bottom: 0.25rem;
+        font-size: clamp(1.2rem, 4.5vw, 1.45rem);
+        line-height: 1.25;
+        margin-bottom: 0.4rem;
+        color: #ffffff;
     }
 
     .hero-side-sub {
-        font-size: 0.78rem;
-        line-height: 1.4;
-        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.88rem;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.7);
         max-width: 100%;
     }
 
-    /* 2x2 compact features grid at bottom */
+    /* Features list: one or two per row with comfortable spacing */
     .hero-features-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem 1rem;
-        margin-top: 1.25rem;
-        padding-top: 1rem;
+        position: relative;
         z-index: 2;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem 1.25rem;
+        margin: 1.75rem 1.5rem 1.5rem 1.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        width: calc(100% - 3rem);
+    }
+
+    .hero-feature-item {
+        gap: 0.2rem;
     }
 
     .feature-num {
-        font-size: 0.7rem;
+        font-size: 0.72rem;
+        color: rgba(255, 255, 255, 0.45);
     }
 
     .feature-label {
-        font-size: 0.78rem;
-        line-height: 1.25;
+        font-size: 0.82rem;
+        line-height: 1.3;
     }
 
     .hero-brands-strip {
-        padding: 1.25rem 1rem;
+        padding: 1.25rem 1.25rem;
         gap: 0.85rem;
     }
 
@@ -356,26 +374,33 @@
 
 @media (max-width: 390px) {
     .hero-bg {
-        background-position: 16% 28%;
+        height: 330px;
+    }
+
+    .hero-overlay {
+        height: 330px;
     }
 
     .hero-main-layout {
-        max-width: 52%;
+        padding: 1.25rem 1.25rem 0 1.25rem;
+        margin-top: -20px;
     }
 
     .hero-main-title {
-        font-size: 1.8rem;
+        font-size: 2.1rem;
     }
 
     .hero-side-title {
-        font-size: 1rem;
+        font-size: 1.15rem;
     }
 
     .hero-side-sub {
-        font-size: 0.74rem;
+        font-size: 0.84rem;
     }
 
     .hero-features-grid {
-        gap: 0.65rem 0.75rem;
+        margin: 1.5rem 1.25rem 1.25rem 1.25rem;
+        width: calc(100% - 2.5rem);
+        gap: 0.85rem 1rem;
     }
 }
