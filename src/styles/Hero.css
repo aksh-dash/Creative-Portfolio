@@ -225,67 +225,78 @@
 
 @media (max-width: 768px) {
     .hero-section {
-        padding: 0.5rem 0.5rem 0 0.5rem;
-        min-height: auto;
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+        min-height: 100dvh;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
     }
 
     .hero-card {
-        padding: 0;
-        border-radius: 24px;
-        min-height: auto;
-        flex: none;
+        padding: 2rem 1.25rem 1.25rem 1.25rem;
+        border-radius: 22px;
+        min-height: calc(100dvh - 5.5rem);
+        flex: 1;
         background: #0d0d0d;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         position: relative;
         overflow: hidden;
     }
 
-    /* Centered portrait on top — face fully visible with natural headroom */
+    /* Character positioned CENTERED-RIGHT (not extreme right), fully visible with crimson background */
     .hero-bg {
-        position: relative;
-        inset: auto;
+        position: absolute;
+        inset: 0;
         width: 100%;
-        height: 380px;
+        height: 100%;
         background-size: cover;
-        background-position: center 15%;
-        filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+        background-position: 34% 30%;
+        filter: drop-shadow(0 10px 25px rgba(0,0,0,0.4));
         -webkit-mask-image: none;
         mask-image: none;
         transform: none !important;
     }
 
-    /* Seamless gradient: dark fade at the bottom of the photo into card content */
+    /* Red and black atmospheric gradient: preserves the rich crimson tones */
     .hero-overlay {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 380px;
-        background: linear-gradient(
-            to bottom,
-            rgba(8, 8, 8, 0.4) 0%,
-            transparent 25%,
-            transparent 60%,
-            rgba(13, 13, 13, 0.8) 82%,
-            #0d0d0d 100%
-        );
+        inset: 0;
+        background: 
+            linear-gradient(
+                to right,
+                rgba(8, 8, 8, 0.92) 0%,
+                rgba(8, 8, 8, 0.72) 38%,
+                rgba(8, 8, 8, 0.15) 58%,
+                transparent 80%
+            ),
+            linear-gradient(
+                to top,
+                rgba(13, 13, 13, 0.95) 0%,
+                rgba(13, 13, 13, 0.5) 20%,
+                transparent 45%
+            ),
+            radial-gradient(
+                circle at 65% 35%,
+                transparent 30%,
+                rgba(8, 8, 8, 0.25) 70%,
+                rgba(8, 8, 8, 0.7) 100%
+            );
         pointer-events: none;
         z-index: 1;
     }
 
-    /* Text block below portrait — full breathing room, elegant and centered/left-aligned */
+    /* Text placed strictly on the LEFT */
     .hero-main-layout {
         position: relative;
         z-index: 2;
         flex-direction: column;
         align-items: flex-start;
-        gap: 1.25rem;
-        padding: 1.5rem 1.5rem 0 1.5rem;
-        max-width: 100%;
-        margin-top: -30px; /* soft overlap with the dark fade */
+        gap: 0.75rem;
+        padding: 0;
+        max-width: 46%;
+        margin-top: 0;
     }
 
     .hero-left-col {
@@ -294,50 +305,53 @@
     }
 
     .hero-greeting {
-        font-size: 0.92rem;
-        color: rgba(255, 255, 255, 0.8);
-        margin-bottom: 0.35rem;
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.88);
+        margin-bottom: 0.2rem;
         display: block;
     }
 
     .hero-main-title {
-        font-size: clamp(2.2rem, 8vw, 2.75rem);
-        line-height: 1.05;
+        font-size: clamp(1.85rem, 6.5vw, 2.35rem);
+        line-height: 1.0;
         letter-spacing: -0.03em;
         color: #ffffff;
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
     }
 
     .hero-right-col {
         width: 100%;
         max-width: 100%;
-        margin-top: 0;
+        margin-top: 0.2rem;
         text-align: left;
     }
 
     .hero-side-title {
-        font-size: clamp(1.2rem, 4.5vw, 1.45rem);
-        line-height: 1.25;
-        margin-bottom: 0.4rem;
+        font-size: clamp(1rem, 3.8vw, 1.2rem);
+        line-height: 1.2;
+        margin-bottom: 0.25rem;
         color: #ffffff;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     }
 
     .hero-side-sub {
-        font-size: 0.88rem;
-        line-height: 1.5;
-        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.78rem;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.75);
         max-width: 100%;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
     }
 
-    /* Features list: one or two per row with comfortable spacing */
+    /* Features 2x2 grid at bottom of the hero card */
     .hero-features-grid {
         position: relative;
         z-index: 2;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem 1.25rem;
-        margin: 1.75rem 1.5rem 1.5rem 1.5rem;
-        padding-top: 1.25rem;
+        gap: 0.75rem 1rem;
+        margin: 1.25rem 0 0 0;
+        padding-top: 1rem;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
-        width: calc(100% - 3rem);
+        width: 100%;
     }
 
     .hero-feature-item {
@@ -345,17 +359,17 @@
     }
 
     .feature-num {
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         color: rgba(255, 255, 255, 0.45);
     }
 
     .feature-label {
-        font-size: 0.82rem;
-        line-height: 1.3;
+        font-size: 0.78rem;
+        line-height: 1.25;
     }
 
     .hero-brands-strip {
-        padding: 1.25rem 1.25rem;
+        padding: 1.25rem 1rem;
         gap: 0.85rem;
     }
 
@@ -373,34 +387,31 @@
 }
 
 @media (max-width: 390px) {
-    .hero-bg {
-        height: 330px;
+    .hero-card {
+        padding: 1.65rem 1rem 1rem 1rem;
     }
 
-    .hero-overlay {
-        height: 330px;
+    .hero-bg {
+        background-position: 38% 30%;
     }
 
     .hero-main-layout {
-        padding: 1.25rem 1.25rem 0 1.25rem;
-        margin-top: -20px;
+        max-width: 53%;
     }
 
     .hero-main-title {
-        font-size: 2.1rem;
+        font-size: 1.9rem;
     }
 
     .hero-side-title {
-        font-size: 1.15rem;
+        font-size: 1.05rem;
     }
 
     .hero-side-sub {
-        font-size: 0.84rem;
+        font-size: 0.76rem;
     }
 
     .hero-features-grid {
-        margin: 1.5rem 1.25rem 1.25rem 1.25rem;
-        width: calc(100% - 2.5rem);
-        gap: 0.85rem 1rem;
+        gap: 0.6rem 0.75rem;
     }
 }
