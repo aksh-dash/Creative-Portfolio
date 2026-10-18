@@ -103,35 +103,10 @@
     pointer-events: none;
 }
 
-.reel-stats {
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-    margin-top: 3rem;
-}
-
-.reel-stat {
-    text-align: center;
-}
-
-.stat-num {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--white);
-}
-
-.stat-lbl {
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 0.25rem;
-}
-
 @media (max-width: 768px) {
     .showreel {
-        padding: 3.5rem 1rem;
+        padding: 3.5rem 1.25rem 2.5rem 1.25rem;
+        scroll-margin-top: 72px;
     }
 
     .reel-container {
@@ -139,8 +114,8 @@
     }
 
     .play-btn {
-        width: 68px;
-        height: 68px;
+        width: 64px;
+        height: 64px;
     }
 
     .play-icon {
@@ -148,22 +123,7 @@
     }
 
     .reel-label {
-        font-size: 0.7rem;
-        padding: 0 0.75rem;
-    }
-
-    .reel-stats {
-        gap: 1.25rem;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin-top: 2rem;
-    }
-
-    .stat-num {
-        font-size: 1.45rem;
-    }
-
-    .stat-lbl {
         font-size: 0.72rem;
+        padding: 0 0.75rem;
     }
 }

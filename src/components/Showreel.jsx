@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { stats } from '../data/portfolioData';
 import useReveal from '../hooks/useReveal';
 import '../styles/Showreel.css';
 
@@ -9,7 +8,6 @@ const Showreel = () => {
     const labelRef = useReveal();
     const titleRef = useReveal();
     const reelRef = useReveal();
-    const statsRef = useReveal();
 
     const handleStartPlay = () => {
         if (videoRef.current) {
@@ -54,16 +52,6 @@ const Showreel = () => {
                         <span className="reel-label">Click to Play Introduction Showreel</span>
                     </div>
                 )}
-            </div>
-
-            {/* Headline Impact Counters */}
-            <div className="reel-stats reveal" ref={statsRef}>
-                {stats.map((s, i) => (
-                    <div className="reel-stat" key={i}>
-                        <div className="stat-num">{s.number}</div>
-                        <div className="stat-lbl">{s.label}</div>
-                    </div>
-                ))}
             </div>
         </section>
     );
