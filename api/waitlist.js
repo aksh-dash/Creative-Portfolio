@@ -100,7 +100,7 @@ function generateEmailHtml(subscriberEmail, spotNumber) {
                                 <p style="font-size: 11px; color: #6e6c7e; margin: 0;">
                                     Founder &amp; Filmmaker • Creatively Lensed<br/>
                                     Pune, Maharashtra, India<br/>
-                                    <a href="mailto:dange.akshat2107@gmail.com" style="color: #df646e; text-decoration: none;">dange.akshat2107@gmail.com</a>
+                                    <a href="mailto:creativelensesstore@gmail.com" style="color: #df646e; text-decoration: none;">creativelensesstore@gmail.com</a>
                                 </p>
                             </div>
                         </td>
@@ -108,7 +108,7 @@ function generateEmailHtml(subscriberEmail, spotNumber) {
                     <tr>
                         <td align="center" style="background-color: #07070a; padding: 16px; font-size: 10px; color: #4e4c5b; border-top: 1px solid rgba(255, 255, 255, 0.04);">
                             &copy; 2026 Creatively Lensed by Akshat Dange. All rights reserved.<br/>
-                            Sent from dange.akshat2107@gmail.com
+                            Sent from creativelensesstore@gmail.com
                         </td>
                     </tr>
                 </table>
@@ -119,10 +119,10 @@ function generateEmailHtml(subscriberEmail, spotNumber) {
 }
 
 async function dispatchEmail(subscriberEmail, spotNumber, totalSubscribers) {
-    const fromAddress = 'dange.akshat2107@gmail.com';
+    const fromAddress = 'creativelensesstore@gmail.com';
     const emailSubject = `✨ You're on the list — VIP Spot #${spotNumber} [Creatively Lensed Store]`;
     const emailHtml = generateEmailHtml(subscriberEmail, spotNumber);
-    const emailText = `Hi!\n\nThank you for joining the Creatively Lensed Store waitlist.\nYou are registered as VIP Spot #${spotNumber}.\n\nYour 25% launch code is: EARLYBIRD25\n\nYou will receive private early access 24 hours prior to public drop.\n\nBest regards,\nAkshat Dange\nCreatively Lensed\ndange.akshat2107@gmail.com`;
+    const emailText = `Hi!\n\nThank you for joining the Creatively Lensed Store waitlist.\nYou are registered as VIP Spot #${spotNumber}.\n\nYour 25% launch code is: EARLYBIRD25\n\nYou will receive private early access 24 hours prior to public drop.\n\nBest regards,\nAkshat Dange\nCreatively Lensed\ncreativelensesstore@gmail.com`;
 
     // Owner notification email content
     const ownerSubject = `🔔 New Registration — Spot #${spotNumber} [${subscriberEmail}]`;
@@ -283,7 +283,7 @@ export default async function handler(req, res) {
             writeData(currentData);
         }
 
-        // Send or queue confirmation email from dange.akshat2107@gmail.com
+        // Send or queue confirmation email from creativelensesstore@gmail.com
         const dispatchResult = await dispatchEmail(email, spotNumber, currentData.subscribers.length);
 
         return res.status(200).json({

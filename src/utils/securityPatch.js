@@ -7,7 +7,7 @@ export const initSecurityPatch = () => {
     const textStyle = 'color: #f5f5f5; font-size: 13px; line-height: 1.6; font-family: sans-serif;';
     console.log('%c⛔ STOP & COPYRIGHT NOTICE', bannerStyle);
     console.log(
-        '%cAll media assets, photography, video reels, graphic design, and code on this portfolio are the proprietary intellectual property of Akshat Dange (Creatively Lensed).\n\nUnauthorized downloading, scraping, copying, reverse engineering, or commercial use is strictly prohibited by copyright law.\n\nFor licensing or collaborations, contact: dange.akshat2107@gmail.com',
+        '%cAll media assets, photography, video reels, graphic design, and code on this portfolio are the proprietary intellectual property of Akshat Dange (Creatively Lensed).\n\nUnauthorized downloading, scraping, copying, reverse engineering, or commercial use is strictly prohibited by copyright law.\n\nFor licensing or collaborations, contact: creativelensesstore@gmail.com',
         textStyle
     );
 

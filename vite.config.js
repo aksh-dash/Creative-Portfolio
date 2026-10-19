@@ -117,15 +117,17 @@ const waitlistDevPlugin = () => ({
                                 writeData(data);
                             }
 
-                            // Email Sending via Nodemailer (dange.akshat2107@gmail.com)
-                            const fromAddress = 'dange.akshat2107@gmail.com';
+                            // Email Sending via Nodemailer (creativelensesstore@gmail.com)
+                            const fromAddress = process.env.GMAIL_USER || 'creativelensesstore@gmail.com';
                             const gmailPass = process.env.GMAIL_APP_PASSWORD;
                             let emailSent = false;
 
                             if (gmailPass) {
                                 try {
                                     const transporter = nodemailer.createTransport({
-                                        service: 'gmail',
+                                        host: 'smtp.gmail.com',
+                                        port: 465,
+                                        secure: true,
                                         auth: {
                                             user: fromAddress,
                                             pass: gmailPass.replace(/\s+/g, '')
@@ -137,11 +139,11 @@ const waitlistDevPlugin = () => ({
                                         from: `"Akshat Dange | Creatively Lensed" <${fromAddress}>`,
                                         to: email,
                                         subject: `✨ You're on the list — VIP Spot #${spotNumber} [Creatively Lensed Store]`,
-                                        text: `Hi!\n\nThank you for registering for the Creatively Lensed Store early bird launch.\nYou are registered as VIP Spot #${spotNumber}.\n\nYour 25% launch code is: EARLYBIRD25\n\nBest regards,\nAkshat Dange\ndange.akshat2107@gmail.com`
+                                        text: `Hi!\n\nThank you for registering for the Creatively Lensed Store early bird launch.\nYou are registered as VIP Spot #${spotNumber}.\n\nYour 25% launch code is: EARLYBIRD25\n\nBest regards,\nAkshat Dange\ncreativelensesstore@gmail.com`
                                     });
                                     console.log(`[Dev Email Sent]: Confirmation to ${email}`);
 
-                                    // 2. Notification email to the owner (you)
+                                    // 2. Notification email to the owner
                                     await transporter.sendMail({
                                         from: `"Creatively Lensed Store" <${fromAddress}>`,
                                         to: fromAddress,

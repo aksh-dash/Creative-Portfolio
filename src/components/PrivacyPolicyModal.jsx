@@ -58,7 +58,7 @@ const PrivacyPolicyModal = ({ onClose }) => {
                     <p>
                         To request the permanent erasure of your inquiry data and contact history, send a direct written request with the subject line <strong>"DPDP Data Deletion Request"</strong> to:
                         <br />
-                        <strong>Email:</strong> <a href="mailto:dange.akshat2107@gmail.com" style={{ color: '#fff', textDecoration: 'underline' }}>dange.akshat2107@gmail.com</a>
+                        <strong>Email:</strong> <a href="mailto:creativelensesstore@gmail.com" style={{ color: '#fff', textDecoration: 'underline' }}>creativelensesstore@gmail.com</a>
                         <br />
                         All verified requests are fulfilled within 7 business days, accompanied by written confirmation.
                     </p>

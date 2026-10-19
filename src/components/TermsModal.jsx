@@ -50,7 +50,7 @@ const TermsModal = ({ onClose }) => {
                     <p>
                         For licensing enquiries, permissions, or questions:
                         <br />
-                        <strong>Email:</strong> dange.akshat2107@gmail.com
+                        <strong>Email:</strong> creativelensesstore@gmail.com
                         <br />
                         <strong>Phone:</strong> +91 84828 72105
                     </p>

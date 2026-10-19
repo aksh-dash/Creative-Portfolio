@@ -163,7 +163,7 @@ npm run preview
 
 ## 📬 Connect & Collaborate
 
-- **Email**: [dange.akshat2107@gmail.com](mailto:dange.akshat2107@gmail.com) • [creativelenses07@gmail.com](mailto:creativelenses07@gmail.com)
+- **Email**: [creativelensesstore@gmail.com](mailto:creativelensesstore@gmail.com) • [dange.akshat2107@gmail.com](mailto:dange.akshat2107@gmail.com)
 - **Phone / WhatsApp**: [+91 8482872105](https://wa.me/918482872105)
 - **Location**: Pune, Maharashtra, India
 
