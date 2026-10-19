@@ -51,7 +51,7 @@
   align-items: center;
   padding: 0.25rem 0.65rem;
   background: var(--crimson);
-  color: #fff;
+  color: var(--white);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 500;
@@ -71,9 +71,9 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  background: rgba(8, 8, 8, 0.8);
+  background: rgba(27, 27, 31, 0.85);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(231, 227, 221, 0.2);
   border-radius: 50%;
   color: var(--white);
   opacity: 0;

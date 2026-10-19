@@ -2,7 +2,7 @@
 .hero-section {
     padding: 0.75rem 1rem 0 1rem;
     position: relative;
-    background: #1B1B1F;
+    background: #080808;
     min-height: 100vh;
     min-height: 100dvh;
     display: flex;
@@ -18,13 +18,13 @@
     min-height: calc(100dvh - 5.5rem);
     border-radius: 28px;
     overflow: hidden;
-    background: #222227;
+    background: #0d0d0d;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 4.25rem 4rem 2.25rem 4rem;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    border: 1px solid rgba(231, 227, 221, 0.08);
+    border: 1px solid rgba(255,255,255,0.06);
 }
 
 .hero-bg {
@@ -43,8 +43,8 @@
     inset: 0;
     z-index: 1;
     background: 
-        radial-gradient(circle at 50% 35%, rgba(231,227,221,0.02) 0%, rgba(27,27,31,0.2) 60%, rgba(27,27,31,0.85) 100%),
-        linear-gradient(to top, #222227 0%, rgba(34,34,39,0.3) 30%, transparent 60%);
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,0.02) 0%, rgba(8,8,8,0.2) 60%, rgba(8,8,8,0.85) 100%),
+        linear-gradient(to top, #0d0d0d 0%, rgba(13,13,13,0.3) 30%, transparent 60%);
     pointer-events: none;
 }
 
@@ -148,7 +148,7 @@
     font-family: var(--font-body);
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--white);
+    color: #ffffff;
 }
 
 /* Bottom Brand Logo Strip Below Hero Card */
@@ -157,7 +157,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 3.5rem;
-    background: #1B1B1F;
+    background: #080808;
     width: 100%;
     box-sizing: border-box;
 }
@@ -165,7 +165,7 @@
 .brands-title {
     font-family: var(--font-body);
     font-size: 0.8rem;
-    color: rgba(231, 227, 221, 0.45);
+    color: rgba(255, 255, 255, 0.45);
     font-weight: 500;
 }
 
@@ -179,20 +179,8 @@
     font-family: var(--font-display);
     font-size: 0.95rem;
     font-weight: 700;
-    color: rgba(231, 227, 221, 0.85);
+    color: rgba(255, 255, 255, 0.85);
     letter-spacing: -0.01em;
-}
-
-.brand-logo-with-icon {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-}
-
-.brand-icon-img {
-    width: 18px;
-    height: 18px;
-    object-fit: contain;
 }
 
 .brand-dot {
@@ -249,7 +237,7 @@
         border-radius: 22px;
         min-height: calc(100dvh - 5.5rem);
         flex: 1;
-        background: #222227;
+        background: #0d0d0d;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -278,22 +266,22 @@
         background: 
             linear-gradient(
                 to right,
-                rgba(27, 27, 31, 0.92) 0%,
-                rgba(27, 27, 31, 0.72) 38%,
-                rgba(27, 27, 31, 0.15) 58%,
+                rgba(8, 8, 8, 0.92) 0%,
+                rgba(8, 8, 8, 0.72) 38%,
+                rgba(8, 8, 8, 0.15) 58%,
                 transparent 80%
             ),
             linear-gradient(
                 to top,
-                rgba(34, 34, 39, 0.95) 0%,
-                rgba(34, 34, 39, 0.5) 20%,
+                rgba(13, 13, 13, 0.95) 0%,
+                rgba(13, 13, 13, 0.5) 20%,
                 transparent 45%
             ),
             radial-gradient(
                 circle at 65% 35%,
                 transparent 30%,
-                rgba(27, 27, 31, 0.25) 70%,
-                rgba(27, 27, 31, 0.7) 100%
+                rgba(8, 8, 8, 0.25) 70%,
+                rgba(8, 8, 8, 0.7) 100%
             );
         pointer-events: none;
         z-index: 1;

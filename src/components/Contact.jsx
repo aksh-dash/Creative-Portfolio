@@ -291,10 +291,7 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
             <footer className="portfolio-footer">
                 <div className="footer-content">
                     <div className="footer-left">
-                        <div className="footer-brand-wrap">
-                            <img src="/assets/creative-lenses-logo.png" alt="Creatively Lensed" className="footer-logo-img" />
-                            <span className="footer-brand">AKSHAT DANGE • CREATIVELY LENSED</span>
-                        </div>
+                        <span className="footer-brand">AKSHAT DANGE • CREATIVELY LENSED</span>
                         <p className="footer-copy">
                             &copy; {new Date().getFullYear()} Akshat Dange. All media assets &amp; content protected by copyright.
                         </p>

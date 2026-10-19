@@ -1,23 +1,17 @@
 :root {
-    --accent: #5B0D18; /* Rouge Noir */
-    --accent-hover: #731221;
-    --black: #1B1B1F; /* Anthracite */
-    --white: #E7E3DD; /* White Sand */
-    --gray: #A8A49E;
-    --dark-gray: #242429;
-    --surface: #222227;
-    --surface-light: #28282e;
-    --muted: #7E7A74;
-    --silver: #E7E3DD;
-    --border: rgba(231, 227, 221, 0.08);
-
-    --rouge-noir: #5B0D18;
-    --rouge-noir-hover: #731221;
-    --rouge-noir-glow: rgba(91, 13, 24, 0.4);
-    --rouge-noir-subtle: rgba(91, 13, 24, 0.15);
+    --accent: #ffffff;
+    --black: #080808;
+    --white: #f5f5f5;
+    --gray: #9a9a9a;
+    --dark-gray: #1a1a1a;
+    --surface: #141414;
+    --surface-light: #1a1a1a;
+    --muted: #5c5c5c;
+    --silver: #e8e8e8;
+    --border: rgba(255,255,255,0.08);
 
     /* keep --green as alias so any lingering refs don't break */
-    --green: #E7E3DD;
+    --green: #ffffff;
 
     --font-display: 'Plus Jakarta Sans', sans-serif;
     --font-sans: 'Inter', sans-serif;
@@ -48,7 +42,7 @@ a {
 }
 
 :focus-visible {
-    outline: 2px solid #5B0D18 !important;
+    outline: 2px solid #ffffff !important;
     outline-offset: 3px !important;
 }
 

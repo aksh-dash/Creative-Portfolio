@@ -74,10 +74,7 @@ const Hero = () => {
                 <div className="brands-logos">
                     <span className="brand-logo-item">Gymophilic</span>
                     <span className="brand-dot">•</span>
-                    <span className="brand-logo-item brand-logo-with-icon">
-                        <img src="/assets/creative-lenses-logo.png" alt="" className="brand-icon-img" />
-                        Creatively Lensed
-                    </span>
+                    <span className="brand-logo-item">Creatively Lensed</span>
                     <span className="brand-dot">•</span>
                     <span className="brand-logo-item">Visdom Studios</span>
                     <span className="brand-dot">•</span>
