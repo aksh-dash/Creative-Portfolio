@@ -1,27 +1,35 @@
 :root {
-    --accent: #ffffff;
-    --black: #080808;
-    --white: #f5f5f5;
-    --gray: #9a9a9a;
-    --dark-gray: #1a1a1a;
-    --surface: #141414;
-    --surface-light: #1a1a1a;
-    --muted: #5c5c5c;
-    --silver: #e8e8e8;
-    --border: rgba(255,255,255,0.08);
+    --black: #0a0a0a;
+    --bg-primary: #0a0a0a;
+    --red-accent: #c1121f;
+    --red-glow: rgba(193, 18, 31, 0.35);
+    --white: #ffffff;
+    --text-white: #ffffff;
+    --text-creator: #bdbdbd;
+    --gray: #a1a1a1;
+    --text-body: #a1a1a1;
+    --muted: #7a7a7a;
+    --text-muted: #7a7a7a;
+    --silver: #bdbdbd;
+    --dark-gray: #121212;
+    --surface: #0f0f0f;
+    --surface-light: #161616;
+    --border: rgba(255, 255, 255, 0.08);
 
-    /* keep --green as alias so any lingering refs don't break */
+    /* compatibility aliases */
+    --accent: #ffffff;
     --green: #ffffff;
 
-    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-display: 'Inter', sans-serif;
     --font-sans: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
     --font-mono: 'DM Mono', monospace;
 }
 
 body {
     margin: 0;
     background: var(--black);
-    color: var(--white);
+    color: var(--text-white);
     font-family: var(--font-sans);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -31,7 +39,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     margin: 0;
 }
 
