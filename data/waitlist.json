@@ -1,9 +1,21 @@
 {
-  "totalVisitors": 6,
+  "totalVisitors": 22,
   "subscribers": [
     {
       "email": "creator.vip@gmail.com",
       "registeredAt": "2026-10-19T18:59:11.310Z",
+      "ip": "::1"
+    },
+    {
+      "spotNumber": 2,
+      "email": "akshatdange8@gmail.com",
+      "registeredAt": "2026-10-19T19:14:00.710Z",
+      "ip": "::1"
+    },
+    {
+      "spotNumber": 3,
+      "email": "dange.akshat2107@gmail.com",
+      "registeredAt": "2026-10-19T19:21:49.004Z",
       "ip": "::1"
     }
   ]

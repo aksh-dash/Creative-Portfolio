@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/StoreComingSoon.css';
 
-const STORAGE_KEY = 'creatively_lensed_store_subscriber';
+const STORAGE_KEY = 'creatively_lensed_store_vip';
 
 const StoreComingSoon = ({ onReturn }) => {
     const [email, setEmail] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isConfirmed, setIsConfirmed] = useState(false);
+    const [registeredSpot, setRegisteredSpot] = useState(null);
     const [errorMsg, setErrorMsg] = useState('');
 
     useEffect(() => {
-        // Track anonymous visit in real time
+        // Real-time visitor hit
         try {
             fetch('/api/waitlist', {
                 method: 'POST',
@@ -19,11 +19,15 @@ const StoreComingSoon = ({ onReturn }) => {
             }).catch(() => {});
         } catch (e) {}
 
-        // Check if previously subscribed
+        // Check if already registered
         try {
             const saved = localStorage.getItem(STORAGE_KEY);
             if (saved) {
-                setIsConfirmed(true);
+                const parsed = JSON.parse(saved);
+                if (parsed.spotNumber) {
+                    setRegisteredSpot(parsed.spotNumber);
+                    setEmail(parsed.email || '');
+                }
             }
         } catch (e) {}
 
@@ -41,22 +45,31 @@ const StoreComingSoon = ({ onReturn }) => {
         const trimmed = email.trim().toLowerCase();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!trimmed || !emailRegex.test(trimmed)) {
-            setErrorMsg('Please enter a valid email');
+            setErrorMsg('Please enter a valid email address');
             return;
         }
 
         setIsSubmitting(true);
 
         try {
-            // Real-time registration to serverless API & persistent storage
-            await fetch('/api/waitlist', {
+            let spot = 1;
+            const res = await fetch('/api/waitlist', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: trimmed })
-            }).catch(() => {});
+            });
 
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({ email: trimmed, date: new Date().toISOString() }));
-            setIsConfirmed(true);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.spotNumber) spot = data.spotNumber;
+            }
+
+            setRegisteredSpot(spot);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                email: trimmed,
+                spotNumber: spot,
+                date: new Date().toISOString()
+            }));
         } catch (err) {
             setErrorMsg('Unable to submit. Please try again.');
         } finally {
@@ -68,8 +81,25 @@ const StoreComingSoon = ({ onReturn }) => {
         <div className="cs-exact-viewport">
             {/* The Framed Canvas Mockup */}
             <div className="cs-mockup-frame">
-                {/* Top Left: SIGNATURE */}
-                <span className="cs-top-brand">SIGNATURE</span>
+                {/* Top Left: AD Logo + CREATIVELY LENSED */}
+                <div className="cs-top-brand" aria-label="Creatively Lensed by Akshat Dange">
+                    <svg
+                        className="cs-ad-logo-svg"
+                        viewBox="0 0 94 80"
+                        width="24"
+                        height="20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M 36 11 L 33 11 L 28 25 L 7 68 L 8 71 L 16 70 L 23 53 L 35 30 L 46 55 L 54 55 L 54 52 L 46 33 L 41 25 Z M 47 6 L 44 9 L 47 14 L 64 17 L 73 25 L 77 34 L 77 45 L 75 51 L 67 60 L 60 63 L 45 63 L 43 65 L 44 71 L 62 71 L 71 67 L 81 57 L 86 44 L 86 34 L 82 23 L 72 12 L 61 7 Z"
+                            fill="#ffffff"
+                            fillRule="evenodd"
+                        />
+                    </svg>
+                    <span className="cs-brand-name">CREATIVELY LENSED</span>
+                </div>
 
                 {/* Top Right: Discreet Back Navigation */}
                 <button
@@ -100,19 +130,22 @@ const StoreComingSoon = ({ onReturn }) => {
                     {/* Bottom Interaction Area - Ultra Minimalist */}
                     <div className="cs-bottom-bar-area">
                         <span className="cs-exact-subtext">
-                            {isConfirmed ? 'CHECK YOUR INBOX • EARLY ACCESS CONFIRMED' : "GET NOTIFIED WHEN IT'S READY"}
+                            {registeredSpot !== null
+                                ? `REGISTERED AS SPOT #${registeredSpot} • CONFIRMATION SENT`
+                                : "GET NOTIFIED WHEN IT'S READY"}
                         </span>
 
-                        {!isConfirmed ? (
+                        {registeredSpot === null ? (
                             <>
                                 <form className="cs-exact-pill-form" onSubmit={handleSubmit}>
                                     <input
                                         type="email"
-                                        placeholder="ENTER YOUR EMAIL"
+                                        placeholder="enter your email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         required
                                         disabled={isSubmitting}
+                                        autoComplete="email"
                                         aria-label="Enter your email to get notified"
                                     />
                                     <button
@@ -126,19 +159,19 @@ const StoreComingSoon = ({ onReturn }) => {
                                 {errorMsg && <span className="cs-pill-error">{errorMsg}</span>}
                             </>
                         ) : (
-                            /* Pure Minimalist Confirmed Pill - Exactly preserves reference silhouette */
-                            <div 
+                            /* Pure Minimalist Confirmed Pill with Real Sequential Spot Number */
+                            <div
                                 className="cs-exact-pill-form cs-confirmed-state"
                                 onClick={() => {
-                                    setIsConfirmed(false);
+                                    setRegisteredSpot(null);
                                     localStorage.removeItem(STORAGE_KEY);
                                 }}
-                                title="Click to enter a different email"
+                                title="Click to register another email"
                                 role="button"
                                 tabIndex={0}
                             >
                                 <span className="cs-confirmed-clean-text">
-                                    YOU'RE ON THE LIST
+                                    SPOT #{registeredSpot} REGISTERED
                                 </span>
                                 <span className="cs-exact-notify-btn cs-confirmed-chip">
                                     CONFIRMED ✓

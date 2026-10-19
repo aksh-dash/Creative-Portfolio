@@ -42,19 +42,33 @@
     overflow: hidden;
 }
 
-/* Top Left Branding: SIGNATURE */
+/* Top Left Branding: AD Logo + CREATIVELY LENSED */
 .cs-top-brand {
     position: absolute;
     top: 2.25rem;
     left: 2.5rem;
-    font-family: 'Cinzel', serif;
-    font-size: 0.92rem;
-    font-weight: 500;
-    letter-spacing: 0.32em;
-    color: #bfaea0;
-    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     user-select: none;
-    transition: opacity 0.3s ease;
+}
+
+.cs-ad-logo-svg {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.25));
+    transition: transform 0.3s ease;
+}
+
+.cs-top-brand:hover .cs-ad-logo-svg {
+    transform: scale(1.05);
+}
+
+.cs-brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    color: #dcd7d0;
+    text-transform: uppercase;
 }
 
 /* Top Right Discreet Back Link */
@@ -236,16 +250,17 @@
     border: none;
     outline: none;
     color: #ffffff;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-family: 'Montserrat', -apple-system, sans-serif;
+    font-size: 0.76rem;
+    letter-spacing: 0.03em;
+    text-transform: lowercase;
     padding-right: 0.5rem;
 }
 
 .cs-exact-pill-form input::placeholder {
-    color: #585666;
-    letter-spacing: 0.14em;
+    color: #626072;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
 }
 
 /* NOTIFY ME Button */

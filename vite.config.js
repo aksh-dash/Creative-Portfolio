@@ -3,6 +3,31 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
+import nodemailer from 'nodemailer';
+
+// Manually load .env into process.env (avoids external dotenv dependency)
+try {
+    const envPath = path.resolve(process.cwd(), '.env');
+    if (fs.existsSync(envPath)) {
+        const envContent = fs.readFileSync(envPath, 'utf-8');
+        envContent.split('\n').forEach(line => {
+            const trimmed = line.trim();
+            if (trimmed && !trimmed.startsWith('#')) {
+                const eqIndex = trimmed.indexOf('=');
+                if (eqIndex > 0) {
+                    const key = trimmed.substring(0, eqIndex).trim();
+                    const value = trimmed.substring(eqIndex + 1).trim();
+                    if (!process.env[key]) {
+                        process.env[key] = value;
+                    }
+                }
+            }
+        });
+        console.log('[env] Loaded .env — GMAIL_APP_PASSWORD:', process.env.GMAIL_APP_PASSWORD ? '✓ set' : '✗ missing');
+    }
+} catch (e) {
+    console.warn('[env] Failed to load .env:', e.message);
+}
 
 const waitlistDevPlugin = () => ({
     name: 'waitlist-dev-plugin',
@@ -10,7 +35,8 @@ const waitlistDevPlugin = () => ({
         server.middlewares.use(async (req, res, next) => {
             if (req.url && req.url.startsWith('/api/waitlist')) {
                 const dataPath = path.join(process.cwd(), 'data', 'waitlist.json');
-                
+                const outboxPath = path.join(process.cwd(), 'data', 'outbox.json');
+
                 const readData = () => {
                     try {
                         if (fs.existsSync(dataPath)) {
@@ -28,14 +54,25 @@ const waitlistDevPlugin = () => ({
                     } catch (e) {}
                 };
 
+                const recordOutbox = (payload) => {
+                    try {
+                        let outbox = [];
+                        if (fs.existsSync(outboxPath)) {
+                            outbox = JSON.parse(fs.readFileSync(outboxPath, 'utf-8')) || [];
+                        }
+                        outbox.push(payload);
+                        fs.writeFileSync(outboxPath, JSON.stringify(outbox, null, 2), 'utf-8');
+                    } catch (e) {}
+                };
+
                 res.setHeader('Content-Type', 'application/json');
 
                 if (req.method === 'GET') {
                     const data = readData();
                     res.end(JSON.stringify({
                         success: true,
-                        subscribersCount: (data.subscribers || []).length,
-                        visitorsCount: data.totalVisitors || 0
+                        totalSubscribers: (data.subscribers || []).length,
+                        totalVisitors: data.totalVisitors || 0
                     }));
                     return;
                 }
@@ -59,14 +96,20 @@ const waitlistDevPlugin = () => ({
                             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                             if (!email || !emailRegex.test(email)) {
                                 res.statusCode = 400;
-                                res.end(JSON.stringify({ error: 'Please provide a valid email address.' }));
+                                res.end(JSON.stringify({ error: 'Please enter a valid email address.' }));
                                 return;
                             }
 
-                            const existing = (data.subscribers || []).find(s => s.email === email);
-                            if (!existing) {
-                                data.subscribers = data.subscribers || [];
+                            data.subscribers = data.subscribers || [];
+                            const existingIdx = data.subscribers.findIndex(s => s.email === email);
+                            let spotNumber;
+
+                            if (existingIdx !== -1) {
+                                spotNumber = existingIdx + 1;
+                            } else {
+                                spotNumber = data.subscribers.length + 1;
                                 data.subscribers.push({
+                                    spotNumber,
                                     email,
                                     registeredAt: new Date().toISOString(),
                                     ip: req.socket.remoteAddress || '127.0.0.1'
@@ -74,37 +117,77 @@ const waitlistDevPlugin = () => ({
                                 writeData(data);
                             }
 
-                            // Optional Resend email dispatch if API key exists
-                            const apiKey = process.env.RESEND_API_KEY;
+                            // Email Sending via Nodemailer (dange.akshat2107@gmail.com)
+                            const fromAddress = 'dange.akshat2107@gmail.com';
+                            const gmailPass = process.env.GMAIL_APP_PASSWORD;
                             let emailSent = false;
-                            if (apiKey) {
+
+                            if (gmailPass) {
                                 try {
-                                    await fetch('https://api.resend.com/emails', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Authorization': `Bearer ${apiKey}`,
-                                            'Content-Type': 'application/json'
-                                        },
-                                        body: JSON.stringify({
-                                            from: 'Creatively Lensed <onboarding@resend.dev>',
-                                            to: email,
-                                            subject: '✨ Your Early Bird VIP Access Confirmed — Creatively Lensed Store',
-                                            html: `<p>Thank you for joining the Creatively Lensed Store waitlist! Your 25% discount code is <strong>EARLYBIRD25</strong>.</p>`
-                                        })
+                                    const transporter = nodemailer.createTransport({
+                                        service: 'gmail',
+                                        auth: {
+                                            user: fromAddress,
+                                            pass: gmailPass.replace(/\s+/g, '')
+                                        }
                                     });
+
+                                    // 1. Confirmation email to the subscriber
+                                    await transporter.sendMail({
+                                        from: `"Akshat Dange | Creatively Lensed" <${fromAddress}>`,
+                                        to: email,
+                                        subject: `✨ You're on the list — VIP Spot #${spotNumber} [Creatively Lensed Store]`,
+                                        text: `Hi!\n\nThank you for registering for the Creatively Lensed Store early bird launch.\nYou are registered as VIP Spot #${spotNumber}.\n\nYour 25% launch code is: EARLYBIRD25\n\nBest regards,\nAkshat Dange\ndange.akshat2107@gmail.com`
+                                    });
+                                    console.log(`[Dev Email Sent]: Confirmation to ${email}`);
+
+                                    // 2. Notification email to the owner (you)
+                                    await transporter.sendMail({
+                                        from: `"Creatively Lensed Store" <${fromAddress}>`,
+                                        to: fromAddress,
+                                        subject: `🔔 New Registration — Spot #${spotNumber} [${email}]`,
+                                        text: `New waitlist registration!\n\nEmail: ${email}\nSpot Number: #${spotNumber}\nRegistered At: ${new Date().toISOString()}\nTotal Subscribers: ${data.subscribers.length}\n\n— Creatively Lensed Store Waitlist`,
+                                        html: `
+                                        <div style="font-family: -apple-system, sans-serif; background: #0c0c10; color: #fff; padding: 30px; border-radius: 16px; max-width: 480px;">
+                                            <h2 style="margin: 0 0 8px 0; font-size: 18px; color: #df646e;">🔔 New Waitlist Registration</h2>
+                                            <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 16px 0;">
+                                            <p style="margin: 6px 0; color: #9f9dae; font-size: 13px;"><strong style="color: #dcd7d0;">Email:</strong> ${email}</p>
+                                            <p style="margin: 6px 0; color: #9f9dae; font-size: 13px;"><strong style="color: #dcd7d0;">Spot Number:</strong> #${spotNumber}</p>
+                                            <p style="margin: 6px 0; color: #9f9dae; font-size: 13px;"><strong style="color: #dcd7d0;">Registered At:</strong> ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</p>
+                                            <p style="margin: 6px 0; color: #9f9dae; font-size: 13px;"><strong style="color: #dcd7d0;">Total Subscribers:</strong> ${data.subscribers.length}</p>
+                                            <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 16px 0;">
+                                            <p style="margin: 0; font-size: 11px; color: #4e4c5b;">Creatively Lensed Store • Waitlist System</p>
+                                        </div>`
+                                    });
+                                    console.log(`[Dev Email Sent]: Owner notification for ${email}`);
+
                                     emailSent = true;
-                                } catch (err) {}
+                                } catch (emailErr) {
+                                    console.error('[Gmail SMTP Error in Dev]:', emailErr);
+                                }
+                            } else {
+                                // Record in outbox queue
+                                recordOutbox({
+                                    id: Date.now(),
+                                    from: fromAddress,
+                                    to: email,
+                                    spotNumber,
+                                    subject: `✨ You're on the list — VIP Spot #${spotNumber}`,
+                                    createdAt: new Date().toISOString(),
+                                    note: 'Add GMAIL_APP_PASSWORD to .env to send live emails automatically'
+                                });
                             }
 
                             res.end(JSON.stringify({
                                 success: true,
+                                spotNumber,
+                                email,
                                 emailSent,
-                                subscribersCount: data.subscribers.length,
-                                message: 'Registration confirmed.'
+                                message: `Registered as Spot #${spotNumber}`
                             }));
                         } catch (err) {
                             res.statusCode = 500;
-                            res.end(JSON.stringify({ error: 'Internal server error.' }));
+                            res.end(JSON.stringify({ error: 'Server error' }));
                         }
                     });
                     return;
