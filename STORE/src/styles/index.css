@@ -1,20 +1,20 @@
 :root {
-  --black: #1B1B1F; /* Anthracite */
-  --surface-base: #202025;
-  --surface: #26262c;
-  --surface-raised: #2c2c33;
-  --surface-border: rgba(231, 227, 221, 0.08);
-  --surface-border-hover: rgba(231, 227, 221, 0.25);
+  --black: #0F0F12; /* Darkened Anthracite */
+  --surface-base: #141417;
+  --surface: #18181D;
+  --surface-raised: #1F1F24;
+  --surface-border: rgba(220, 215, 208, 0.07);
+  --surface-border-hover: rgba(220, 215, 208, 0.22);
   
-  --white: #E7E3DD; /* White Sand */
-  --gray: #A8A49E;
-  --muted: #7E7A74;
+  --white: #DCD7D0; /* Darkened White Sand / Muted Ivory */
+  --gray: #949089;
+  --muted: #68645E;
   
-  --crimson: #5B0D18; /* Rouge Noir */
-  --crimson-hover: #731221;
-  --crimson-glow: rgba(91, 13, 24, 0.45);
-  --crimson-subtle: rgba(91, 13, 24, 0.18);
-  --crimson-border: rgba(91, 13, 24, 0.55);
+  --crimson: #4A0A13; /* Darkened Rouge Noir */
+  --crimson-hover: #61101C;
+  --crimson-glow: rgba(74, 10, 19, 0.55);
+  --crimson-subtle: rgba(74, 10, 19, 0.22);
+  --crimson-border: rgba(74, 10, 19, 0.65);
 
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-sans: 'Inter', sans-serif;
@@ -222,11 +222,11 @@ button {
 }
 
 .watermark-badge {
-  background: rgba(27, 27, 31, 0.85);
-  border: 1px solid rgba(231, 227, 221, 0.2);
+  background: rgba(15, 15, 18, 0.88);
+  border: 1px solid rgba(220, 215, 208, 0.18);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  color: rgba(231, 227, 221, 0.8);
+  color: rgba(220, 215, 208, 0.75);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.2em;
