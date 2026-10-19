@@ -17,7 +17,10 @@ const Navbar = () => {
 
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-            <a href="/" className="nav-logo">{personalInfo.title}</a>
+            <a href="/" className="nav-logo">
+                <img src="/assets/creative-lenses-logo.png" alt="Creatively Lensed Logo" className="nav-logo-img" />
+                <span>{personalInfo.title}</span>
+            </a>
 
             <ul className={`nav-links ${menuOpen ? 'mobile-open' : ''}`}>
                 {[

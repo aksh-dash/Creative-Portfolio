@@ -13,13 +13,16 @@
 }
 
 .navbar.scrolled {
-    background: rgba(5, 5, 5, 0.85);
+    background: rgba(27, 27, 31, 0.88);
     backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(231, 227, 221, 0.08);
     padding: 1rem 5%;
 }
 
 .nav-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
     font-family: var(--font-display);
     font-size: 1.25rem;
     font-weight: 700;
@@ -29,6 +32,14 @@
     pointer-events: none;
     transition: opacity 0.4s ease, transform 0.4s ease;
     transform: translateY(-4px);
+}
+
+.nav-logo-img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
 }
 
 .navbar.scrolled .nav-logo {

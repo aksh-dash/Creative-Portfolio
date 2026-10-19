@@ -71,12 +71,12 @@
 }
 
 .cookie-btn.accept {
-    background: #ffffff;
-    color: #080808;
+    background: #E7E3DD;
+    color: #1B1B1F;
 }
 
 .cookie-btn.accept:hover {
-    background: #e0e0e0;
+    background: #d8d4ce;
     transform: translateY(-1px);
 }
 

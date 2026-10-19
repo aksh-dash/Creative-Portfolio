@@ -15,8 +15,8 @@
 /* Contact Details Box */
 .contact-details-box {
     text-align: left;
-    background: #0f0f0f;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #222227;
+    border: 1px solid rgba(231, 227, 221, 0.08);
     border-radius: 24px;
     padding: 2.75rem 2.5rem;
 }
@@ -25,7 +25,7 @@
     font-family: var(--font-display);
     font-size: 1.65rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--white);
     margin: 0 0 0.85rem 0;
     line-height: 1.25;
 }
@@ -187,8 +187,8 @@
 .contact-submit-btn {
     align-self: flex-start;
     padding: 0.9rem 2.5rem;
-    background: #ffffff;
-    color: #080808;
+    background: #E7E3DD;
+    color: #1B1B1F;
     border: none;
     border-radius: 100px;
     font-family: var(--font-body);
@@ -202,9 +202,9 @@
 }
 
 .contact-submit-btn:hover:not(:disabled) {
-    background: #e5e5e5;
+    background: #d8d4ce;
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(231, 227, 221, 0.2);
 }
 
 .contact-submit-btn:disabled {
@@ -249,19 +249,32 @@
     text-align: left;
 }
 
+.footer-brand-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.35rem;
+}
+
+.footer-logo-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
 .footer-brand {
     font-family: var(--font-mono);
     font-size: 0.78rem;
     letter-spacing: 0.18em;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.85);
-    display: block;
-    margin-bottom: 0.35rem;
+    color: rgba(231, 227, 221, 0.9);
+    display: inline-block;
 }
 
 .footer-copy {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(231, 227, 221, 0.5);
     margin: 0;
 }
 

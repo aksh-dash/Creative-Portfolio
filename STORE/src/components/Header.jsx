@@ -18,8 +18,8 @@ export default function Header() {
 
         {/* Logo / Brand */}
         <Link to="/" className="header-brand" id="store-logo">
-          <span className="header-brand-mark">CL</span>
-          <span className="header-brand-text">Store</span>
+          <img src="/creative-lenses-logo.png" alt="Creatively Lensed Logo" className="header-brand-logo" />
+          <span className="header-brand-text">Creatively Lensed <em>Store</em></span>
         </Link>
 
         {/* Desktop Nav */}

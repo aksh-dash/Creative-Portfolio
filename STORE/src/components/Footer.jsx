@@ -13,8 +13,8 @@ export default function Footer() {
           {/* Brand column */}
           <div className="footer-brand-col">
             <Link to="/" className="footer-logo">
-              <span className="footer-logo-mark">CL</span>
-              <span className="footer-logo-text">Store</span>
+              <img src="/creative-lenses-logo.png" alt="Creatively Lensed Logo" className="footer-logo-img" />
+              <span className="footer-logo-text">Creatively Lensed <em>Store</em></span>
             </Link>
             <p className="footer-tagline">
               Handcrafted digital wallpapers from original photography by Akshat Dange, Pune.
