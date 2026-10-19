@@ -140,20 +140,27 @@ async function dispatchEmail(subscriberEmail, spotNumber, totalSubscribers) {
     const ownerText = `New waitlist registration!\n\nEmail: ${subscriberEmail}\nSpot Number: #${spotNumber}\nRegistered At: ${new Date().toISOString()}\nTotal Subscribers: ${totalSubscribers}\n\n— Creatively Lensed Store Waitlist`;
 
     // 1. Try Gmail SMTP via Nodemailer
+    const gmailUser = process.env.GMAIL_USER || fromAddress;
     const gmailPass = process.env.GMAIL_APP_PASSWORD;
+
     if (gmailPass) {
         try {
             const transporter = nodemailer.createTransport({
-                service: 'gmail',
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true, // true for 465, false for other ports
                 auth: {
-                    user: fromAddress,
+                    user: gmailUser,
                     pass: gmailPass.replace(/\s+/g, '')
-                }
+                },
+                connectionTimeout: 10000,
+                greetingTimeout: 10000,
+                socketTimeout: 15000
             });
 
             // Email 1: Confirmation to subscriber
             await transporter.sendMail({
-                from: `"Akshat Dange | Creatively Lensed" <${fromAddress}>`,
+                from: `"Akshat Dange | Creatively Lensed" <${gmailUser}>`,
                 to: subscriberEmail,
                 subject: emailSubject,
                 text: emailText,
@@ -163,8 +170,8 @@ async function dispatchEmail(subscriberEmail, spotNumber, totalSubscribers) {
 
             // Email 2: Notification to owner
             await transporter.sendMail({
-                from: `"Creatively Lensed Store" <${fromAddress}>`,
-                to: fromAddress,
+                from: `"Creatively Lensed Store" <${gmailUser}>`,
+                to: gmailUser,
                 subject: ownerSubject,
                 text: ownerText,
                 html: ownerHtml
@@ -175,6 +182,8 @@ async function dispatchEmail(subscriberEmail, spotNumber, totalSubscribers) {
         } catch (err) {
             console.error('[Gmail SMTP Error]:', err);
         }
+    } else {
+        console.warn('[Waitlist API]: GMAIL_APP_PASSWORD is not set in environment variables! Please configure it in your Vercel/hosting dashboard.');
     }
 
     // 2. Try Resend if configured
