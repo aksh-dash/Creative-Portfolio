@@ -1,583 +1,417 @@
-/* ==========================================================================
-   HERO / HOME PAGE REDESIGN
-   Mobile-first, premium near-black (#0a0a0a), crimson radial glow accent only.
-   ========================================================================== */
-
-.hero-root {
+/* Hero Section */
+.hero-section {
+    padding: 0.75rem 1rem 0 1rem;
     position: relative;
-    background-color: var(--black);
-    width: 100%;
+    background: #080808;
     min-height: 100vh;
     min-height: 100dvh;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     box-sizing: border-box;
 }
 
-/* --------------------------------------------------------------------------
-   1. HERO STAGE (Photo, Glow, Text Block)
-   -------------------------------------------------------------------------- */
-.hero-stage {
+.hero-card {
     position: relative;
-    width: 100%;
-    min-height: 82svh;
-    min-height: 82dvh;
-    display: flex;
-    align-items: center;
-    background-color: var(--black);
+    flex: 1;
+    min-height: calc(100vh - 5.5rem);
+    min-height: calc(100dvh - 5.5rem);
+    border-radius: 28px;
     overflow: hidden;
-    box-sizing: border-box;
-    padding: 5.5rem 1.5rem 2rem 1.5rem;
+    background: #0d0d0d;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4.25rem 4rem 2.25rem 4rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.06);
 }
 
-/* Red Radial Accent Glow behind head */
-.hero-red-glow {
+.hero-bg {
     position: absolute;
     inset: 0;
-    pointer-events: none;
+    z-index: 0;
+    background: url('/assets/Stylized%20Crimson%20Portrait%20of%20a%20Smiling%20Man.png') center 65%/cover no-repeat;
+    transition: transform 0.25s ease-out;
+    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.85));
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
     z-index: 1;
-    background: radial-gradient(circle at 70% 35%, rgba(193, 18, 31, 0.35), transparent 55%);
+    background: 
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,0.02) 0%, rgba(8,8,8,0.2) 60%, rgba(8,8,8,0.85) 100%),
+        linear-gradient(to top, #0d0d0d 0%, rgba(13,13,13,0.3) 30%, transparent 60%);
+    pointer-events: none;
 }
 
-/* Original Photo Portrait (face in right 55-60%) */
-.hero-portrait-wrap {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 75%;
-    height: 100%;
+/* Main Split Layout: Left vs Right */
+.hero-main-layout {
     z-index: 2;
-    pointer-events: none;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-}
-
-.hero-portrait-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 85% 15%;
-    display: block;
-}
-
-/* Overlays: Left-to-Right dark blend & bottom fade into services */
-.hero-overlays {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
-}
-
-.hero-gradient-side {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, #0a0a0a 30%, transparent 75%);
-}
-
-.hero-gradient-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    background: linear-gradient(to top, #0a0a0a 0%, rgba(10, 10, 10, 0.85) 25%, transparent 100%);
-}
-
-/* Text Container & Left Block */
-.hero-content-container {
     position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 1320px;
-    margin: 0 auto;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 0.5rem;
 }
 
-.hero-text-block {
-    max-width: 55%;
+/* Left Column: Greeting & Main Title */
+.hero-left-col {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    box-sizing: border-box;
 }
 
-.hero-eyebrow {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--text-muted);
+.hero-greeting {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.88);
     margin-bottom: 0.5rem;
-    display: inline-block;
-}
-
-.hero-headline {
-    font-family: var(--font-display);
-    font-size: clamp(2.35rem, 9.2vw, 5.25rem);
-    font-weight: 700;
-    line-height: 0.98;
-    letter-spacing: -0.03em;
-    color: var(--text-white);
-    margin: 0 0 0.5rem 0;
-}
-
-.hero-role {
-    font-family: var(--font-sans);
-    font-size: clamp(1.05rem, 3.2vw, 1.75rem);
-    font-weight: 500;
     letter-spacing: -0.01em;
-    color: var(--text-creator);
-    margin-bottom: 1.25rem;
 }
 
-.hero-divider {
-    width: 40px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.22);
-    margin-bottom: 1.25rem;
-}
-
-.hero-catchphrase {
+.hero-main-title {
     font-family: var(--font-display);
-    font-size: clamp(1rem, 2.5vw, 1.45rem);
-    font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -0.02em;
-    color: var(--text-white);
-    margin: 0 0 0.65rem 0;
-}
-
-.hero-subtext {
-    font-family: var(--font-sans);
-    font-size: clamp(0.78rem, 1.6vw, 0.95rem);
-    line-height: 1.5;
-    color: var(--text-body);
+    font-size: clamp(2.75rem, 4.8vw, 5.25rem);
+    font-weight: 800;
+    line-height: 0.95;
+    color: #ffffff;
+    letter-spacing: -0.03em;
     margin: 0;
-    max-width: 380px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
-/* --------------------------------------------------------------------------
-   2. SERVICES SECTION (4 cols desktop, 2x2 grid mobile, thin dividers)
-   -------------------------------------------------------------------------- */
-.hero-services-section {
-    position: relative;
-    z-index: 10;
-    background-color: var(--black);
-    width: 100%;
-    box-sizing: border-box;
-    padding: 1.5rem 1.5rem 2rem 1.5rem;
-}
-
-.hero-services-grid {
-    max-width: 1320px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem 1.25rem;
-    box-sizing: border-box;
-}
-
-.hero-service-card {
+/* Right Column: Side Title & Subtext */
+.hero-right-col {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
-    box-sizing: border-box;
-    padding: 0.5rem 0.25rem;
+    max-width: 380px;
+    margin-top: 0.5rem;
 }
 
-.service-icon-wrap {
-    margin-bottom: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-white);
-}
-
-.service-icon {
-    color: var(--text-white);
-}
-
-.service-number {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    margin-bottom: 0.35rem;
-}
-
-.service-title {
+.hero-side-title {
     font-family: var(--font-display);
-    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    font-size: clamp(1.4rem, 2vw, 2.25rem);
     font-weight: 700;
+    line-height: 1.15;
+    color: #ffffff;
+    margin: 0 0 0.85rem 0;
     letter-spacing: -0.02em;
-    color: var(--text-white);
-    line-height: 1.25;
-    margin: 0 0 0.45rem 0;
+    text-shadow: 0 5px 20px rgba(0,0,0,0.7);
 }
 
-.service-tagline {
-    font-family: var(--font-sans);
-    font-size: 10.5px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--text-muted);
-    line-height: 1.4;
+.hero-side-sub {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.55;
     margin: 0;
 }
 
-/* --------------------------------------------------------------------------
-   3. VENTURES & COLLABORATIONS (Top border 1px rgba(255,255,255,0.08))
-   -------------------------------------------------------------------------- */
-.hero-ventures-section {
+/* Bottom Feature Strip inside Hero Card */
+.hero-features-grid {
+    z-index: 2;
     position: relative;
-    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
     width: 100%;
-    background-color: var(--black);
+    padding-top: 1.25rem;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-    box-sizing: border-box;
-    padding: 2rem 1.5rem 1.75rem 1.5rem;
 }
 
-.hero-ventures-container {
-    max-width: 1320px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
-    align-items: flex-start;
-    justify-content: space-between;
-    box-sizing: border-box;
-}
-
-.ventures-left {
+.hero-feature-item {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;
+    gap: 0.25rem;
+    text-align: left;
 }
 
-.ventures-label {
-    font-family: var(--font-sans);
-    font-size: 11px;
+.feature-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--text-muted);
-    margin-bottom: 0.9rem;
-    display: block;
+    letter-spacing: 0.05em;
 }
 
-.ventures-brands-row {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.15rem;
-    width: 100%;
-}
-
-.venture-brand-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.venture-name {
-    font-family: var(--font-display);
-    font-size: clamp(1.15rem, 2.5vw, 1.55rem);
-    font-weight: 700;
-    color: var(--text-white);
-    letter-spacing: -0.02em;
-}
-
-.venture-underline {
-    display: block;
-    width: 32px;
-    height: 1.5px;
-    background-color: rgba(255, 255, 255, 0.45);
-    margin-top: 6px;
-}
-
-.venture-dot {
-    display: none;
-    color: var(--text-muted);
-    font-size: 14px;
-}
-
-/* Handwritten Script Signature */
-.ventures-right {
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
-}
-
-.signature-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.signature-img {
-    height: 48px;
-    width: auto;
-    max-width: 150px;
-    object-fit: contain;
-    filter: brightness(0.95);
-    display: block;
-}
-
-.signature-underline {
-    width: 36px;
-    height: 1px;
-    background-color: var(--text-muted);
-    margin-top: 4px;
-}
-
-/* --------------------------------------------------------------------------
-   4. HERO FOOTER STRIP
-   -------------------------------------------------------------------------- */
-.hero-footer-strip {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    background-color: var(--black);
-    box-sizing: border-box;
-    padding: 1.25rem 1.5rem 1.75rem 1.5rem;
-}
-
-.hero-footer-container {
-    max-width: 1320px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-.footer-location {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-sans);
-    font-size: 11px;
+.feature-label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--text-muted);
-}
-
-.footer-pin-icon {
-    color: var(--text-muted);
-}
-
-.footer-socials {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-}
-
-.social-icon-link {
-    color: var(--text-muted);
-    transition: color 0.25s ease, transform 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.social-icon-link:hover {
     color: #ffffff;
-    transform: translateY(-2px);
 }
 
-/* --------------------------------------------------------------------------
-   DESKTOP & TABLET SCALING (>= 768px, >= 1024px, >= 1280px)
-   -------------------------------------------------------------------------- */
-@media (min-width: 768px) {
-    .hero-stage {
-        padding: 7rem 3rem 3rem 3rem;
-        min-height: 85vh;
+/* Bottom Brand Logo Strip Below Hero Card */
+.hero-brands-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3.5rem;
+    background: #080808;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.brands-title {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 500;
+}
+
+.brands-logos {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.brand-logo-item {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: -0.01em;
+}
+
+.brand-dot {
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 0.75rem;
+}
+
+/* Responsive Rules */
+@media (max-width: 1024px) {
+    .hero-card {
+        padding: 3rem 2.5rem 2.5rem 2.5rem;
+        min-height: auto;
     }
 
-    .hero-portrait-wrap {
-        width: 65%;
-    }
-
-    .hero-portrait-img {
-        object-position: 80% 20%;
-    }
-
-    .hero-text-block {
-        max-width: 50%;
-    }
-
-    .hero-services-section {
-        padding: 2.5rem 3rem 3rem 3rem;
-    }
-
-    .hero-services-grid {
-        grid-template-columns: repeat(4, 1fr);
+    .hero-main-layout {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 2rem;
     }
 
-    .hero-service-card {
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
-        padding-right: 1.5rem;
+    .hero-right-col {
+        max-width: 100%;
     }
 
-    .hero-service-card:last-child {
-        border-right: none;
-        padding-right: 0;
+    .hero-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 2rem;
     }
 
-    .hero-ventures-section {
-        padding: 2.5rem 3rem 2rem 3rem;
+    .hero-brands-strip {
+        flex-direction: column;
+        gap: 1.25rem;
+        align-items: flex-start;
+        padding: 1.75rem 2rem;
     }
 
-    .hero-ventures-container {
-        flex-direction: row;
-        align-items: center;
+    .brands-logos {
+        flex-wrap: wrap;
+        gap: 1.25rem 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
         justify-content: space-between;
     }
 
-    .ventures-left {
-        width: auto;
+    .hero-card {
+        padding: 2rem 1.25rem 1.25rem 1.25rem;
+        border-radius: 22px;
+        min-height: calc(100dvh - 5.5rem);
+        flex: 1;
+        background: #0d0d0d;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        overflow: hidden;
     }
 
-    .ventures-brands-row {
-        flex-direction: row;
-        align-items: center;
-        gap: 1.75rem;
+    /* Character positioned CENTERED-RIGHT (not extreme right), fully visible with crimson background */
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: 34% 30%;
+        filter: drop-shadow(0 10px 25px rgba(0,0,0,0.4));
+        -webkit-mask-image: none;
+        mask-image: none;
+        transform: none !important;
     }
 
-    .venture-dot {
-        display: inline-block;
+    /* Red and black atmospheric gradient: preserves the rich crimson tones */
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: 
+            linear-gradient(
+                to right,
+                rgba(8, 8, 8, 0.92) 0%,
+                rgba(8, 8, 8, 0.72) 38%,
+                rgba(8, 8, 8, 0.15) 58%,
+                transparent 80%
+            ),
+            linear-gradient(
+                to top,
+                rgba(13, 13, 13, 0.95) 0%,
+                rgba(13, 13, 13, 0.5) 20%,
+                transparent 45%
+            ),
+            radial-gradient(
+                circle at 65% 35%,
+                transparent 30%,
+                rgba(8, 8, 8, 0.25) 70%,
+                rgba(8, 8, 8, 0.7) 100%
+            );
+        pointer-events: none;
+        z-index: 1;
     }
 
-    .ventures-right {
-        width: auto;
-        justify-content: flex-end;
+    /* Text placed strictly on the LEFT */
+    .hero-main-layout {
+        position: relative;
+        z-index: 2;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0;
+        max-width: 46%;
+        margin-top: 0;
     }
 
-    .signature-wrap {
-        align-items: flex-end;
+    .hero-left-col {
+        width: 100%;
+        text-align: left;
     }
 
-    .hero-footer-strip {
-        padding: 1.25rem 3rem 2.25rem 3rem;
+    .hero-greeting {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.88);
+        margin-bottom: 0.2rem;
+        display: block;
+    }
+
+    .hero-main-title {
+        font-size: clamp(1.85rem, 6.5vw, 2.35rem);
+        line-height: 1.0;
+        letter-spacing: -0.03em;
+        color: #ffffff;
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-right-col {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 0.2rem;
+        text-align: left;
+    }
+
+    .hero-side-title {
+        font-size: clamp(1rem, 3.8vw, 1.2rem);
+        line-height: 1.2;
+        margin-bottom: 0.25rem;
+        color: #ffffff;
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero-side-sub {
+        font-size: 0.78rem;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 100%;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Features 2x2 grid at bottom of the hero card */
+    .hero-features-grid {
+        position: relative;
+        z-index: 2;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem 1rem;
+        margin: 1.25rem 0 0 0;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        width: 100%;
+    }
+
+    .hero-feature-item {
+        gap: 0.2rem;
+    }
+
+    .feature-num {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.45);
+    }
+
+    .feature-label {
+        font-size: 0.78rem;
+        line-height: 1.25;
+    }
+
+    .hero-brands-strip {
+        padding: 1.25rem 1rem;
+        gap: 0.85rem;
+    }
+
+    .brands-title {
+        font-size: 0.75rem;
+    }
+
+    .brands-logos {
+        gap: 0.65rem 1rem;
+    }
+
+    .brand-logo-item {
+        font-size: 0.85rem;
     }
 }
 
-@media (min-width: 1024px) {
-    .hero-stage {
-        padding: 7.5rem 4rem 3.5rem 4rem;
-        min-height: 88vh;
-    }
-
-    .hero-portrait-wrap {
-        width: 60%;
-    }
-
-    .hero-text-block {
-        max-width: 48%;
-    }
-
-    .hero-services-section {
-        padding: 2.5rem 4rem 3.5rem 4rem;
-    }
-
-    .hero-ventures-section {
-        padding: 2.5rem 4rem 2rem 4rem;
-    }
-
-    .hero-footer-strip {
-        padding: 1.5rem 4rem 2.5rem 4rem;
-    }
-}
-
-/* --------------------------------------------------------------------------
-   SMALL MOBILE OPTIMIZATIONS (<= 390px, <= 360px)
-   -------------------------------------------------------------------------- */
 @media (max-width: 390px) {
-    .hero-stage {
-        padding: 5rem 1rem 1.5rem 1rem;
-        min-height: 82svh;
-        min-height: 82dvh;
+    .hero-card {
+        padding: 1.65rem 1rem 1rem 1rem;
     }
 
-    .hero-text-block {
-        max-width: 55%;
+    .hero-bg {
+        background-position: 38% 30%;
     }
 
-    .hero-headline {
-        font-size: 2.15rem;
+    .hero-main-layout {
+        max-width: 53%;
     }
 
-    .hero-role {
-        font-size: 0.98rem;
+    .hero-main-title {
+        font-size: 1.9rem;
     }
 
-    .hero-catchphrase {
-        font-size: 0.95rem;
+    .hero-side-title {
+        font-size: 1.05rem;
     }
 
-    .hero-subtext {
-        font-size: 0.74rem;
-        line-height: 1.45;
+    .hero-side-sub {
+        font-size: 0.76rem;
     }
 
-    .hero-services-section {
-        padding: 1.25rem 1rem 1.5rem 1rem;
-    }
-
-    .hero-services-grid {
-        gap: 1.25rem 0.85rem;
-    }
-
-    .service-title {
-        font-size: 0.92rem;
-    }
-
-    .hero-ventures-section {
-        padding: 1.5rem 1rem 1.25rem 1rem;
-    }
-
-    .hero-footer-strip {
-        padding: 1rem 1rem 1.5rem 1rem;
-    }
-}
-
-@media (max-width: 360px) {
-    .hero-stage {
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
-    }
-
-    .hero-text-block {
-        max-width: 56%;
-    }
-
-    .hero-headline {
-        font-size: 1.95rem;
-    }
-
-    .hero-role {
-        font-size: 0.9rem;
-    }
-
-    .hero-services-section,
-    .hero-ventures-section,
-    .hero-footer-strip {
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
+    .hero-features-grid {
+        gap: 0.6rem 0.75rem;
     }
 }

@@ -1,183 +1,88 @@
-import React from 'react';
-import {
-    Clapperboard,
-    Camera,
-    Users,
-    SlidersHorizontal,
-    MapPin,
-    Instagram,
-    Youtube
-} from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
 import '../styles/Hero.css';
 
-const XIcon = ({ size = 18 }) => (
-    <svg
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        aria-hidden="true"
-    >
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-);
-
-const servicesData = [
-    {
-        num: '01',
-        icon: Clapperboard,
-        title: 'Reels & Short-Form Video',
-        tagline: 'CATCHY FRAMES. REAL MOMENTS.'
-    },
-    {
-        num: '02',
-        icon: Camera,
-        title: 'Photography',
-        tagline: 'PEOPLE. PLACES. PERSPECTIVES.'
-    },
-    {
-        num: '03',
-        icon: Users,
-        title: 'Brand & Social Media',
-        tagline: 'IDEAS. CONTENT. IMPACT.'
-    },
-    {
-        num: '04',
-        icon: SlidersHorizontal,
-        title: 'Video Editing & Color Grading',
-        tagline: 'RAW FOOTAGE. BETTER STORIES.'
-    }
-];
-
 const Hero = () => {
+    const heroRef = useRef(null);
+
+    useEffect(() => {
+        const hero = heroRef.current;
+        const handleMouseMove = (e) => {
+            const { clientX, clientY } = e;
+            const x = (clientX / window.innerWidth - 0.5) * 15;
+            const y = (clientY / window.innerHeight - 0.5) * 15;
+            const bg = hero?.querySelector('.hero-bg');
+            if (bg) {
+                bg.style.transform = `scale(1.01) translate3d(${x * 0.25}px, ${y * 0.25}px, 0)`;
+            }
+        };
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
+
     return (
-        <section className="hero-root" id="hero">
-            {/* HERO STAGE */}
-            <div className="hero-stage">
-                {/* 1. Subtle Red Radial Glow behind the head */}
-                <div className="hero-red-glow" aria-hidden="true" />
+        <section className="hero-section" id="hero" ref={heroRef}>
+            <div className="hero-card">
+                {/* Silhouette Portrait Background */}
+                <div className="hero-bg" />
+                <div className="hero-overlay" />
 
-                {/* 2. Original Photo Portrait (right-aligned, cropped so face is in right 55-60%) */}
-                <div className="hero-portrait-wrap" aria-hidden="true">
-                    <img
-                        src="/assets/akshat-portrait.png"
-                        alt="Akshat Dange"
-                        className="hero-portrait-img"
-                    />
-                </div>
-
-                {/* 3. Left-to-right dark overlay & bottom fade into #0a0a0a */}
-                <div className="hero-overlays" aria-hidden="true">
-                    <div className="hero-gradient-side" />
-                    <div className="hero-gradient-bottom" />
-                </div>
-
-                {/* 4. Text Block (max-width 55% on mobile, z-index above overlay, no text touches face) */}
-                <div className="hero-content-container">
-                    <div className="hero-text-block">
-                        <span className="hero-eyebrow">HEY, I'M</span>
-                        <h1 className="hero-headline">
-                            Akshat<br />Dange
+                {/* Hero Top Grid: Split Left & Right Text Layout */}
+                <div className="hero-main-layout">
+                    {/* Left Column Text */}
+                    <div className="hero-left-col">
+                        <span className="hero-greeting">Hey, I'm Akshat Dange,</span>
+                        <h1 className="hero-main-title">
+                            Content<br />Creator
                         </h1>
-                        <div className="hero-role">Content Creator</div>
-                        <div className="hero-divider" aria-hidden="true" />
-                        <h2 className="hero-catchphrase">I build frames for feelings.</h2>
-                        <p className="hero-subtext">
+                    </div>
+
+                    {/* Right Column Text */}
+                    <div className="hero-right-col">
+                        <h2 className="hero-side-title">
+                            I build frames<br />for feelings.
+                        </h2>
+                        <p className="hero-side-sub">
                             From idea to final edit, I shoot, cut and post stories built to hold attention.
                         </p>
                     </div>
                 </div>
-            </div>
 
-            {/* SERVICES SECTION */}
-            <div className="hero-services-section">
-                <div className="hero-services-grid">
-                    {servicesData.map((service, index) => {
-                        const IconComponent = service.icon;
-                        return (
-                            <div className="hero-service-card" key={service.num}>
-                                <div className="service-icon-wrap">
-                                    <IconComponent size={24} strokeWidth={1.5} className="service-icon" />
-                                </div>
-                                <span className="service-number">{service.num}</span>
-                                <h3 className="service-title">{service.title}</h3>
-                                <p className="service-tagline">{service.tagline}</p>
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
-
-            {/* VENTURES & COLLABORATIONS */}
-            <div className="hero-ventures-section">
-                <div className="hero-ventures-container">
-                    <div className="ventures-left">
-                        <span className="ventures-label">VENTURES &amp; COLLABORATIONS</span>
-                        <div className="ventures-brands-row">
-                            <div className="venture-brand-item">
-                                <span className="venture-name">Gymophilic</span>
-                                <span className="venture-underline" />
-                            </div>
-                            <span className="venture-dot">•</span>
-                            <div className="venture-brand-item">
-                                <span className="venture-name">Creatively Lensed</span>
-                                <span className="venture-underline" />
-                            </div>
-                        </div>
+                {/* Bottom Feature Numbers inside Hero Card */}
+                <div className="hero-features-grid">
+                    <div className="hero-feature-item">
+                        <span className="feature-num">#01</span>
+                        <span className="feature-label">Reels &amp; Short-Form Video</span>
                     </div>
-
-                    <div className="ventures-right">
-                        <div className="signature-wrap">
-                            <img
-                                src="/assets/stay-utkrusht-clean.png"
-                                alt="stay उत्कृष्ट नजरेपलीकडचं"
-                                className="signature-img"
-                            />
-                            <div className="signature-underline" />
-                        </div>
+                    <div className="hero-feature-item">
+                        <span className="feature-num">#02</span>
+                        <span className="feature-label">Photography</span>
+                    </div>
+                    <div className="hero-feature-item">
+                        <span className="feature-num">#03</span>
+                        <span className="feature-label">Brand &amp; Social Media</span>
+                    </div>
+                    <div className="hero-feature-item">
+                        <span className="feature-num">#04</span>
+                        <span className="feature-label">Video Editing &amp; Color Grading</span>
                     </div>
                 </div>
             </div>
 
-            {/* HERO FOOTER STRIP */}
-            <footer className="hero-footer-strip">
-                <div className="hero-footer-container">
-                    <div className="footer-location">
-                        <MapPin size={13} strokeWidth={1.5} className="footer-pin-icon" />
-                        <span>PUNE, INDIA</span>
-                    </div>
-
-                    <div className="footer-socials">
-                        <a
-                            href="https://instagram.com/dangeakshat"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Instagram"
-                            className="social-icon-link"
-                        >
-                            <Instagram size={19} strokeWidth={1.5} />
-                        </a>
-                        <a
-                            href="https://youtube.com/@creativelylensed"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="YouTube"
-                            className="social-icon-link"
-                        >
-                            <Youtube size={19} strokeWidth={1.5} />
-                        </a>
-                        <a
-                            href="https://x.com/notsoakshat"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="X (Twitter)"
-                            className="social-icon-link"
-                        >
-                            <XIcon size={17} />
-                        </a>
-                    </div>
+            {/* Ventures & Collaborations Strip Below Hero Card */}
+            <div className="hero-brands-strip">
+                <span className="brands-title">Ventures &amp; Collaborations</span>
+                <div className="brands-logos">
+                    <span className="brand-logo-item">Gymophilic</span>
+                    <span className="brand-dot">•</span>
+                    <span className="brand-logo-item">Creatively Lensed</span>
+                    <span className="brand-dot">•</span>
+                    <span className="brand-logo-item">Visdom Studios</span>
+                    <span className="brand-dot">•</span>
+                    <span className="brand-logo-item">E-Cell RSCOE</span>
+                    <span className="brand-dot">•</span>
+                    <span className="brand-logo-item">NextGen Fitness Studio</span>
                 </div>
-            </footer>
+            </div>
         </section>
     );
 };

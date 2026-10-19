@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
+import { personalInfo } from '../data/portfolioData';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
@@ -7,115 +8,56 @@ const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 40);
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        const handleScroll = () => setScrolled(window.scrollY > 50);
+        window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const closeMenu = () => setMenuOpen(false);
 
     return (
-        <header className={`navbar-header ${scrolled ? 'scrolled' : ''}`}>
-            <nav className="navbar-container" aria-label="Main Navigation">
-                {/* Top-left: "AD" monogram logo (SVG, white) */}
-                <Link
-                    to="hero"
-                    smooth={true}
-                    duration={600}
-                    className="nav-monogram-link"
-                    onClick={closeMenu}
-                    aria-label="Akshat Dange Home"
-                >
-                    <svg
-                        className="nav-ad-svg"
-                        viewBox="0 0 94 80"
-                        width="34"
-                        height="28"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                    >
-                        <path
-                            d="M 36 11 L 33 11 L 28 25 L 7 68 L 8 71 L 16 70 L 23 53 L 35 30 L 46 55 L 54 55 L 54 52 L 46 33 L 41 25 Z M 47 6 L 44 9 L 47 14 L 64 17 L 73 25 L 77 34 L 77 45 L 75 51 L 67 60 L 60 63 L 45 63 L 43 65 L 44 71 L 62 71 L 71 67 L 81 57 L 86 44 L 86 34 L 82 23 L 72 12 L 61 7 Z"
-                            fill="#ffffff"
-                            fillRule="evenodd"
-                        />
-                    </svg>
-                </Link>
+        <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+            <a href="/" className="nav-logo">{personalInfo.title}</a>
 
-                {/* Desktop: HOME (underlined, active), WORK, ABOUT, CONTACT in small uppercase */}
-                <ul className={`nav-menu-links ${menuOpen ? 'mobile-open' : ''}`}>
-                    <li>
-                        <Link
-                            to="hero"
-                            spy={true}
-                            smooth={true}
-                            duration={600}
-                            offset={0}
-                            activeClass="active"
-                            className="nav-link-item default-active"
-                            onClick={closeMenu}
-                        >
-                            HOME
+            <ul className={`nav-links ${menuOpen ? 'mobile-open' : ''}`}>
+                {[
+                    { to: 'showreel', label: 'Work' },
+                    { to: 'projects', label: 'Projects' },
+                    { to: 'photography', label: 'Photography' },
+                    { to: 'graphics', label: 'Graphics' },
+                    { to: 'skills', label: 'Skills' },
+                    { to: 'about', label: 'About' },
+                ].map(({ to, label }) => (
+                    <li key={to}>
+                        <Link to={to} smooth duration={800} offset={-80} onClick={closeMenu}>
+                            {label}
                         </Link>
                     </li>
-                    <li>
-                        <Link
-                            to="showreel"
-                            spy={true}
-                            smooth={true}
-                            duration={700}
-                            offset={-70}
-                            activeClass="active"
-                            className="nav-link-item"
-                            onClick={closeMenu}
-                        >
-                            WORK
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="about"
-                            spy={true}
-                            smooth={true}
-                            duration={700}
-                            offset={-70}
-                            activeClass="active"
-                            className="nav-link-item"
-                            onClick={closeMenu}
-                        >
-                            ABOUT
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="contact"
-                            spy={true}
-                            smooth={true}
-                            duration={800}
-                            offset={-70}
-                            activeClass="active"
-                            className="nav-link-item"
-                            onClick={closeMenu}
-                        >
-                            CONTACT
-                        </Link>
-                    </li>
-                </ul>
+                ))}
+                <li>
+                    <Link to="contact" smooth duration={800} offset={-80} className="nav-cta" onClick={closeMenu}>
+                        Hire Me ↗
+                    </Link>
+                </li>
+            </ul>
 
-                {/* Mobile: hamburger (two thin lines) on the right */}
-                <button
-                    type="button"
-                    className={`nav-hamburger ${menuOpen ? 'active' : ''}`}
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    aria-label="Toggle navigation menu"
-                    aria-expanded={menuOpen}
-                >
-                    <span className="ham-line ham-line-1" />
-                    <span className="ham-line ham-line-2" />
-                </button>
-            </nav>
-        </header>
+            <div
+                className={`nav-hamburger ${menuOpen ? 'active' : ''}`}
+                onClick={() => setMenuOpen(!menuOpen)}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setMenuOpen(!menuOpen);
+                    }
+                }}
+                aria-label="Toggle navigation menu"
+                aria-expanded={menuOpen}
+                role="button"
+                tabIndex={0}
+            >
+                <span /><span /><span />
+            </div>
+        </nav>
     );
 };
 
