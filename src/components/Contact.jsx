@@ -297,6 +297,15 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
                         </p>
                     </div>
                     <div className="footer-links">
+                        <a
+                            href={personalInfo.storeUrl || "https://store.creativelylensed.com"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="footer-link-btn"
+                        >
+                            Store ↗
+                        </a>
+                        <span className="footer-sep">•</span>
                         <button type="button" className="footer-link-btn" onClick={onOpenPrivacy}>
                             Privacy Policy
                         </button>

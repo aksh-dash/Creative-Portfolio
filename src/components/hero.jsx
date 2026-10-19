@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { personalInfo } from '../data/portfolioData';
 import '../styles/Hero.css';
 
 const Hero = () => {
@@ -44,6 +45,17 @@ const Hero = () => {
                         <p className="hero-side-sub">
                             From idea to final edit, I shoot, cut and post stories built to hold attention.
                         </p>
+                        <div className="hero-cta-wrap">
+                            <a
+                                href={personalInfo.storeUrl || "https://store.creativelylensed.com"}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hero-store-btn"
+                            >
+                                <span>Visit Store</span>
+                                <span className="hero-store-arrow">↗</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -74,7 +86,15 @@ const Hero = () => {
                 <div className="brands-logos">
                     <span className="brand-logo-item">Gymophilic</span>
                     <span className="brand-dot">•</span>
-                    <span className="brand-logo-item">Creatively Lensed</span>
+                    <a
+                        href={personalInfo.storeUrl || "https://store.creativelylensed.com"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="brand-logo-item brand-logo-link"
+                        title="Visit Creatively Lensed Store"
+                    >
+                        Creatively Lensed <span className="brand-link-tag">Store ↗</span>
+                    </a>
                     <span className="brand-dot">•</span>
                     <span className="brand-logo-item">Visdom Studios</span>
                     <span className="brand-dot">•</span>

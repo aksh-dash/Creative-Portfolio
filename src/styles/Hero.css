@@ -116,6 +116,50 @@
     margin: 0;
 }
 
+.hero-cta-wrap {
+    margin-top: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hero-store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-store-btn:hover {
+    background: #ffffff;
+    color: #080808;
+    border-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+}
+
+.hero-store-arrow {
+    font-size: 0.95em;
+    transition: transform 0.25s ease;
+}
+
+.hero-store-btn:hover .hero-store-arrow {
+    transform: translate(2px, -2px);
+}
+
 /* Bottom Feature Strip inside Hero Card */
 .hero-features-grid {
     z-index: 2;
@@ -181,6 +225,38 @@
     font-weight: 700;
     color: rgba(255, 255, 255, 0.85);
     letter-spacing: -0.01em;
+}
+
+.brand-logo-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.25s ease;
+}
+
+.brand-logo-link:hover {
+    color: #ffffff;
+}
+
+.brand-link-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.25s ease;
+}
+
+.brand-logo-link:hover .brand-link-tag {
+    background: #ffffff;
+    color: #080808;
+    border-color: #ffffff;
 }
 
 .brand-dot {

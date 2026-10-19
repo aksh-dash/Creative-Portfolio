@@ -21,6 +21,7 @@ export const personalInfo = {
         { name: "@carclubofsambhajinagar", url: "https://www.instagram.com/carclubofsambhajinagar?obrf=YXV0em1idHZsZW9h" }
     ],
     available: true,
+    storeUrl: (typeof import.meta !== 'undefined' && import.meta.env?.VITE_STORE_URL) || "https://store.creativelylensed.com",
     subTagline: "Filmmaker • Editor • Visual Storyteller",
 
     bio: [

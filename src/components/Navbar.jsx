@@ -35,6 +35,18 @@ const Navbar = () => {
                     </li>
                 ))}
                 <li>
+                    <a
+                        href={personalInfo.storeUrl || "https://store.creativelylensed.com"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="nav-store-btn"
+                        onClick={closeMenu}
+                    >
+                        <span>Store</span>
+                        <span className="nav-store-arrow">↗</span>
+                    </a>
+                </li>
+                <li>
                     <Link to="contact" smooth duration={800} offset={-80} className="nav-cta" onClick={closeMenu}>
                         Hire Me ↗
                     </Link>

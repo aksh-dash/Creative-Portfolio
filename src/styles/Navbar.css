@@ -40,7 +40,7 @@
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 3rem;
+    gap: clamp(1.2rem, 2vw, 2.2rem);
     align-items: center;
     margin: 0;
     padding: 0;
@@ -72,6 +72,44 @@
 
 .nav-links li a:hover::after {
     width: 100%;
+}
+
+.nav-store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--white) !important;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 0.45rem 1.15rem;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.nav-store-btn::after {
+    display: none !important;
+}
+
+.nav-store-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.nav-store-btn .nav-store-arrow {
+    font-size: 0.85em;
+    opacity: 0.8;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-store-btn:hover .nav-store-arrow {
+    opacity: 1;
+    transform: translate(2px, -2px);
 }
 
 .nav-cta {
