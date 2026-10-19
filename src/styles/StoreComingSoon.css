@@ -280,74 +280,29 @@
     cursor: not-allowed;
 }
 
-/* Confirmed Minimalist Pill State (Preserves exact silhouette) */
-.cs-confirmed-pill {
-    width: 360px;
-    height: 40px;
-    background: #141319;
-    border: 1px solid rgba(223, 100, 110, 0.45);
-    border-radius: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 3px 5px 3px 16px;
-    box-sizing: border-box;
-    box-shadow: 0 0 20px rgba(196, 52, 68, 0.2);
+/* Confirmed Minimalist State - Preserves 100% exact reference silhouette */
+.cs-confirmed-state {
+    cursor: pointer;
+    border-color: rgba(223, 100, 110, 0.4);
+    box-shadow: 0 0 20px rgba(196, 52, 68, 0.15);
     animation: csPillFade 0.3s ease;
 }
 
-.cs-confirmed-label {
+.cs-confirmed-clean-text {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.66rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    color: #f0828b;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: #9f9dae;
     text-transform: uppercase;
+    user-select: none;
 }
 
-.cs-confirmed-btn {
-    height: 100%;
-    padding: 0 1rem;
-    background: #2d2b3a;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 100px;
-    color: #dcd7d0;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.cs-confirmed-btn:hover {
-    background: #3c394e;
-    color: #ffffff;
-}
-
-.cs-confirmed-subhint {
-    margin-top: 0.65rem;
-    font-size: 0.68rem;
-    color: #6a6878;
-    letter-spacing: 0.08em;
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-}
-
-.cs-confirmed-subhint button {
-    background: none;
-    border: none;
-    color: #888698;
-    text-decoration: underline;
-    font-size: inherit;
-    cursor: pointer;
-    padding: 0;
-}
-
-.cs-confirmed-subhint button:hover {
-    color: #c5c3d2;
+.cs-confirmed-chip {
+    background: #38354a !important;
+    color: #df646e !important;
+    border-color: rgba(223, 100, 110, 0.3) !important;
+    font-weight: 700 !important;
 }
 
 /* Subtle Validation Note */
