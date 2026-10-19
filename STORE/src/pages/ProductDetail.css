@@ -117,7 +117,7 @@
 
 .pdp-format-btn.active .pdp-format-btn__icon {
   color: var(--crimson-hover);
-  background: rgba(225, 29, 72, 0.15);
+  background: rgba(56, 8, 16, 0.25);
 }
 
 .pdp-format-btn__info {

@@ -1,20 +1,20 @@
 :root {
-  --black: #0F0F12; /* Darkened Anthracite */
-  --surface-base: #141417;
-  --surface: #18181D;
-  --surface-raised: #1F1F24;
-  --surface-border: rgba(220, 215, 208, 0.07);
-  --surface-border-hover: rgba(220, 215, 208, 0.22);
+  --black: #080809; /* Deep Anthracite */
+  --surface-base: #0C0C0F;
+  --surface: #101013;
+  --surface-raised: #151518;
+  --surface-border: rgba(180, 175, 168, 0.06);
+  --surface-border-hover: rgba(180, 175, 168, 0.16);
   
-  --white: #DCD7D0; /* Darkened White Sand / Muted Ivory */
-  --gray: #949089;
-  --muted: #68645E;
+  --white: #B8B3AC; /* Deeper Muted Sand */
+  --gray: #7A766F;
+  --muted: #504D48;
   
-  --crimson: #4A0A13; /* Darkened Rouge Noir */
-  --crimson-hover: #61101C;
-  --crimson-glow: rgba(74, 10, 19, 0.55);
-  --crimson-subtle: rgba(74, 10, 19, 0.22);
-  --crimson-border: rgba(74, 10, 19, 0.65);
+  --crimson: #380810; /* Deep Rouge Noir */
+  --crimson-hover: #4F0D18;
+  --crimson-glow: rgba(56, 8, 16, 0.60);
+  --crimson-subtle: rgba(56, 8, 16, 0.28);
+  --crimson-border: rgba(56, 8, 16, 0.70);
 
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-sans: 'Inter', sans-serif;
@@ -170,7 +170,7 @@ button {
 .btn-primary:hover {
   background: var(--crimson-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(225, 29, 72, 0.45);
+  box-shadow: 0 8px 30px rgba(56, 8, 16, 0.55);
 }
 
 .btn-secondary {
@@ -222,11 +222,11 @@ button {
 }
 
 .watermark-badge {
-  background: rgba(15, 15, 18, 0.88);
-  border: 1px solid rgba(220, 215, 208, 0.18);
+  background: rgba(8, 8, 9, 0.92);
+  border: 1px solid rgba(180, 175, 168, 0.12);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  color: rgba(220, 215, 208, 0.75);
+  color: rgba(180, 175, 168, 0.60);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.2em;
