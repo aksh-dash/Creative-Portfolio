@@ -298,10 +298,13 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
                     </div>
                     <div className="footer-links">
                         <a
-                            href={personalInfo.storeUrl || "https://store.creativelylensed.com"}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="/store"
                             className="footer-link-btn"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                window.history.pushState(null, '', '/store');
+                                window.dispatchEvent(new PopStateEvent('popstate'));
+                            }}
                         >
                             Store ↗
                         </a>

@@ -18,6 +18,7 @@ import SocialProof from './components/SocialProof';
 import Contact from './components/Contact';
 import CustomCursor from './components/CustomCursor';
 import NotFound from './components/NotFound';
+import StoreComingSoon from './components/StoreComingSoon';
 import PrivacyPolicyModal from './components/PrivacyPolicyModal';
 import TermsModal from './components/TermsModal';
 import CookieBanner from './components/CookieBanner';
@@ -28,6 +29,7 @@ import { initSecurityPatch } from './utils/securityPatch';
 
 const App = () => {
     const [is404, setIs404] = useState(false);
+    const [isStore, setIsStore] = useState(false);
     const [privacyOpen, setPrivacyOpen] = useState(false);
     const [termsOpen, setTermsOpen] = useState(false);
 
@@ -35,14 +37,19 @@ const App = () => {
         // Initialize strict client-side asset protection
         initSecurityPatch();
 
-        // Check for 404 route / query / hash
+        // Check for 404 and store routes / query / hash
         const checkRoute = () => {
-            const path = window.location.pathname;
-            const hash = window.location.hash;
+            const path = window.location.pathname.toLowerCase();
+            const hash = window.location.hash.toLowerCase();
             if (path.includes('404') || hash === '#404') {
                 setIs404(true);
+                setIsStore(false);
+            } else if (path === '/store' || path.startsWith('/store') || path.includes('coming-soon') || hash === '#store') {
+                setIsStore(true);
+                setIs404(false);
             } else {
                 setIs404(false);
+                setIsStore(false);
             }
         };
 
@@ -61,6 +68,19 @@ const App = () => {
                 onReturn={() => {
                     setIs404(false);
                     window.history.pushState(null, '', '/');
+                    window.dispatchEvent(new PopStateEvent('popstate'));
+                }}
+            />
+        );
+    }
+
+    if (isStore) {
+        return (
+            <StoreComingSoon
+                onReturn={() => {
+                    setIsStore(false);
+                    window.history.pushState(null, '', '/');
+                    window.dispatchEvent(new PopStateEvent('popstate'));
                 }}
             />
         );

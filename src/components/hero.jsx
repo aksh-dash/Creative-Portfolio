@@ -47,10 +47,13 @@ const Hero = () => {
                         </p>
                         <div className="hero-cta-wrap">
                             <a
-                                href={personalInfo.storeUrl || "https://store.creativelylensed.com"}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href="/store"
                                 className="hero-store-btn"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    window.history.pushState(null, '', '/store');
+                                    window.dispatchEvent(new PopStateEvent('popstate'));
+                                }}
                             >
                                 <span>Visit Store</span>
                                 <span className="hero-store-arrow">↗</span>
@@ -87,11 +90,14 @@ const Hero = () => {
                     <span className="brand-logo-item">Gymophilic</span>
                     <span className="brand-dot">•</span>
                     <a
-                        href={personalInfo.storeUrl || "https://store.creativelylensed.com"}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="/store"
                         className="brand-logo-item brand-logo-link"
                         title="Visit Creatively Lensed Store"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            window.history.pushState(null, '', '/store');
+                            window.dispatchEvent(new PopStateEvent('popstate'));
+                        }}
                     >
                         Creatively Lensed <span className="brand-link-tag">Store ↗</span>
                     </a>
