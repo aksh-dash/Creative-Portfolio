@@ -1,7 +1,8 @@
 {
-  "totalVisitors": 34,
+  "totalVisitors": 58,
   "subscribers": [
     {
+      "spotNumber": 1,
       "email": "creator.vip@gmail.com",
       "registeredAt": "2026-10-19T18:59:11.310Z",
       "ip": "::1"
@@ -17,6 +18,36 @@
       "email": "dange.akshat2107@gmail.com",
       "registeredAt": "2026-10-19T19:21:49.004Z",
       "ip": "::1"
+    },
+    {
+      "spotNumber": 4,
+      "email": "creativelenses07@gmail.com",
+      "registeredAt": "2026-10-20T01:46:00.000Z",
+      "ip": "mobile-registration"
+    },
+    {
+      "spotNumber": 5,
+      "email": "samikshachowkade@gmail.com",
+      "registeredAt": "2026-10-20T05:42:00.000Z",
+      "ip": "mobile-registration"
+    },
+    {
+      "spotNumber": 6,
+      "email": "rushidhapse321@gmail.com",
+      "registeredAt": "2026-10-20T06:13:00.000Z",
+      "ip": "mobile-registration"
+    },
+    {
+      "spotNumber": 7,
+      "email": "samruddhiyelhekar@gmail.com",
+      "registeredAt": "2026-10-20T06:34:00.000Z",
+      "ip": "mobile-registration"
+    },
+    {
+      "spotNumber": 8,
+      "email": "dange.girish@gmail.com",
+      "registeredAt": "2026-10-20T06:50:00.000Z",
+      "ip": "mobile-registration"
     }
   ]
 }

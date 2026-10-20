@@ -237,12 +237,42 @@ export default async function handler(req, res) {
 
     const currentData = readData();
 
+    // Admin Export Endpoint: /api/waitlist?export=csv or ?export=json
+    const query = req.query || {};
+    if (query.export === 'csv') {
+        const header = 'Spot Number,Email,Registered At,IP\n';
+        const rows = (currentData.subscribers || []).map(s => 
+            `"${s.spotNumber || ''}","${s.email || ''}","${s.registeredAt || ''}","${s.ip || ''}"`
+        ).join('\n');
+        res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+        res.setHeader('Content-Disposition', 'attachment; filename="creatively-lensed-waitlist.csv"');
+        return res.status(200).send(header + rows);
+    }
+
+    if (query.export === 'json') {
+        return res.status(200).json(currentData);
+    }
+
     // GET: Return real-time count
     if (req.method === 'GET') {
+        let totalSubscribers = (currentData.subscribers || []).length;
+        let totalVisitors = currentData.totalVisitors || 0;
+
+        const sheetUrl = process.env.GOOGLE_SHEET_URL || process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+        if (sheetUrl) {
+            try {
+                const sheetRes = await fetch(sheetUrl, { method: 'GET' });
+                const sheetJson = await sheetRes.json();
+                if (sheetJson && typeof sheetJson.totalSubscribers === 'number') {
+                    totalSubscribers = sheetJson.totalSubscribers;
+                }
+            } catch (e) {}
+        }
+
         return res.status(200).json({
             success: true,
-            totalSubscribers: (currentData.subscribers || []).length,
-            totalVisitors: currentData.totalVisitors || 0
+            totalSubscribers,
+            totalVisitors
         });
     }
 
@@ -265,14 +295,38 @@ export default async function handler(req, res) {
         const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
         currentData.subscribers = currentData.subscribers || [];
 
-        // Check if already registered
-        const existingIdx = currentData.subscribers.findIndex((s) => s.email === email);
-        let spotNumber;
+        let spotNumber = currentData.subscribers.length + 1;
+        let totalSubscribersCount = spotNumber;
 
+        // 1. Sync with Google Sheet if GOOGLE_SHEET_URL is set in Vercel
+        const sheetUrl = process.env.GOOGLE_SHEET_URL || process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+        if (sheetUrl) {
+            try {
+                const sheetRes = await fetch(sheetUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email,
+                        ip,
+                        registeredAt: new Date().toISOString()
+                    })
+                });
+                const sheetJson = await sheetRes.json();
+                if (sheetJson && sheetJson.spotNumber) {
+                    spotNumber = Number(sheetJson.spotNumber);
+                    totalSubscribersCount = Number(sheetJson.totalSubscribers || spotNumber);
+                }
+            } catch (sheetErr) {
+                console.error('[Google Sheet Sync Error]:', sheetErr);
+            }
+        }
+
+        // 2. Check local/bundled records fallback
+        const existingIdx = currentData.subscribers.findIndex((s) => s.email === email);
         if (existingIdx !== -1) {
-            // Sequential 1-based index
-            spotNumber = existingIdx + 1;
-        } else {
+            spotNumber = currentData.subscribers[existingIdx].spotNumber || (existingIdx + 1);
+        } else if (!sheetUrl) {
+            // Sequential increment when no external sheet is connected
             spotNumber = currentData.subscribers.length + 1;
             currentData.subscribers.push({
                 spotNumber,
@@ -281,10 +335,11 @@ export default async function handler(req, res) {
                 ip
             });
             writeData(currentData);
+            totalSubscribersCount = currentData.subscribers.length;
         }
 
-        // Send or queue confirmation email from creativelensesstore@gmail.com
-        const dispatchResult = await dispatchEmail(email, spotNumber, currentData.subscribers.length);
+        // Send confirmation email to subscriber & alert to owner from creativelensesstore@gmail.com
+        const dispatchResult = await dispatchEmail(email, spotNumber, totalSubscribersCount);
 
         return res.status(200).json({
             success: true,
