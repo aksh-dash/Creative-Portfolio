@@ -116,6 +116,14 @@
     margin: 0;
 }
 
+.hero-clarity-line {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.05em;
+    margin: 0.5rem 0 0 0;
+}
+
 .hero-cta-wrap {
     margin-top: 1.25rem;
     display: flex;

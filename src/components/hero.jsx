@@ -45,6 +45,9 @@ const Hero = () => {
                         <p className="hero-side-sub">
                             From idea to final edit, I shoot, cut and post stories built to hold attention.
                         </p>
+                        <p className="hero-clarity-line">
+                            Photographer &amp; content creator in Pune, India.
+                        </p>
                         <div className="hero-cta-wrap">
                             <a
                                 href="/store"

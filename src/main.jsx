@@ -8,10 +8,17 @@ import ErrorBoundary from './components/ErrorBoundary';
 // Global styles
 import './styles/index.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const rootElement = document.getElementById('root');
+const appJsx = (
     <React.StrictMode>
         <ErrorBoundary>
             <App />
         </ErrorBoundary>
     </React.StrictMode>
 );
+
+if (rootElement && rootElement.hasChildNodes()) {
+    ReactDOM.hydrateRoot(rootElement, appJsx);
+} else if (rootElement) {
+    ReactDOM.createRoot(rootElement).render(appJsx);
+}

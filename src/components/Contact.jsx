@@ -5,10 +5,11 @@ import ThankYouModal from './ThankYouModal';
 import '../styles/Contact.css';
 
 const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
-    const [form, setForm] = useState({ name: '', email: '', message: '' });
+    const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showThankYou, setShowThankYou] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(''); // 'success' | 'error' | ''
     const labelRef = useReveal();
     const titleRef = useReveal();
 
@@ -76,11 +77,16 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
             body: JSON.stringify({
                 name: form.name,
                 email: form.email,
+                phone: form.phone || '',
                 message: form.message,
                 website_trap: form.website_trap || ''
             })
         })
+        .then(() => {
+            setSubmitStatus('success');
+        })
         .catch(() => {
+            setSubmitStatus('error');
             // Silently fall back to WhatsApp if serverless API is offline
         })
         .finally(() => {
@@ -89,7 +95,7 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
 
             // 2. Open WhatsApp direct communication channel
             const text = encodeURIComponent(
-                `*New Portfolio Inquiry*\n*Name:* ${form.name}\n*Email:* ${form.email}\n\n*Message:*\n${form.message}`
+                `*New Portfolio Inquiry*\n*Name:* ${form.name}\n*Email:* ${form.email}${form.phone ? `\n*Phone:* ${form.phone}` : ''}\n\n*Message:*\n${form.message}`
             );
             window.open(`https://wa.me/918482872105?text=${text}`, '_blank');
         });
@@ -230,13 +236,15 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
                                 id="contact-name"
                                 type="text"
                                 name="name"
+                                inputMode="text"
+                                autoComplete="name"
                                 placeholder="e.g. John Doe / NextGen Studios"
                                 value={form.name}
                                 onChange={handleChange}
                                 className={errors.name ? 'input-error' : ''}
                                 required
                             />
-                            {errors.name && <span className="field-error-msg">{errors.name}</span>}
+                            {errors.name && <span className="field-error-msg" role="alert">{errors.name}</span>}
                         </div>
 
                         <div className="form-field">
@@ -245,13 +253,29 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
                                 id="contact-email"
                                 type="email"
                                 name="email"
+                                inputMode="email"
+                                autoComplete="email"
                                 placeholder="e.g. contact@yourbrand.com"
                                 value={form.email}
                                 onChange={handleChange}
                                 className={errors.email ? 'input-error' : ''}
                                 required
                             />
-                            {errors.email && <span className="field-error-msg">{errors.email}</span>}
+                            {errors.email && <span className="field-error-msg" role="alert">{errors.email}</span>}
+                        </div>
+
+                        <div className="form-field">
+                            <label htmlFor="contact-phone">Phone Number (Optional)</label>
+                            <input
+                                id="contact-phone"
+                                type="tel"
+                                name="phone"
+                                inputMode="tel"
+                                autoComplete="tel"
+                                placeholder="e.g. +91 98765 43210"
+                                value={form.phone}
+                                onChange={handleChange}
+                            />
                         </div>
 
                         <div className="form-field">
@@ -259,6 +283,7 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
                             <textarea
                                 id="contact-message"
                                 name="message"
+                                autoComplete="off"
                                 placeholder="Tell me about your project, target audience, deliverables, and timeline..."
                                 value={form.message}
                                 onChange={handleChange}
@@ -266,7 +291,17 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
                                 className={errors.message ? 'input-error' : ''}
                                 required
                             />
-                            {errors.message && <span className="field-error-msg">{errors.message}</span>}
+                            {errors.message && <span className="field-error-msg" role="alert">{errors.message}</span>}
+                        </div>
+
+                        {/* Form status feedback */}
+                        <div aria-live="polite" aria-atomic="true">
+                            {submitStatus === 'success' && (
+                                <p className="form-status-msg form-status-success">Message sent! I'll reply soon.</p>
+                            )}
+                            {submitStatus === 'error' && (
+                                <p className="form-status-msg form-status-error">Something went wrong. Please try WhatsApp or email directly.</p>
+                            )}
                         </div>
 
                         <button
@@ -326,7 +361,7 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
                     clientName={form.name}
                     onClose={() => {
                         setShowThankYou(false);
-                        setForm({ name: '', email: '', message: '' });
+                        setForm({ name: '', email: '', phone: '', message: '' });
                     }}
                 />
             )}

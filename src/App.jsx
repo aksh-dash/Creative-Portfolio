@@ -24,12 +24,27 @@ import TermsModal from './components/TermsModal';
 import CookieBanner from './components/CookieBanner';
 import StickyMobileCTA from './components/StickyMobileCTA';
 
+// New Components
+import ErrorBoundary from './components/ErrorBoundary';
+import FAQ from './components/FAQ';
+import CaseStudies from './components/CaseStudies';
+import MaintenancePage from './components/MaintenancePage';
+import ForbiddenPage from './components/ForbiddenPage';
+import ThankYouPage from './components/ThankYouPage';
+import StoreSuccessPage from './components/StoreSuccessPage';
+import StoreCancelledPage from './components/StoreCancelledPage';
+import OfflineBanner from './components/OfflineBanner';
+import FirstVisitLoader from './components/FirstVisitLoader';
+
 // Anti-Theft & Asset Protection Security Patch
 import { initSecurityPatch } from './utils/securityPatch';
 
-const App = () => {
-    const [is404, setIs404] = useState(false);
-    const [isStore, setIsStore] = useState(false);
+// ── Maintenance mode check ──────────────────────────────────────
+// Set VITE_MAINTENANCE=true in Vercel env vars (or .env) to activate.
+const IS_MAINTENANCE = import.meta.env.VITE_MAINTENANCE === 'true';
+
+const App = ({ initialRoute = 'home' }) => {
+    const [currentRoute, setCurrentRoute] = useState(initialRoute);
     const [privacyOpen, setPrivacyOpen] = useState(false);
     const [termsOpen, setTermsOpen] = useState(false);
 
@@ -41,15 +56,24 @@ const App = () => {
         const checkRoute = () => {
             const path = window.location.pathname.toLowerCase();
             const hash = window.location.hash.toLowerCase();
-            if (path.includes('404') || hash === '#404') {
-                setIs404(true);
-                setIsStore(false);
+
+            if (path === '/thank-you' || path === '/thankyou') {
+                setCurrentRoute('thankyou');
+            } else if (path === '/success') {
+                setCurrentRoute('store-success');
+            } else if (path === '/cancelled') {
+                setCurrentRoute('store-cancelled');
+            } else if (path === '/forbidden' || path === '/expired') {
+                setCurrentRoute('forbidden');
+            } else if (path.includes('404') || hash === '#404') {
+                setCurrentRoute('404');
             } else if (path === '/store' || path.startsWith('/store') || path.includes('coming-soon') || hash === '#store') {
-                setIsStore(true);
-                setIs404(false);
+                setCurrentRoute('store');
+            } else if (path === '/' || path === '') {
+                setCurrentRoute('home');
             } else {
-                setIs404(false);
-                setIsStore(false);
+                // Unknown route → 404
+                setCurrentRoute('404');
             }
         };
 
@@ -62,23 +86,27 @@ const App = () => {
         };
     }, []);
 
-    if (is404) {
-        return (
-            <NotFound
-                onReturn={() => {
-                    setIs404(false);
-                    window.history.pushState(null, '', '/');
-                    window.dispatchEvent(new PopStateEvent('popstate'));
-                }}
-            />
-        );
+    const navigateHome = () => {
+        setCurrentRoute('home');
+        window.history.pushState(null, '', '/');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+    };
+
+    // ── Maintenance mode: replaces entire app ──
+    if (IS_MAINTENANCE) {
+        return <MaintenancePage />;
     }
 
-    if (isStore) {
+    // ── Status pages ──
+    if (currentRoute === '404') {
+        return <NotFound onReturn={navigateHome} />;
+    }
+
+    if (currentRoute === 'store') {
         return (
             <StoreComingSoon
                 onReturn={() => {
-                    setIsStore(false);
+                    setCurrentRoute('home');
                     window.history.pushState(null, '', '/');
                     window.dispatchEvent(new PopStateEvent('popstate'));
                 }}
@@ -86,35 +114,91 @@ const App = () => {
         );
     }
 
+    if (currentRoute === 'thankyou') {
+        return <ThankYouPage onReturn={navigateHome} />;
+    }
+
+    if (currentRoute === 'store-success') {
+        return <StoreSuccessPage onReturn={navigateHome} />;
+    }
+
+    if (currentRoute === 'store-cancelled') {
+        return <StoreCancelledPage onReturn={navigateHome} />;
+    }
+
+    if (currentRoute === 'forbidden') {
+        return <ForbiddenPage onReturn={navigateHome} />;
+    }
+
+    // ── Main portfolio ──
     return (
         <>
+            {/* First-visit branded loader overlay */}
+            <FirstVisitLoader />
+
             {/* Custom Interactive Cursor */}
             <CustomCursor />
 
             {/* Navbar with Working Mobile Menu */}
             <Navbar />
 
-            {/* Main Sections */}
+            {/* Main Sections — each wrapped in section-level error boundary */}
             <main id="main-content">
-                <Hero />
-                <Showreel />
-                <Services />
-                <Projects />
-                <Photography />
-                <Graphics />
-                <Skills />
-                <BeforeAfter />
-                <Timeline />
-                <About />
-                <SocialProof />
-                <Contact
-                    onOpenPrivacy={() => setPrivacyOpen(true)}
-                    onOpenTerms={() => setTermsOpen(true)}
-                />
+                <ErrorBoundary fallbackLevel="section" sectionName="Hero">
+                    <Hero />
+                </ErrorBoundary>
+                <ErrorBoundary fallbackLevel="section" sectionName="Showreel">
+                    <Showreel />
+                </ErrorBoundary>
+                <ErrorBoundary fallbackLevel="section" sectionName="Services">
+                    <Services />
+                </ErrorBoundary>
+                <ErrorBoundary fallbackLevel="section" sectionName="Projects">
+                    <Projects />
+                </ErrorBoundary>
+                <ErrorBoundary fallbackLevel="section" sectionName="Photography">
+                    <Photography />
+                </ErrorBoundary>
+                <ErrorBoundary fallbackLevel="section" sectionName="Graphics">
+                    <Graphics />
+                </ErrorBoundary>
+                <ErrorBoundary fallbackLevel="section" sectionName="Skills">
+                    <Skills />
+                </ErrorBoundary>
+                <ErrorBoundary fallbackLevel="section" sectionName="BeforeAfter">
+                    <BeforeAfter />
+                </ErrorBoundary>
+                <ErrorBoundary fallbackLevel="section" sectionName="Timeline">
+                    <Timeline />
+                </ErrorBoundary>
+                <ErrorBoundary fallbackLevel="section" sectionName="About">
+                    <About />
+                </ErrorBoundary>
+                <ErrorBoundary fallbackLevel="section" sectionName="SocialProof">
+                    <SocialProof />
+                </ErrorBoundary>
+
+                {/* Case Studies — hidden until real content is provided */}
+                <CaseStudies studies={[]} />
+
+                {/* FAQ Section */}
+                <ErrorBoundary fallbackLevel="section" sectionName="FAQ">
+                    <FAQ />
+                </ErrorBoundary>
+
+                <ErrorBoundary fallbackLevel="section" sectionName="Contact">
+                    <Contact
+                        onOpenPrivacy={() => setPrivacyOpen(true)}
+                        onOpenTerms={() => setTermsOpen(true)}
+                    />
+                </ErrorBoundary>
             </main>
 
             {/* Sticky Mobile Call-to-Action Bar */}
             <StickyMobileCTA />
+
+            {/* Offline notice banner */}
+            <OfflineBanner />
 
             {/* GDPR / Performance Cookie Consent Banner */}
             <CookieBanner onOpenPrivacy={() => setPrivacyOpen(true)} />
