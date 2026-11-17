@@ -9,6 +9,7 @@ const CookieBanner = ({ onOpenPrivacy }) => {
 
     useEffect(() => {
         const consent = getConsent();
+        setAnalyticsChecked(Boolean(consent.analytics));
         // If user already answered, apply their choice silently
         if (consent.answered) {
             applyConsent(consent);
@@ -17,6 +18,17 @@ const CookieBanner = ({ onOpenPrivacy }) => {
             const timer = setTimeout(() => setVisible(true), 1000);
             return () => clearTimeout(timer);
         }
+    }, []);
+
+    useEffect(() => {
+        const handleOpen = () => {
+            const consent = getConsent();
+            setAnalyticsChecked(Boolean(consent.analytics));
+            setShowPreferences(true);
+            setVisible(true);
+        };
+        window.addEventListener('open-cookie-preferences', handleOpen);
+        return () => window.removeEventListener('open-cookie-preferences', handleOpen);
     }, []);
 
     const handleAcceptAll = () => {

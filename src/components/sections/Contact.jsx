@@ -351,6 +351,14 @@ const Contact = ({ onOpenPrivacy, onOpenTerms }) => {
                         <button type="button" className="footer-link-btn" onClick={onOpenTerms}>
                             Terms &amp; Conditions
                         </button>
+                        <span className="footer-sep">•</span>
+                        <button
+                            type="button"
+                            className="footer-link-btn"
+                            onClick={() => window.dispatchEvent(new CustomEvent('open-cookie-preferences'))}
+                        >
+                            Cookie Preferences
+                        </button>
                     </div>
                 </div>
             </footer>

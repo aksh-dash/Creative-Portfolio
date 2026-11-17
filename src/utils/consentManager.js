@@ -52,9 +52,41 @@ export function applyConsent(consentRecord) {
         });
     }
 
-    // 2. Microsoft Clarity Dynamic Loader (Only inject script if consented & ID configured)
+    const gaId = window.__GA_MEASUREMENT_ID;
+    if (gaId && gaId !== 'YOUR_GA_ID') {
+        if (!analyticsGranted) {
+            window[`ga-disable-${gaId}`] = true;
+        } else {
+            window[`ga-disable-${gaId}`] = false;
+            loadGoogleAnalytics(gaId);
+        }
+    }
+
+    // 2. Microsoft Clarity Dynamic Loader
     if (analyticsGranted) {
         loadClarity();
+    } else if (window.clarity && typeof window.clarity === 'function') {
+        try {
+            window.clarity("stop");
+        } catch {
+            // graceful fallback if not supported
+        }
+    }
+}
+
+function loadGoogleAnalytics(gaId) {
+    if (typeof window === 'undefined') return;
+    if (window.__ga_loaded) return;
+    if (!gaId || gaId === 'YOUR_GA_ID') return;
+
+    window.__ga_loaded = true;
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+    document.head.appendChild(script);
+
+    if (window.gtag) {
+        window.gtag('config', gaId, { anonymize_ip: true });
     }
 }
 
@@ -80,3 +112,4 @@ function loadClarity() {
         window.clarity("set", "mask-text", true);
     }
 }
+
