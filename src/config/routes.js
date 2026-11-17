@@ -17,3 +17,4 @@ export const API_ENDPOINTS = {
     CONTACT: '/api/contact',
     WAITLIST: '/api/waitlist'
 };
+

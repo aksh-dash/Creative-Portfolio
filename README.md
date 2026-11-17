@@ -302,7 +302,7 @@ Copy `.env.example` to `.env` and fill in the values:
 | `GMAIL_APP_PASSWORD` | Serverless (Private) | 16-character Google App Password (from Google Account ➔ Security ➔ App Passwords) |
 | `RECIPIENT_EMAIL` | Serverless (Private) | Inbox where inquiry notifications are sent |
 | `RESEND_API_KEY` | Serverless (Private) | (Optional) Resend API key for alternative email delivery |
-| `ADMIN_SECRET_KEY` | Serverless (Private) | Secret key required to access waitlist export (`/api/waitlist?export=csv&key=YOUR_SECRET`) |
+| `ADMIN_SECRET_KEY` | Serverless (Private) | Secret key required to access waitlist export via `x-admin-key` header (`curl -H "x-admin-key: YOUR_KEY" https://creativelylensed.com/api/waitlist?export=csv`) |
 | `GOOGLE_SHEET_URL` | Serverless (Private) | (Optional) Google Apps Script Webhook URL for Google Sheets backup sync |
 
 *Never commit `.env` to Git. Private credentials should be set in the Vercel Project Settings dashboard.*

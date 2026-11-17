@@ -55,6 +55,13 @@
       "email": "vip_1794914510778@example.com",
       "registeredAt": "2026-11-17T11:21:50.780Z",
       "ip": "127.0.0.1"
+    },
+    {
+      "spotNumber": 10,
+      "name": "Alex Filmmaker",
+      "email": "vip_1794918903411@example.com",
+      "registeredAt": "2026-11-17T12:35:03.412Z",
+      "ip": "127.0.0.1"
     }
   ]
 }

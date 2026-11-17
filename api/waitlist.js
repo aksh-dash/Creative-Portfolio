@@ -186,14 +186,14 @@ export default async function handler(req, res) {
 
     const currentData = readData();
 
-    // 3. Protected Admin Export (Requires ADMIN_SECRET_KEY)
+    // 3. Protected Admin Export (Requires x-admin-key header authentication only)
     const query = req.query || {};
     if (query.export === 'csv' || query.export === 'json') {
         const adminKey = process.env.ADMIN_SECRET_KEY;
-        const providedKey = req.headers['x-admin-key'] || query.key;
+        const providedKey = req.headers['x-admin-key'];
 
         if (!adminKey || providedKey !== adminKey) {
-            return res.status(401).json({ error: 'Unauthorized: Admin authentication key required.' });
+            return res.status(401).json({ error: 'Unauthorized: Admin authentication key required in x-admin-key header.' });
         }
 
         if (query.export === 'csv') {

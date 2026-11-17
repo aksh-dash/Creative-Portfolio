@@ -15,3 +15,4 @@ export const FOOTER_LINKS = [
     { label: 'Privacy Policy', action: 'privacy' },
     { label: 'Terms & Conditions', action: 'terms' }
 ];
+
