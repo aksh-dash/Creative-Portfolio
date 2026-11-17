@@ -86,8 +86,83 @@
     border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.cookie-btn.decline:hover {
-    background: rgba(255, 255, 255, 0.15);
+.cookie-btn.preferences {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cookie-btn.preferences:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Preferences Drawer */
+.cookie-prefs-drawer {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: cookieSlideUp 0.3s ease;
+}
+
+.cookie-pref-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.85rem 1.15rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cookie-pref-info strong {
+    font-size: 0.85rem;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.cookie-pref-info p {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.cookie-pref-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #df646e;
+    background: rgba(223, 100, 110, 0.12);
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    white-space: nowrap;
+}
+
+.cookie-toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    color: #ffffff;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.cookie-toggle-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #df646e;
+    cursor: pointer;
+}
+
+.cookie-pref-save-row {
+    display: flex;
+    justify-content: flex-end;
 }
 
 @keyframes cookieSlideUp {

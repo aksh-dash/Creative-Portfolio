@@ -28,21 +28,26 @@ const PrivacyPolicyModal = ({ onClose }) => {
 
                     <h3>2. Information We Collect &amp; Purpose</h3>
                     <p>
-                        We collect personal data only when voluntarily submitted by you via our contact and project inquiry forms:
+                        We collect personal data only when voluntarily submitted by you via our contact inquiries or Early Bird Store VIP registration:
                     </p>
                     <ul>
                         <li><strong>Personal Identifiers:</strong> Name, professional entity/brand name.</li>
                         <li><strong>Contact Coordinates:</strong> Email address, mobile/WhatsApp telephone number.</li>
                         <li><strong>Project Context:</strong> Scope requirements, shoot locations, and creative briefs.</li>
+                        <li><strong>Security &amp; Network Data:</strong> Client IP address (processed transiently for rate limiting and fraud prevention during waitlist registration).</li>
                     </ul>
                     <p>
-                        This data is processed solely to assess creative feasibility, prepare transparent quotations, schedule shoots, and fulfill agreed video and photography deliverables. We never sell, lease, or monetize your personal details.
+                        This data is processed solely to assess creative feasibility, prepare transparent quotations, schedule shoots, fulfill deliverables, or send early access launch notifications if you expressly opted into the Store VIP list. We never sell, lease, or monetize your personal details.
                     </p>
 
-                    <h3>3. Privacy-Friendly Analytics &amp; Cookies</h3>
+                    <h3>3. Cookie Consent &amp; Privacy-Friendly Analytics</h3>
                     <p>
-                        Our platform employs non-intrusive, privacy-respecting session metrics to optimize media load times and playback fluidity. No third-party behavioral profiling or cross-site advertising tracking cookies are activated without your express consent through our Cookie Banner.
+                        Our platform categorizes cookies into:
                     </p>
+                    <ul>
+                        <li><strong>Strictly Necessary:</strong> Essential for site security, CSRF protection, and media delivery. Always active.</li>
+                        <li><strong>Performance &amp; Analytics:</strong> Optional session metrics and playback fluidity analysis. Activated only upon your explicit consent via our Cookie Banner. You can change your preferences at any time.</li>
+                    </ul>
 
                     <h3>4. Your Rights under the DPDP Act 2023 (Data Principal Rights)</h3>
                     <p>
