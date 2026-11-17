@@ -15,6 +15,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://creativelylensed.com" />
 
+    <!-- Hero Image Preload for Instant LCP -->
+    <link rel="preload" as="image" href="/assets/Stylized%20Crimson%20Portrait%20of%20a%20Smiling%20Man.png" fetchpriority="high" />
+
     <!-- Primary Meta Tags -->
     <title>Akshat Dange | Photographer &amp; Content Creator in Pune | Creatively Lensed</title>
     <meta name="title" content="Akshat Dange | Photographer &amp; Content Creator in Pune | Creatively Lensed" />
@@ -29,7 +32,7 @@
     <meta property="og:site_name" content="Akshat Dange | Creatively Lensed" />
     <meta property="og:title" content="Akshat Dange | Photographer &amp; Content Creator in Pune" />
     <meta property="og:description" content="Commercial photography, viral short-form reels, and cinematic brand films in Pune. 9+ years experience, 4.5M+ top reel views." />
-    <meta property="og:image" content="/assets/Stylized%20Crimson%20Portrait%20of%20a%20Smiling%20Man.png" />
+    <meta property="og:image" content="https://creativelylensed.com/assets/Stylized%20Crimson%20Portrait%20of%20a%20Smiling%20Man.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Akshat Dange - Photographer and Filmmaker in Pune" />
@@ -40,7 +43,7 @@
     <meta name="twitter:creator" content="@notsoakshat" />
     <meta name="twitter:title" content="Akshat Dange | Photographer &amp; Content Creator in Pune" />
     <meta name="twitter:description" content="Commercial photography, viral short-form reels, and cinematic brand films in Pune. Watch showreel and browse projects." />
-    <meta name="twitter:image" content="/assets/Stylized%20Crimson%20Portrait%20of%20a%20Smiling%20Man.png" />
+    <meta name="twitter:image" content="https://creativelylensed.com/assets/Stylized%20Crimson%20Portrait%20of%20a%20Smiling%20Man.png" />
 
     <!-- JSON-LD LocalBusiness & Photographer Schema -->
     <script type="application/ld+json">
@@ -165,15 +168,14 @@
         };
     </script>
 
-    <!-- Microsoft Clarity — deferred, form fields masked -->
-    <!-- Replace YOUR_CLARITY_PROJECT_ID with your actual Clarity project ID -->
+    <!-- Microsoft Clarity — deferred, form fields masked (Activate by replacing YOUR_CLARITY_PROJECT_ID) -->
     <script type="text/javascript" defer>
         (function(c,l,a,r,i,t,y){
+            if (i === "YOUR_CLARITY_PROJECT_ID") return;
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window,document,"clarity","script","YOUR_CLARITY_PROJECT_ID");
-        // Mask all form inputs for privacy
         if (window.clarity) {
             window.clarity("set", "mask-text", true);
         }

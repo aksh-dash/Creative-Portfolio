@@ -1,49 +1,67 @@
-portfolio/
+CREATIVE LENSES PORTFOLIO/
 │
-├── public/
-│   ├── videos/
-│   │   └── showreel.mp4
-│   └── images/
-│       └── (your images here)
+├── api/                             # Serverless backend functions (Vercel)
+│   ├── contact.js                   # Secure contact form handler (rate limiting, honeypot)
+│   ├── waitlist.js                  # Early Bird VIP registration API & protected export
+│   └── templates/
+│       └── earlyBirdEmail.js        # Responsive branded email templates (HTML & Text)
+│
+├── Public/                          # Static public assets (served at root /)
+│   ├── assets/                      # Brand logos, hero portraits, venture banners
+│   ├── photography/                 # High-resolution portfolio galleries (visdom, portraits)
+│   ├── graphics/                    # Graphic design artworks and event posters
+│   ├── videos/                      # Commercial videos, automotive cuts, reel edits
+│   ├── email-templates/             # Standalone HTML email templates
+│   ├── favicon.svg                  # Brand favicon
+│   ├── robots.txt                   # Search crawler directives
+│   └── sitemap.xml                  # Search engine XML sitemap
+│
+├── scripts/
+│   └── prerender.js                 # Multi-route static pre-rendering build script
 │
 ├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx
-│   │   ├── Hero.jsx
-│   │   ├── Showreel.jsx
-│   │   ├── Services.jsx
-│   │   ├── Projects.jsx
-│   │   ├── Skills.jsx
-│   │   ├── BeforeAfter.jsx
-│   │   ├── Timeline.jsx
-│   │   ├── About.jsx
-│   │   ├── SocialProof.jsx
-│   │   ├── Contact.jsx
-│   │   └── CustomCursor.jsx
+│   ├── components/                  # Organized, modular React components
+│   │   ├── common/                  # ErrorBoundary, EmptyState, GallerySkeleton, OfflineBanner, CookieBanner
+│   │   ├── layout/                  # Navbar, CustomCursor, StickyMobileCTA, FirstVisitLoader
+│   │   ├── modals/                  # ProjectModal, ThankYouModal, PrivacyPolicyModal, TermsModal
+│   │   └── sections/                # Page sections (Hero, Showreel, Services, Projects, Photography, etc.)
 │   │
-│   ├── styles/
-│   │   ├── Navbar.css
-│   │   ├── Hero.css
-│   │   ├── Showreel.css
-│   │   ├── Services.css
-│   │   ├── Projects.css
-│   │   ├── Skills.css
-│   │   ├── BeforeAfter.css
-│   │   ├── Timeline.css
-│   │   ├── About.css
-│   │   ├── SocialProof.css
-│   │   ├── Contact.css
-│   │   └── CustomCursor.css
+│   ├── pages/                       # Full-page route views
+│   │   ├── StoreComingSoonPage.jsx  # Iconic Eclipse Coming Soon & Early Bird registration
+│   │   ├── NotFoundPage.jsx         # Custom branded 404 error page
+│   │   ├── ThankYouPage.jsx         # Standalone inquiry confirmation page
+│   │   ├── MaintenancePage.jsx      # Instant full-site maintenance view (VITE_MAINTENANCE)
+│   │   ├── ForbiddenPage.jsx        # 403 Expired access page
+│   │   ├── StoreSuccessPage.jsx     # Future Store payment success state
+│   │   └── StoreCancelledPage.jsx   # Future Store payment cancellation state
+│   │
+│   ├── config/                      # Centralized configuration & constants
+│   │   ├── routes.js                # Route paths and API endpoint constants
+│   │   └── navigation.js            # Navbar links and footer navigation items
+│   │
+│   ├── content/                     # Copywriting and text content
+│   │   └── status-pages.js          # Copy for 404, Thank You, FAQ, and status screens
+│   │
+│   ├── data/                        # Verified portfolio content & media records
+│   │   └── portfolioData.js         # Personal info, services, projects, photo gallery, skills
 │   │
 │   ├── hooks/
-│   │   └── useReveal.js
+│   │   └── useReveal.js             # Native IntersectionObserver scroll animation hook
 │   │
-│   ├── data/
-│   │   └── portfolioData.js
+│   ├── styles/                      # Modular CSS stylesheets matching component structure
+│   │   ├── index.css                # Global design tokens, typography, and base CSS
+│   │   ├── Hero.css                 # Hero section styling & 3D parallax layers
+│   │   ├── StoreComingSoon.css      # Eclipse glowing stage & VIP pill input styling
+│   │   └── ...                      # Section-specific styles
 │   │
-│   ├── App.jsx
-│   └── main.jsx
+│   ├── utils/
+│   │   └── securityPatch.js         # Client-side media asset protection (right-click, drag)
+│   │
+│   ├── App.jsx                      # Main application routing and section composer
+│   ├── main.jsx                     # Client hydration & root rendering entry point
+│   └── prerender-entry.jsx          # SSR server rendering entry point
 │
-├── package.json
-├── index.html
-└── vite.config.js
+├── .env.example                     # Environment variable blueprint with explanations
+├── vercel.json                      # Vercel routing, security headers & caching policies
+├── vite.config.js                   # Vite configuration with chunk splitting & dev plugin
+└── package.json                     # Cleaned production dependencies

@@ -221,16 +221,24 @@
 }
 
 /* The Pill Input Bar */
+.cs-vip-form-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 .cs-exact-pill-form {
-    width: 335px;
-    height: 40px;
+    width: 440px;
+    max-width: 92vw;
+    height: 42px;
     background: #141319;
     border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 3px 4px 3px 18px;
+    padding: 3px 4px 3px 16px;
     box-sizing: border-box;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
@@ -242,6 +250,57 @@
     box-shadow: 
         0 8px 28px rgba(0, 0, 0, 0.6),
         0 0 20px rgba(223, 100, 110, 0.15);
+}
+
+.cs-name-input {
+    width: 32%;
+    min-width: 80px;
+}
+
+.cs-email-input {
+    flex: 1;
+}
+
+.cs-input-divider {
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 0.75rem;
+    margin: 0 0.5rem;
+    user-select: none;
+}
+
+.cs-consent-row {
+    margin-top: 0.75rem;
+    max-width: 440px;
+}
+
+.cs-consent-label {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.65rem;
+    color: #7b788c;
+    cursor: pointer;
+    line-height: 1.4;
+    user-select: none;
+}
+
+.cs-consent-checkbox {
+    accent-color: #df646e;
+    cursor: pointer;
+}
+
+.cs-confirmed-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cs-confirmed-notice {
+    font-size: 0.7rem;
+    color: #9f9dae;
+    margin-top: 0.6rem;
+    text-align: center;
+    line-height: 1.4;
 }
 
 .cs-exact-pill-form input {

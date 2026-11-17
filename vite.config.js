@@ -4,13 +4,14 @@ import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
 import nodemailer from 'nodemailer';
+import { generateEarlyBirdEmail, generateOwnerNotification } from './api/templates/earlyBirdEmail.js';
 
-// Manually load .env into process.env (avoids external dotenv dependency)
+// Manually load .env into process.env if present
 try {
     const envPath = path.resolve(process.cwd(), '.env');
     if (fs.existsSync(envPath)) {
         const envContent = fs.readFileSync(envPath, 'utf-8');
-        envContent.split('\n').forEach(line => {
+        envContent.split('\n').forEach((line) => {
             const trimmed = line.trim();
             if (trimmed && !trimmed.startsWith('#')) {
                 const eqIndex = trimmed.indexOf('=');
@@ -23,16 +24,16 @@ try {
                 }
             }
         });
-        console.log('[env] Loaded .env — GMAIL_APP_PASSWORD:', process.env.GMAIL_APP_PASSWORD ? '✓ set' : '✗ missing');
     }
 } catch (e) {
-    console.warn('[env] Failed to load .env:', e.message);
+    // Silently continue if .env cannot be loaded
 }
 
-const waitlistDevPlugin = () => ({
-    name: 'waitlist-dev-plugin',
+const apiDevPlugin = () => ({
+    name: 'api-dev-plugin',
     configureServer(server) {
         server.middlewares.use(async (req, res, next) => {
+            // ── 1. Dev Waitlist Handler (/api/waitlist) ──
             if (req.url && req.url.startsWith('/api/waitlist')) {
                 const dataPath = path.join(process.cwd(), 'data', 'waitlist.json');
                 const outboxPath = path.join(process.cwd(), 'data', 'outbox.json');
@@ -79,7 +80,7 @@ const waitlistDevPlugin = () => ({
 
                 if (req.method === 'POST') {
                     let bodyStr = '';
-                    req.on('data', chunk => { bodyStr += chunk; });
+                    req.on('data', (chunk) => { bodyStr += chunk; });
                     req.on('end', async () => {
                         try {
                             const body = JSON.parse(bodyStr || '{}');
@@ -92,8 +93,16 @@ const waitlistDevPlugin = () => ({
                                 return;
                             }
 
+                            // Bot honeypot check
+                            if (body.website_trap || body.hp) {
+                                res.end(JSON.stringify({ success: true, message: 'Registration received.' }));
+                                return;
+                            }
+
+                            const name = typeof body.name === 'string' ? body.name.trim() : '';
                             const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
                             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
                             if (!email || !emailRegex.test(email)) {
                                 res.statusCode = 400;
                                 res.end(JSON.stringify({ error: 'Please enter a valid email address.' }));
@@ -101,15 +110,18 @@ const waitlistDevPlugin = () => ({
                             }
 
                             data.subscribers = data.subscribers || [];
-                            const existingIdx = data.subscribers.findIndex(s => s.email === email);
+                            const existingIdx = data.subscribers.findIndex((s) => s.email === email);
                             let spotNumber;
+                            let isExisting = false;
 
                             if (existingIdx !== -1) {
-                                spotNumber = existingIdx + 1;
+                                spotNumber = data.subscribers[existingIdx].spotNumber || (existingIdx + 1);
+                                isExisting = true;
                             } else {
                                 spotNumber = data.subscribers.length + 1;
                                 data.subscribers.push({
                                     spotNumber,
+                                    name,
                                     email,
                                     registeredAt: new Date().toISOString(),
                                     ip: req.socket.remoteAddress || '127.0.0.1'
@@ -117,12 +129,13 @@ const waitlistDevPlugin = () => ({
                                 writeData(data);
                             }
 
-                            // Email Sending via Nodemailer (creativelensesstore@gmail.com)
+                            // Email Dispatch via Nodemailer in local dev
                             const fromAddress = process.env.GMAIL_USER || 'creativelensesstore@gmail.com';
+                            const recipientEmail = process.env.RECIPIENT_EMAIL || fromAddress;
                             const gmailPass = process.env.GMAIL_APP_PASSWORD;
                             let emailSent = false;
 
-                            if (gmailPass) {
+                            if (gmailPass && !isExisting) {
                                 try {
                                     const transporter = nodemailer.createTransport({
                                         host: 'smtp.gmail.com',
@@ -134,47 +147,43 @@ const waitlistDevPlugin = () => ({
                                         }
                                     });
 
-                                    // 1. Confirmation email to the subscriber
+                                    const subMail = generateEarlyBirdEmail({ name, email, spotNumber });
+                                    const ownerMail = generateOwnerNotification({
+                                        name,
+                                        email,
+                                        spotNumber,
+                                        totalSubscribers: data.subscribers.length,
+                                        ip: req.socket.remoteAddress || '127.0.0.1'
+                                    });
+
                                     await transporter.sendMail({
                                         from: `"Akshat Dange | Creatively Lensed" <${fromAddress}>`,
                                         to: email,
-                                        subject: `✨ You're on the list — VIP Spot #${spotNumber} [Creatively Lensed Store]`,
-                                        text: `Hi!\n\nThank you for registering for the Creatively Lensed Store early bird launch.\nYou are registered as VIP Spot #${spotNumber}.\n\nYour 25% launch code is: EARLYBIRD25\n\nBest regards,\nAkshat Dange\ncreativelensesstore@gmail.com`
+                                        replyTo: fromAddress,
+                                        subject: subMail.subject,
+                                        text: subMail.text,
+                                        html: subMail.html
                                     });
-                                    console.log(`[Dev Email Sent]: Confirmation to ${email}`);
 
-                                    // 2. Notification email to the owner
                                     await transporter.sendMail({
                                         from: `"Creatively Lensed Store" <${fromAddress}>`,
-                                        to: fromAddress,
-                                        subject: `🔔 New Registration — Spot #${spotNumber} [${email}]`,
-                                        text: `New waitlist registration!\n\nEmail: ${email}\nSpot Number: #${spotNumber}\nRegistered At: ${new Date().toISOString()}\nTotal Subscribers: ${data.subscribers.length}\n\n— Creatively Lensed Store Waitlist`,
-                                        html: `
-                                        <div style="font-family: -apple-system, sans-serif; background: #0c0c10; color: #fff; padding: 30px; border-radius: 16px; max-width: 480px;">
-                                            <h2 style="margin: 0 0 8px 0; font-size: 18px; color: #df646e;">🔔 New Waitlist Registration</h2>
-                                            <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 16px 0;">
-                                            <p style="margin: 6px 0; color: #9f9dae; font-size: 13px;"><strong style="color: #dcd7d0;">Email:</strong> ${email}</p>
-                                            <p style="margin: 6px 0; color: #9f9dae; font-size: 13px;"><strong style="color: #dcd7d0;">Spot Number:</strong> #${spotNumber}</p>
-                                            <p style="margin: 6px 0; color: #9f9dae; font-size: 13px;"><strong style="color: #dcd7d0;">Registered At:</strong> ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</p>
-                                            <p style="margin: 6px 0; color: #9f9dae; font-size: 13px;"><strong style="color: #dcd7d0;">Total Subscribers:</strong> ${data.subscribers.length}</p>
-                                            <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 16px 0;">
-                                            <p style="margin: 0; font-size: 11px; color: #4e4c5b;">Creatively Lensed Store • Waitlist System</p>
-                                        </div>`
+                                        to: recipientEmail,
+                                        subject: ownerMail.subject,
+                                        text: ownerMail.text,
+                                        html: ownerMail.html
                                     });
-                                    console.log(`[Dev Email Sent]: Owner notification for ${email}`);
 
                                     emailSent = true;
                                 } catch (emailErr) {
-                                    console.error('[Gmail SMTP Error in Dev]:', emailErr);
+                                    console.error('[Dev SMTP Warning]:', emailErr?.message || emailErr);
                                 }
-                            } else {
-                                // Record in outbox queue
+                            } else if (!isExisting) {
                                 recordOutbox({
                                     id: Date.now(),
                                     from: fromAddress,
                                     to: email,
+                                    name,
                                     spotNumber,
-                                    subject: `✨ You're on the list — VIP Spot #${spotNumber}`,
                                     createdAt: new Date().toISOString(),
                                     note: 'Add GMAIL_APP_PASSWORD to .env to send live emails automatically'
                                 });
@@ -185,7 +194,10 @@ const waitlistDevPlugin = () => ({
                                 spotNumber,
                                 email,
                                 emailSent,
-                                message: `Registered as Spot #${spotNumber}`
+                                isExisting,
+                                message: isExisting
+                                    ? `You're already registered as Spot #${spotNumber}!`
+                                    : `Registered as Spot #${spotNumber}`
                             }));
                         } catch (err) {
                             res.statusCode = 500;
@@ -195,13 +207,66 @@ const waitlistDevPlugin = () => ({
                     return;
                 }
             }
+
+            // ── 2. Dev Contact Form Handler (/api/contact) ──
+            if (req.url && req.url.startsWith('/api/contact')) {
+                res.setHeader('Content-Type', 'application/json');
+
+                if (req.method === 'POST') {
+                    let bodyStr = '';
+                    req.on('data', (chunk) => { bodyStr += chunk; });
+                    req.on('end', async () => {
+                        try {
+                            const body = JSON.parse(bodyStr || '{}');
+
+                            if (body.website_trap || body.hp) {
+                                res.end(JSON.stringify({ success: true, message: 'Inquiry received.' }));
+                                return;
+                            }
+
+                            const name = (body.name || '').trim();
+                            const email = (body.email || '').trim().toLowerCase();
+                            const message = (body.message || '').trim();
+
+                            if (!name || name.length < 2) {
+                                res.statusCode = 400;
+                                res.end(JSON.stringify({ error: 'Please provide a valid name.' }));
+                                return;
+                            }
+
+                            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                            if (!email || !emailRegex.test(email)) {
+                                res.statusCode = 400;
+                                res.end(JSON.stringify({ error: 'Please provide a valid email.' }));
+                                return;
+                            }
+
+                            if (!message || message.length < 10) {
+                                res.statusCode = 400;
+                                res.end(JSON.stringify({ error: 'Please provide a message with at least 10 characters.' }));
+                                return;
+                            }
+
+                            res.end(JSON.stringify({
+                                success: true,
+                                message: 'Thank you for reaching out! Akshat Dange will review your inquiry within 24 hours.'
+                            }));
+                        } catch (err) {
+                            res.statusCode = 500;
+                            res.end(JSON.stringify({ error: 'Server error' }));
+                        }
+                    });
+                    return;
+                }
+            }
+
             next();
         });
     }
 });
 
 export default defineConfig({
-    plugins: [react(), waitlistDevPlugin()],
+    plugins: [react(), apiDevPlugin()],
     publicDir: 'Public',
 
     server: {
@@ -211,6 +276,15 @@ export default defineConfig({
 
     build: {
         outDir: 'dist',
-        sourcemap: false
+        sourcemap: false,
+        rollupOptions: {
+            output: {
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        return 'vendor';
+                    }
+                }
+            }
+        }
     }
 });

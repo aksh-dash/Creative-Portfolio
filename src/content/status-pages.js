@@ -57,7 +57,7 @@ export const offlineBanner = {
 export const thankYouPage = {
     tag: 'MESSAGE SENT',
     title: 'Thanks for reaching out!',
-    description: 'I\u2019ll reply within [PLACEHOLDER: reply time]. In the meantime, check out my latest work.',
+    description: 'I\u2019ll review your project details and get back to you within 24 hours. In the meantime, feel free to explore my latest work.',
     buttons: {
         home: 'Back to Home',
         instagram: 'Follow on Instagram',

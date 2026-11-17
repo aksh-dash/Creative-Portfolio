@@ -48,6 +48,13 @@
       "email": "dange.girish@gmail.com",
       "registeredAt": "2026-10-20T06:50:00.000Z",
       "ip": "mobile-registration"
+    },
+    {
+      "spotNumber": 9,
+      "name": "Alex Filmmaker",
+      "email": "vip_1794914510778@example.com",
+      "registeredAt": "2026-11-17T11:21:50.780Z",
+      "ip": "127.0.0.1"
     }
   ]
 }

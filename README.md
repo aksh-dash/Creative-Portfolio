@@ -1,180 +1,344 @@
-# 🎬 Creative Portfolio — Akshat Dange
+# 🎬 Creative Lenses — Official Portfolio & Launch Architecture
 
 <p align="center">
-  <img src="Public/assets/me.png" alt="Akshat Dange - Creative Portfolio" width="180" style="border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.8);" />
-</p>
-
-<p align="center">
-  <strong>Filmmaker • Video Editor • Visual Storyteller • Content Creator</strong><br />
-  <em>Pune, Maharashtra, India</em>
-</p>
-
-<p align="center">
-  <a href="https://github.com/aksh-dash/Creative-Portfolio"><img src="https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 18" /></a>
-  <a href="https://vitejs.dev/"><img src="https://img.shields.io/badge/Vite-8.x-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" /></a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://img.shields.io/badge/CSS3-Modern_Design_System-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" /></a>
-  <a href="https://lucide.dev/"><img src="https://img.shields.io/badge/Icons-Lucide_React-F56565?style=for-the-badge" alt="Lucide React" /></a>
-  <img src="https://img.shields.io/badge/Status-Production_Ready-00C853?style=for-the-badge" alt="Status" />
+  <strong>Akshat Dange • Commercial Photographer, Filmmaker & Visual Storyteller</strong><br />
+  <em>Pune, Maharashtra, India • <a href="https://creativelylensed.com">creativelylensed.com</a></em>
 </p>
 
 ---
 
-## 🌟 Overview
+## 1. Project Overview
 
-Welcome to the official repository of **Akshat Dange's Creative Portfolio**. 
+**Creative Lenses** (`creativelylensed.com`) is the flagship commercial photography, cinematography, and creative media portfolio of Akshat Dange. The application showcases high-retention commercial films, viral short-form reels (4.5M+ top reel views), luxury editorial photography, brand identities, and an **Early Bird VIP Access** registration gateway for the upcoming Creative Lenses Store.
 
-Built from the ground up with high performance, dark luxury aesthetics, and cinematic visuals in mind, this web application presents a curated body of work across cinematography, client commercials, short-form viral reels, photography, color grading, and graphic design.
-
-> **"I build frames for feelings."**  
-> Owning the complete creative pipeline: Concept ➔ Script & Hook ➔ Production & Shoot ➔ Edit & Sound Design ➔ Color Grade ➔ Distribution.
-
----
-
-## 🚀 Key Features
-
-### 1. 🎞️ Cinematic Showreel & Buffer-Free Video Vault
-- **Preload-Optimized Player**: Configured with `preload="none"` and an interactive custom click-to-play overlay to eliminate artificial scrubber progress bars on load.
-- **Categorized Video Vault**: Dedicated multi-video galleries for:
-  - **Creatively Lensed**: Narrative commercials and creative experiments.
-  - **Automotive**: High-octane car and bike cinematography.
-  - **Gymophilic**: Fitness and training short-form reels.
-  - **NextGen**: Contemporary brand promotions.
-  - **E-Cell RSCOE**: Flagship college entrepreneurship event coverages.
-
-### 2. 🎨 Interactive Before / After Color Grading
-- Dual interactive split-screen wipe sliders comparing RAW flat camera profiles against finalized DaVinci Resolve / Premiere Pro color grades.
-- Real-time touch and mouse drag support with smooth boundary-clamping.
-
-### 3. 📸 High-Resolution Photography & Visual Art
-- Curated responsive gallery featuring Portraits, Street, Architecture, Jewelry, Commercial Products, and Nature.
-- Interactive modal lightbox for full-screen inspection.
-
-### 4. 🗂️ 6-Card Single-Window Project Showcase
-- Compact 3×2 grid displaying all key clients and ventures (`Gymophilic`, `Creatively Lensed`, `NextGen`, `Visdom Studios`, `Automotive`, `E-Cell RSCOE`).
-- Fitted with non-distorting `object-fit: contain` branding cards that respect viewport heights on desktop and mobile screens.
-
-### 5. ⏳ Chronological Career Timeline
-- Strict chronological career progression:
-  1. **2019 – Present**: Founder & Creative Director — *Creatively Lensed*
-  2. **2024 – Present**: Co-Founder & Media Head — *Gymophilic*
-  3. **March 2024 – Oct 2025**: Media & Design Lead — *E-Cell RSCOE*
-  4. **July 2025 – Present**: Video & Media Associate — *Visdom Studios*
-
-### 6. 🛡️ Client-Side Asset Protection (Security Patch)
-- Built-in `securityPatch.js` utility protecting intellectual property:
-  - Disables right-click context menus (`contextmenu` event interception).
-  - Restricts unauthorized media dragging on `<img>` and `<video>` tags.
-  - Blocks common inspect shortcut key combinations (`F12`, `Ctrl+Shift+I`, `Ctrl+Shift+J`, `Ctrl+Shift+C`, `Ctrl+U`).
-
-### 7. ⚖️ Legal & SEO Compliance
-- **Legal Modals**: Integrated Privacy Policy and Terms & Conditions modals.
-- **User Privacy**: Persistent Cookie consent banner with localStorage state.
-- **SEO Ready**: Custom 404 page, canonical metadata, Open Graph / Twitter cards, `robots.txt`, and XML `sitemap.xml`.
+### Engineering Principles
+- **Predictable & Scalable Architecture**: All components, layouts, pages, API handlers, and config tokens follow a strict, human-navigable folder structure.
+- **Cinematic Dark Luxury Aesthetic**: High-contrast, minimal dark UI (`#080808` / `#0c0c10` with subtle crimson and gold accents) that lets visual media take center stage.
+- **Enterprise-Grade Security**: Server-side rate limiting, bot honeypots, input sanitization, strict CORS, protected admin exports, and no client-side secret exposure.
+- **Sub-Second Performance**: Static HTML pre-rendering, vendor code splitting (React vendor chunk separate from app code), responsive lazy loading, and priority hero preloading.
 
 ---
 
-## 🛠️ Tech Stack
+## 2. Technologies Used
 
-- **Frontend Framework**: [React 18](https://react.dev/)
-- **Bundler & Dev Server**: [Vite 8](https://vitejs.dev/)
-- **Styling**: Vanilla Modern CSS (Tailored HSL design system, CSS variables, glassmorphism, fluid clamp typography)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Audio/Video**: Native HTML5 Video APIs with lazy loading and custom overlay controls
-- **Deployment**: Static SPA optimized for Vercel, Netlify, or GitHub Pages
-
----
-
-## 📂 Project Structure
-
-```text
-CREATIVE LENSES PORTFOLIO/
-├── Public/
-│   ├── assets/              # Compressed brand logos, hero portrait, banners
-│   ├── graphics/            # Design posters, event collaterals
-│   ├── photography/         # High-res photo collection & client sets
-│   ├── videos/              # Segmented video assets (gymophilic, automotive, etc.)
-│   ├── favicon.svg          # Portfolio favicon
-│   ├── robots.txt           # Search crawler directives
-│   └── sitemap.xml          # XML sitemap for SEO indexation
-├── src/
-│   ├── components/
-│   │   ├── hero.jsx         # Clean split hero with centered headroom
-│   │   ├── Navbar.jsx       # Floating navigation bar with smooth scroll
-│   │   ├── Showreel.jsx     # Buffer-free cinematic video player
-│   │   ├── Projects.jsx     # 3x2 project grid with containment styling
-│   │   ├── BeforeAfter.jsx  # Interactive color grading wipe comparison
-│   │   ├── Photography.jsx  # Photography gallery & lightbox
-│   │   ├── Graphics.jsx     # Graphic design showcase
-│   │   ├── Timeline.jsx     # Career & venture milestones
-│   │   ├── Services.jsx     # End-to-end creative service offerings
-│   │   ├── Contact.jsx      # Direct reach-out form & Instagram links
-│   │   ├── NotFound.jsx     # Custom 404 error page
-│   │   ├── CookieBanner.jsx # Privacy cookie banner
-│   │   ├── PrivacyPolicyModal.jsx
-│   │   └── TermsModal.jsx
-│   ├── data/
-│   │   └── portfolioData.js # Single source of truth for portfolio content
-│   ├── styles/              # Dedicated CSS modules for each component
-│   ├── utils/
-│   │   └── securityPatch.js # Anti-theft context menu & inspect lock
-│   ├── App.jsx              # Root application router and layout
-│   └── main.jsx             # React DOM entry point
-├── index.html               # Semantic HTML5 entry with meta & OG tags
-├── package.json             # Dependencies and scripts
-└── vite.config.js           # Vite build configuration
-```
+- **Framework**: React 18.2 (Strict Mode, Component Error Boundaries)
+- **Build System**: Vite 8.3 (with Rolldown engine, custom serverless dev plugin & SSR prerendering)
+- **Styling**: Vanilla CSS3 with semantic design tokens, fluid clamp typography, and reduced-motion compliance
+- **Backend / Serverless**: Vercel Serverless Functions (Node.js runtime in `/api/`)
+- **Email Delivery**: Nodemailer (Gmail SMTP) with Resend API fallback and local outbox queue
+- **SEO & Schema**: JSON-LD Structured Data (`Photographer`, `LocalBusiness`, `FAQPage`), static SSR pre-rendered HTML, canonical tags, Open Graph, and Twitter Cards
 
 ---
 
-## ⚡ Getting Started Locally
+## 3. Installation Instructions
 
 ### Prerequisites
-Make sure you have **Node.js** (version 18 or higher) and **npm** installed on your system.
+- **Node.js**: v18.0.0 or later (Node v20+ recommended)
+- **npm**: v9.0.0 or later
 
-### 1. Clone the repository
 ```bash
+# 1. Clone the repository
 git clone https://github.com/aksh-dash/Creative-Portfolio.git
-cd Creative-Portfolio
-```
 
-### 2. Install dependencies
-```bash
+# 2. Enter project directory
+cd "CREATIVE LENSES PORTFOLIO"
+
+# 3. Install production and development dependencies
 npm install
+
+# 4. Create your local environment file
+cp .env.example .env
 ```
 
-### 3. Start development server
+---
+
+## 4. Development Commands
+
 ```bash
+# Start local development server with real-time API emulation
 npm run dev
+# Server opens at http://localhost:5173
 ```
-Open your browser and navigate to `http://localhost:5173` to explore the website live.
+*Note: In local development, the built-in Vite dev plugin automatically emulates `/api/waitlist` and `/api/contact` without needing external server processes.*
 
-### 4. Build for production
+---
+
+## 5. Production Build Commands
+
 ```bash
+# Run full client build, SSR bundle, and static prerendering pipeline
 npm run build
-```
-The optimized static build will be compiled into the `dist/` directory ready for deployment.
 
-### 5. Preview production build locally
-```bash
+# Preview the finalized production build locally
 npm run preview
 ```
 
----
-
-## 📬 Connect & Collaborate
-
-- **Email**: [creativelensesstore@gmail.com](mailto:creativelensesstore@gmail.com) • [dange.akshat2107@gmail.com](mailto:dange.akshat2107@gmail.com)
-- **Phone / WhatsApp**: [+91 8482872105](https://wa.me/918482872105)
-- **Location**: Pune, Maharashtra, India
-
-### Official Instagram Handles
-- 📸 Personal: [@dangeakshat](https://instagram.com/dangeakshat)
-- 🎬 Filmmaking & Production: [@creativelylensed](https://instagram.com/creativelylensed)
-- 🏋️ Fitness Media: [@gymophilic](https://instagram.com/gymophilic)
-- 🏎️ Automotive Club: [@carclubofsambhajinagar](https://www.instagram.com/carclubofsambhajinagar)
+### Build Pipeline Stages:
+1. `vite build` — Compiles optimized client JavaScript & CSS into `dist/` with vendor chunk splitting.
+2. `vite build --ssr src/prerender-entry.jsx --outDir dist-ssr` — Compiles SSR renderer.
+3. `node scripts/prerender.js` — Renders static HTML for all core routes (`/`, `/store`, `/coming-soon`, `/thank-you`, `/success`, `/cancelled`, `/forbidden`, `/404`), generates `dist/404.html`, and removes intermediate artifacts.
 
 ---
 
-<p align="center">
-  <sub>© 2026 Akshat Dange. All media assets, cinematography, and photographs are proprietary and protected under Creative Lenses.</sub>
-</p>
+## 6. Folder Structure Explanation
+
+```
+CREATIVE LENSES PORTFOLIO/
+│
+├── api/                             # Serverless backend functions (Vercel)
+│   ├── contact.js                   # Secure contact form handler (rate limiting, honeypot)
+│   ├── waitlist.js                  # Early Bird VIP registration API & protected export
+│   └── templates/
+│       └── earlyBirdEmail.js        # Responsive branded email templates (HTML & Text)
+│
+├── Public/                          # Static public assets (served at root /)
+│   ├── assets/                      # Brand logos, hero portraits, venture banners
+│   ├── photography/                 # High-resolution portfolio galleries (visdom, portraits)
+│   ├── graphics/                    # Graphic design artworks and event posters
+│   ├── videos/                      # Commercial videos, automotive cuts, reel edits
+│   ├── email-templates/             # Standalone HTML email templates
+│   ├── favicon.svg                  # Brand favicon
+│   ├── robots.txt                   # Search crawler directives
+│   └── sitemap.xml                  # Search engine XML sitemap
+│
+├── scripts/
+│   └── prerender.js                 # Multi-route static pre-rendering build script
+│
+├── src/
+│   ├── components/                  # Organized, modular React components
+│   │   ├── common/                  # ErrorBoundary, EmptyState, GallerySkeleton, OfflineBanner, CookieBanner
+│   │   ├── layout/                  # Navbar, CustomCursor, StickyMobileCTA, FirstVisitLoader
+│   │   ├── modals/                  # ProjectModal, ThankYouModal, PrivacyPolicyModal, TermsModal
+│   │   └── sections/                # Page sections (Hero, Showreel, Services, Projects, Photography, etc.)
+│   │
+│   ├── pages/                       # Full-page route views
+│   │   ├── StoreComingSoonPage.jsx  # Iconic Eclipse Coming Soon & Early Bird registration
+│   │   ├── NotFoundPage.jsx         # Custom branded 404 error page
+│   │   ├── ThankYouPage.jsx         # Standalone inquiry confirmation page
+│   │   ├── MaintenancePage.jsx      # Instant full-site maintenance view (VITE_MAINTENANCE)
+│   │   ├── ForbiddenPage.jsx        # 403 Expired access page
+│   │   ├── StoreSuccessPage.jsx     # Future Store payment success state
+│   │   └── StoreCancelledPage.jsx   # Future Store payment cancellation state
+│   │
+│   ├── config/                      # Centralized configuration & constants
+│   │   ├── routes.js                # Route paths and API endpoint constants
+│   │   └── navigation.js            # Navbar links and footer navigation items
+│   │
+│   ├── content/                     # Copywriting and text content
+│   │   └── status-pages.js          # Copy for 404, Thank You, FAQ, and status screens
+│   │
+│   ├── data/                        # Verified portfolio content & media records
+│   │   └── portfolioData.js         # Personal info, services, projects, photo gallery, skills
+│   │
+│   ├── hooks/
+│   │   └── useReveal.js             # Native IntersectionObserver scroll animation hook
+│   │
+│   ├── styles/                      # Modular CSS stylesheets matching component structure
+│   │   ├── index.css                # Global design tokens, typography, and base CSS
+│   │   ├── Hero.css                 # Hero section styling & 3D parallax layers
+│   │   ├── StoreComingSoon.css      # Eclipse glowing stage & VIP pill input styling
+│   │   └── ...                      # Section-specific styles
+│   │
+│   ├── utils/
+│   │   └── securityPatch.js         # Client-side media asset protection (right-click, drag)
+│   │
+│   ├── App.jsx                      # Main application routing and section composer
+│   ├── main.jsx                     # Client hydration & root rendering entry point
+│   └── prerender-entry.jsx          # SSR server rendering entry point
+│
+├── .env.example                     # Environment variable blueprint with explanations
+├── vercel.json                      # Vercel routing, security headers & caching policies
+├── vite.config.js                   # Vite configuration with chunk splitting & dev plugin
+└── package.json                     # Cleaned production dependencies
+```
+
+---
+
+## 7. Where Each Functionality Lives
+
+| Functionality | Primary Location |
+|---|---|
+| **Early Bird VIP Registration** | Form: `src/pages/StoreComingSoonPage.jsx`<br>Backend: `api/waitlist.js`<br>Email: `api/templates/earlyBirdEmail.js` |
+| **Contact Inquiries** | Form: `src/components/sections/Contact.jsx`<br>Backend: `api/contact.js` |
+| **Portfolio Projects & Media** | `src/data/portfolioData.js` (`projects` array) |
+| **Photography Portfolio** | `src/data/portfolioData.js` (`photographyGallery` array) |
+| **Services Offered** | `src/data/portfolioData.js` (`services` array) |
+| **Status Page Copy (404, FAQ, etc.)** | `src/content/status-pages.js` |
+| **Navigation Links** | `src/config/navigation.js` |
+| **Security Headers & Caching** | `vercel.json` |
+| **Maintenance Mode Switch** | Set `VITE_MAINTENANCE=true` in `.env` or Vercel dashboard |
+
+---
+
+## 8. How to Add a New Portfolio Project
+
+1. Open `src/data/portfolioData.js`.
+2. Locate the `projects` array.
+3. Add a new project object following this schema:
+```javascript
+{
+    id: "my-brand-film",
+    num: "07",
+    title: "Brand Name Commercial",
+    category: "Commercial & Lifestyle",
+    type: "Cinematography & Color Grading",
+    coverImage: "/assets/your-cover-image.png",
+    mediaType: "video",
+    description: "High-retention commercial film for Brand Name.",
+    items: [
+        { id: 1, title: "Cut 01", src: "/videos/your-project/clip-1.mp4", type: "video" },
+        { id: 2, title: "Cut 02", src: "/videos/your-project/clip-2.mp4", type: "video" }
+    ]
+}
+```
+4. Place your media files in `Public/videos/your-project/` or `Public/assets/`.
+5. Run `npm run build` to verify.
+
+---
+
+## 9. How to Add or Modify a Page
+
+1. **Create Page Component**: Add your new component in `src/pages/MyNewPage.jsx`.
+2. **Register Route Constant**: Open `src/config/routes.js` and add `MY_PAGE: '/my-page'`.
+3. **Connect in App.jsx**: Import `MyNewPage` and add the route check in `src/App.jsx`.
+4. **Register in Prerender Script**: Add the route in `scripts/prerender.js` to enable static SSR pre-rendering.
+5. **Add Vercel Rewrite**: In `vercel.json`, add `{ "source": "/my-page", "destination": "/index.html" }`.
+
+---
+
+## 10. How to Update Navigation
+
+- **Navbar Links**: Open `src/config/navigation.js` and update `NAV_LINKS`. Each `to` matches an in-page section `id` (e.g. `showreel`, `projects`, `photography`, `contact`).
+- **Footer Links**: Update `FOOTER_LINKS` in `src/config/navigation.js`.
+
+---
+
+## 11. How to Modify Global Styles and Design Tokens
+
+All global colors, typography, and theme tokens are defined in `src/styles/index.css`:
+```css
+:root {
+    --accent: #ffffff;
+    --black: #080808;
+    --white: #f5f5f5;
+    --gray: #9a9a9a;
+    --surface: #141414;
+    --border: rgba(255, 255, 255, 0.08);
+
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+}
+```
+Modify these variables to adjust spacing, font families, or color tokens site-wide.
+
+---
+
+## 12. How to Update Images and Assets
+
+- Place new images in `Public/photography/photography/` or `Public/assets/`.
+- To add a photograph to the Still Photography Gallery, add an entry to `photographyGallery` in `src/data/portfolioData.js`:
+```javascript
+{ 
+    id: 15, 
+    title: "New Editorial Shot", 
+    category: "Portrait", 
+    src: "/photography/photography/new-shot.jpg" 
+}
+```
+*Note: Available filter categories: `Portrait`, `Product`, `Street`, `Nature`, `Urban`, `Event`.*
+
+---
+
+## 13. How to Modify Contact Form Functionality
+
+- **Frontend Component**: `src/components/sections/Contact.jsx`
+  - Validates name, email, phone, and project message.
+  - Automatically prefills inquiry text when a visitor clicks a service tag.
+  - Submits to `/api/contact` via POST and falls back seamlessly to direct WhatsApp messaging (`+91 8482872105`).
+- **Backend Function**: `api/contact.js`
+  - Validates payload length, executes bot honeypot filtering, and limits requests per IP.
+  - Dispatches an email notification to the owner (`GMAIL_USER`) and an automated acknowledgment to the client via Nodemailer.
+
+---
+
+## 14. How to Modify Early Bird Signup Functionality
+
+- **Frontend Component**: `src/pages/StoreComingSoonPage.jsx`
+  - Minimalist Eclipse visual stage matching the reference mockup.
+  - Collects `Name` and `Email` with explicit consent agreement.
+  - Submits to `/api/waitlist`.
+  - Displays instant VIP Spot confirmation without storing sensitive personal data in `localStorage`.
+- **Backend Handler**: `api/waitlist.js`
+  - Validates name and email length.
+  - Checks for duplicate emails (returns existing spot gracefully without inflating numbers).
+  - Rate-limited to 5 submissions per 10 minutes per IP.
+  - Honeypot bot protection.
+  - Optional Google Sheets webhook integration (`GOOGLE_SHEET_URL`).
+
+---
+
+## 15. How to Modify Email Templates
+
+Email templates are decoupled from API logic:
+- **Location**: `api/templates/earlyBirdEmail.js`
+- **Functions**:
+  - `generateEarlyBirdEmail({ name, email, spotNumber })`: Generates the confirmation email sent to VIP subscribers.
+  - `generateOwnerNotification({ name, email, spotNumber, totalSubscribers, ip })`: Generates the owner alert email.
+- Both functions return `{ subject, text, html }`. You can edit the HTML structure, colors, or copy directly.
+
+---
+
+## 16. Environment Variable Documentation
+
+Copy `.env.example` to `.env` and fill in the values:
+
+| Variable | Scope | Description |
+|---|---|---|
+| `VITE_SITE_URL` | Public (Client) | Canonical website URL (e.g. `https://creativelylensed.com`) |
+| `VITE_STORE_URL` | Public (Client) | Internal store route (`/store`) |
+| `VITE_MAINTENANCE` | Public (Client) | Set to `true` to activate full-screen maintenance mode |
+| `GMAIL_USER` | Serverless (Private) | Gmail address used to dispatch confirmation emails (`creativelensesstore@gmail.com`) |
+| `GMAIL_APP_PASSWORD` | Serverless (Private) | 16-character Google App Password (from Google Account ➔ Security ➔ App Passwords) |
+| `RECIPIENT_EMAIL` | Serverless (Private) | Inbox where inquiry notifications are sent |
+| `RESEND_API_KEY` | Serverless (Private) | (Optional) Resend API key for alternative email delivery |
+| `ADMIN_SECRET_KEY` | Serverless (Private) | Secret key required to access waitlist export (`/api/waitlist?export=csv&key=YOUR_SECRET`) |
+| `GOOGLE_SHEET_URL` | Serverless (Private) | (Optional) Google Apps Script Webhook URL for Google Sheets backup sync |
+
+*Never commit `.env` to Git. Private credentials should be set in the Vercel Project Settings dashboard.*
+
+---
+
+## 17. Vercel Deployment Instructions
+
+1. Push your repository to GitHub.
+2. In the [Vercel Dashboard](https://vercel.com/):
+   - Click **Add New Project** ➔ Select your repository.
+   - **Framework Preset**: `Vite`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+3. In **Environment Variables**, add:
+   - `GMAIL_USER`: `creativelensesstore@gmail.com`
+   - `GMAIL_APP_PASSWORD`: `your-16-char-app-password`
+   - `ADMIN_SECRET_KEY`: `your-chosen-admin-secret`
+4. Click **Deploy**. Vercel will build the application, execute SSR static prerendering, and deploy serverless functions in `/api/`.
+
+---
+
+## 18. Troubleshooting Common Problems
+
+### Problem: Confirmation emails are not sending
+1. Verify `GMAIL_APP_PASSWORD` is set in Vercel Environment Variables.
+2. Ensure 2-Step Verification is enabled on the Google Account.
+3. Remove any spaces in the 16-character App Password.
+4. Check `data/outbox.json` locally — if credentials are missing, submissions are queued there for inspection.
+
+### Problem: 404 on page refresh in production
+- `vercel.json` contains explicit rewrite rules directing all valid routes to `/index.html`. Unknown routes automatically fall through to `dist/404.html` with an HTTP 404 status.
+
+### Problem: DevTools inspection shows security shield
+- `src/utils/securityPatch.js` protects media assets. In local development (`import.meta.env.DEV`), security shields are disabled automatically so you can inspect and debug without restriction.
+
+---
+
+*Architected with precision for Akshat Dange • Creatively Lensed.*
