@@ -4,7 +4,7 @@
     "type": "module",
     "private": true,
     "dependencies": {
-        "nodemailer": "^10.1.7",
+        "nodemailer": "^10.6.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-scroll": "1.9.0"
